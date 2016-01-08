@@ -44,4 +44,37 @@ public class AufgabenPoolManager {
 		return false;
 	}
 	
+		public  static int createTask(int id , String name ){
+		
+		String sqlBefehl = "INSERT INTO Aufgaben VALUES ( " + id + name + " };";
+		
+		return id;
+		
+	}
+	
+	public  static int getTask(){
+		int id = 0;
+		
+		String sqlBefehl = "select * from Aufgaben where id = " + id;
+		
+		return id;
+	}
+	
+	public  static int getTasks(){
+		int id = 0;
+		
+		String sqlBefehl = "select * from Aufgaben where Poolid = " + id;
+		
+		return id;
+	}
+	
+	public  static boolean deleteTask(int id){
+		
+		String sqlBefehl = "delete from Aufgaben where ID = " + id;
+		
+		return true;
+	}
+	
+	
+	
 }
