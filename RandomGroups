@@ -1,0 +1,84 @@
+import java.util.ArrayList;
+
+public class RandomGroups 
+{
+	// Deklaration der Variablen
+	private ArrayList<Group> allGroups;
+	private ArrayList<Group> studentClasses;
+	private ArrayList<Person> allStudents;
+	
+	// Initialisierung der Variablen, mittels Konstruktor
+	public RandomGroups()
+	{
+		this.allGroups = new ArrayList<>();
+		this.studentClasses = new ArrayList<>();
+		
+		/* allStudents to studentClasses
+		 * setAllStudents()
+		 * getStudentByClass()
+		 */
+		
+	}
+	
+	// Set-Methode für die privaten Methoden
+	public void setAllStudents(ArrayList<Person> allStudents)
+	{
+		this.allStudents = allStudents;
+	}
+	
+	// Zufällige Studenten aus einer Studierenden Klasse
+	public Person getStudentByClass(Group[] studentClass) 
+	{
+		/* Studenten aus der allStudents in die studentClasses Speichern
+		 * aus der allStudents löschen
+		 * 
+		 */
+		//foreach student in group
+			//if(this.allStudents.get(i).getStudentClass() -> class exist);
+				// this.StudenClasses.get -> this class -> .add(the student);
+			// else this.StudenClasses.add(new Group()); ->new group.add(student); 
+		
+		return null;
+	}
+	
+	// Erstellen einer zufälligen Gruppe aus allen Klassen
+	public void createRandomGroups(String mode, int modifier)
+	{
+		/*
+		 * referenz der studentClasses benutzen
+		 */
+		if(mode.equals("count"))
+		{
+			for(int i = 0 ; i < modifier ; i++)
+				this.allGroups.add(new Group());
+			//foreach student from classes.get(j(->counter))
+				// add student k to group l
+		}
+		else if(mode.equals("size"))
+		{
+			
+		}
+		  
+		//this.allGroups.add(*);
+		saveGroupsToDatabase();
+	}
+	
+	// Insert-Befehl für die Gruppen in die Datenbank
+	public String saveGroupsToDatabase()
+	{
+		String output = "";
+		output += "INSERT INTO StudentenGruppen (GruppenID, StudentenID)";
+		for(int i = 0 ; i < this.allGroups.size() ; i++)
+		{
+			output += "Values(";
+			for(int j = 0 ; j < this.allGroups.get(i).getIdCounter() ; j++)
+			{
+				output += ((Person) allGroups.get(i).getMembers().get(j)).getStudentClass();
+				output += ((Person) allGroups.get(i).getMembers().get(j)).getStudentID();
+			}
+			output += ")";
+		}
+
+		return output;
+	}
+}
