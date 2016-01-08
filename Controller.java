@@ -74,7 +74,43 @@ public class AufgabenPoolManager {
 		
 		return true;
 	}
+	package org.sqlite.core;
+
+import java.util.Set;
+
+public class Controller {
+	public static boolean changePoolName(int ID, String newName)
+	{
+		String sql = "UPDATE Aufgabenpool"
+				+ "set name = '" + ID + "' ;"
+				+ "set name = '" + newName + "' ;";
+		return true;
+	}
+	public static boolean changeTask(int ID, String newTask)
+	{
+		String sql = "UPDATE Aufgabenpool"
+				+ "set name = '" + ID + "' ;"
+				+ "set name = '" + newTask + "' ;";
+		return true;
+	}
+	public static boolean checkTaskPool(String name)
+	{
+		return true;
+	}
+	public static boolean checkTaskPool(int ID)
+	{	
+		return true;
+	}
 	
+	public static boolean connectTaskToGroup(int PoolID, int TaskID, int groupID)
+	{
+		String sql = "SELECT Pool.PoolID, Task.TaskID, Group.groupID"
+					+"FROM Aufgaben, Gruppen"
+					+"INNER JOIN  "
+					+"ON Orders.CustomerID=Customers.CustomerID";
+		return true;
+	}
+}
 	
 	
 }
