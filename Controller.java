@@ -1,130 +1,77 @@
+import db.DatabaseSQLite;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 
 public class Controller { //AufgabenPoolManager
 
 	public static void main(String[] args) {
 		//TESTER
+		final String DB_URL = "jdbc:sqlite:db/testDB.db";
+		
+		final String USER = "";
+		final String PWD = "";
+		
+		DatabaseSQLite.getInstance().connect(DB_URL, USER, PWD);
+		
+		// DOZENTE
+	/*	HashMap<String,Object> fields_doz = new HashMap<> ();
+		fields_doz.put("DozentenID","2");
+		fields_doz.put("Name","DYCK");
+		fields_doz.put("Vorname","Matti");
+		fields_doz.put("Passwort","#Hamster");
+		DatabaseSQLite.getInstance().insert("Dozenten", fields_doz);
+		*/
+		
+		
+		
+		// AUFGABENPOOL
+		/*HashMap<String,Object> fields = new HashMap<> ();
+		fields.put("AufgabenpoolID","3");
+		fields.put("Dozent","2");
+		fields.put("Fach","EIA");
+		fields.put("Beschreibung","BESTER AUFGABENPOOL!");
+		DatabaseSQLite.getInstance().insert("Aufgabenpool", fields);
+		*/
+		//CreateTaskPool("AUfgabenpool-SEN", 2, "SEN", "Schlechte Aufgaben hier!");
+		
+		//System.out.println(DatabaseSQLite.getInstance().get("Dozenten"));
+		//System.out.println(DatabaseSQLite.getInstance().get("Aufgabenpool"));
+		
+		//createTask(5, "Coole Aufgabe1","Langweilig", "Unsinn", "5h");
+		//System.out.println(Arrays.toString(getPoolTasks(5)));
+		//System.out.println(getPoolName(5));
+		//System.out.println(getPoolID("Coole Aufgaben hier!"));
+		//System.out.println(getPoolSize(5));
+		//deletePool(7);
+		//System.out.println(getTask(7));
+		//changePoolName(6, "Beste Aufgaben!");
+		//changeTask(5, "Tafel wischen");
+		//System.out.println(checkTaskPool("Schlechte Aufgdaben hier!"));
+		//System.out.println(checkTaskPool(6));
+		//System.out.println(checkTask("Tafel wischen"));
+		//System.out.println(checkTask(6));
 	}
 	
-	public int CreateTaskPool(String name,int dozId, String Fach, String Beschreibung)
+	public static int CreateTaskPool(String name,int dozId, String Fach, String Beschreibung)
 	{
 		//SQL MANAGER
-		String sql = "INSERT INTO Aufgabenpool (Dozent,Fach,Beschreibung) "
-				+ "VALUES ('" + dozId + "','" + Fach + "','" + Beschreibung + "');" ;
+		//String sql = "INSERT INTO Aufgabenpool (Dozent,Fach,Beschreibung) "
+		//		+ "VALUES ('" + dozId + "','" + Fach + "','" + Beschreibung + "');" ;
 		
-		return 0;
+		
+		HashMap<String,Object> fields = new HashMap<> ();
+		fields.put("Dozent",dozId);
+		fields.put("Fach",Fach);
+		fields.put("Beschreibung",Beschreibung);
+		DatabaseSQLite.getInstance().insert("Aufgabenpool", fields);
+		
+		return getPoolID(name);
 	}
 	
-	public int[] getPoolTasks(int ID)
+	public static  int[] getPoolTasks(int ID)
 	{
 		//SQL MANAGER
-		String sql = "SELECT * FROM Aufgabenpool where AufgabenpoolID = "+ ID + ";";
-		return null;
-	}
+		ArrayList<HashMap<String,Object>> result = new ArrayList<HashMap<String,Object>> ();
 	
-	public String getPoolName(int ID)
-	
-	{
-		//SQL MANAGER,
-		//TODO 
-		String sql = "SELECT Beschreibung FROM Aufgabenpool where AufgabenpoolID = "+ ID + ";";
-		
-		return null;
-	}
-	
-	public int getPoolSize(int IdPool)
-	{
-		String sql = "SELECT COUNT(*) FROM AUFGABEN WHERE POOL = " + IdPool + ";";
-		return 0;
-
-	}
-	
-	public boolean deletePool(int ID)
-	{
-		String sql = "DELETE FROM Aufgabenpol WHERE Aufgabenpool="+ ID + ";";
-		return false;
-	}
-	
-		public  static int createTask(int id , String name ){
-		
-		String sqlBefehl = "INSERT INTO Aufgaben VALUES ( " + id + name + " };";
-		
-		return id;
-		
-	}
-	
-	public  static int getTask(int ID){
-		
-		String sqlBefehl = "select * from Aufgaben where id = " + ID;
-		
-		return id;
-	}
-	
-	public  static int getTasks(int ID){
-		
-		String sqlBefehl = "select * from Aufgaben where Poolid = " + ID;
-		
-		return id;
-	}
-	
-	public  static boolean deleteTask(int ID){
-		
-		String sqlBefehl = "delete from Aufgaben where ID = " + ID;
-		
-		return true;
-	}
-
-	public static boolean changePoolName(int ID, String newName)
-	{
-		String sql = "UPDATE Aufgabenpool"
-				+ "set name = '" + ID + "' ;"
-				+ "set name = '" + newName + "' ;";
-		return true;
-	}
-	public static boolean changeTask(int ID, String newTask)
-	{
-		String sql = "UPDATE Aufgabenpool"
-				+ "set name = '" + ID + "' ;"
-				+ "set name = '" + newTask + "' ;";
-		return true;
-	}
-	public static boolean checkTaskPool(String name)
-	{
-		//String good = "Daten gefunden";
-		
-		String sql = "SELECT"+ name
-					+"FROM Aufgabenpool"  ;
-		if (sql!= null)
-		{
-			return true;
-		}
-		
-		return false;
-	}
-
-
-	public static boolean checkTaskPool(int ID)
-	{	
-		//String good = "Daten gefunden";
-		
-				String sql = "SELECT"+ ID 
-							+"FROM Aufgabenpool"  ;
-				if (sql!= null)
-				{
-					return true;
-				}
-				
-				return false;
-	}
-	
-	/*public static boolean connectTaskToGroup(int PoolID, int TaskID, int groupID)
-	{
-		String sql = "SELECT Pool.PoolID, Task.TaskID, Group.groupID"
-					+"FROM Aufgaben, Gruppen"
-					+"INNER JOIN  "
-					+"ON Orders.CustomerID=Customers.CustomerID";
-		return true;
-	}*/
-}
-
-	
-
