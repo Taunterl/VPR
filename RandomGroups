@@ -63,22 +63,32 @@ public class RandomGroups
 		saveGroupsToDatabase();
 	}
 	
-	// Insert-Befehl für die Gruppen in die Datenbank
-	public String saveGroupsToDatabase()
+// Insert-Befehl für die Gruppen in die Datenbank
+	public void saveGroupsToDatabase()
 	{
 		String output = "";
+		
 		output += "INSERT INTO StudentenGruppen (GruppenID, StudentenID)";
 		for(int i = 0 ; i < this.allGroups.size() ; i++)
 		{
 			output += "Values(";
 			for(int j = 0 ; j < this.allGroups.get(i).getIdCounter() ; j++)
 			{
-				output += ((Person) allGroups.get(i).getMembers().get(j)).getStudentClass();
+				output += ((Person) allGroups.get(i).getMembers().get(j)).getStudentClass() + ",";
 				output += ((Person) allGroups.get(i).getMembers().get(j)).getStudentID();
 			}
 			output += ")";
 		}
+		
+		/*
+		 * gruppen tabelle befüllen
+		 * 
+		 * execude von conny aufrufen
+		 * 
+		 * 
+		 */
 
-		return output;
+		
+		
 	}
 }
