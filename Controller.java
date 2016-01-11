@@ -89,21 +89,42 @@ public class Controller { //AufgabenPoolManager
 	}
 	public static boolean checkTaskPool(String name)
 	{
-		return true;
+		//String good = "Daten gefunden";
+		
+		String sql = "SELECT"+ name
+					+"FROM Aufgabenpool"  ;
+		if (sql!= null)
+		{
+			return true;
+		}
+		
+		return false;
 	}
+
+
 	public static boolean checkTaskPool(int ID)
 	{	
-		return true;
+		//String good = "Daten gefunden";
+		
+				String sql = "SELECT"+ ID 
+							+"FROM Aufgabenpool"  ;
+				if (sql!= null)
+				{
+					return true;
+				}
+				
+				return false;
 	}
 	
-	public static boolean connectTaskToGroup(int PoolID, int TaskID, int groupID)
+	/*public static boolean connectTaskToGroup(int PoolID, int TaskID, int groupID)
 	{
 		String sql = "SELECT Pool.PoolID, Task.TaskID, Group.groupID"
 					+"FROM Aufgaben, Gruppen"
 					+"INNER JOIN  "
 					+"ON Orders.CustomerID=Customers.CustomerID";
 		return true;
-	}
+	}*/
 }
+
 	
 
