@@ -52,25 +52,23 @@ public class AufgabenPoolManager {
 		
 	}
 	
-	public  static int getTask(){
-		int id = 0;
+	public  static int getTask(int ID){
 		
-		String sqlBefehl = "select * from Aufgaben where id = " + id;
-		
-		return id;
-	}
-	
-	public  static int getTasks(){
-		int id = 0;
-		
-		String sqlBefehl = "select * from Aufgaben where Poolid = " + id;
+		String sqlBefehl = "select * from Aufgaben where id = " + ID;
 		
 		return id;
 	}
 	
-	public  static boolean deleteTask(int id){
+	public  static int getTasks(int ID){
 		
-		String sqlBefehl = "delete from Aufgaben where ID = " + id;
+		String sqlBefehl = "select * from Aufgaben where Poolid = " + ID;
+		
+		return id;
+	}
+	
+	public  static boolean deleteTask(int ID){
+		
+		String sqlBefehl = "delete from Aufgaben where ID = " + ID;
 		
 		return true;
 	}
