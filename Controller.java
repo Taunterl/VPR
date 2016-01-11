@@ -75,3 +75,100 @@ public class Controller { //AufgabenPoolManager
 		//SQL MANAGER
 		ArrayList<HashMap<String,Object>> result = new ArrayList<HashMap<String,Object>> ();
 	
+		//String sql = "SELECT Beschreibung FROM Aufgabenpool where AufgabenpoolID = "+ ID + ";";
+		
+		ArrayList<HashMap<String,Object>> result = new ArrayList<HashMap<String,Object>> ();
+		
+		result = DatabaseSQLite.getInstance().get("Aufgabenpool", "AufgabenpoolID = " + PoolID);
+		
+		String return_str = "";
+		for(HashMap<String,Object> line: result){
+			return_str = (String) line.get("Beschreibung");
+			
+		}
+	
+		return return_str;
+	}
+	
+	public static int getPoolID(String name)
+	
+	{
+		//SQL MANAGER,
+		//TODO 
+		//String sql = "SELECT Beschreibung FROM Aufgabenpool where AufgabenpoolID = "+ ID + ";";
+		ArrayList<HashMap<String,Object>> result = new ArrayList<HashMap<String,Object>> ();
+		
+		result = DatabaseSQLite.getInstance().get("Aufgabenpool", "Beschreibung = '" + name + "'");
+		
+		int return_int = 0;
+		for(HashMap<String,Object> line: result){
+			return_int = (int) line.get("AufgabenpoolID");
+			
+		}
+		return return_int;
+		
+	}
+	
+	public static  int getPoolSize(int IdPool)
+	{
+		ArrayList<HashMap<String,Object>> result = new ArrayList<HashMap<String,Object>> ();
+		
+		result = DatabaseSQLite.getInstance().get("Aufgaben", "Pool = " + IdPool);
+		
+		int counter = 0;
+		for(HashMap<String,Object> line: result){
+			counter++;
+			
+		}
+		return counter;
+		//String sql = "SELECT COUNT(*) FROM AUFGABEN WHERE POOL = " + IdPool + ";";
+		//return 0;
+
+	}
+	
+	public static boolean deletePool(int ID)
+	{
+		if(checkTaskPool(ID))
+		{
+			 int[] all_tasks = getPoolTasks(ID);
+			 for(int task :all_tasks)
+			 {
+				 deleteTask(task);
+			 }
+			 DatabaseSQLite.getInstance().delete("Aufgabenpool", "AufgabenpoolID = " + ID);
+			 return true;
+		}
+		
+		//String sql = "DELETE FROM Aufgabenpol WHERE Aufgabenpool="+ ID + ";";
+		return false;
+	}
+	
+	public static int createTask(int PoolID , String name ,String Beschreibung, String kat , String zeit ){
+		
+		HashMap<String,Object> fields = new HashMap<> ();
+		fields.put("Bezeichnung",name);
+		fields.put("Beschreibung",Beschreibung);
+		fields.put("Kategorie",kat);
+		fields.put("Bearbeitungszeit",zeit);
+		fields.put("Pool",PoolID);
+		DatabaseSQLite.getInstance().insert("Aufgaben", fields);
+		
+		return 0;
+		
+		
+		//String sqlBefehl = "INSERT INTO Aufgaben VALUES ( " + id + name + " };";
+		
+		//return id;
+		
+	}
+	
+	public static String getTask(int ID){
+		
+		//String sqlBefehl = "select * from Aufgaben where id = " + ID;
+		ArrayList<HashMap<String,Object>> result = new ArrayList<HashMap<String,Object>> ();
+		
+		result = DatabaseSQLite.getInstance().get("Aufgaben", "AufgabenId = " + ID);
+		
+		String return_str = null;
+		for(HashMap<String,Object> line: result){
+			return_str = (String) line.get("Bezeichnung");
