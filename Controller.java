@@ -172,3 +172,100 @@ public class Controller { //AufgabenPoolManager
 		String return_str = null;
 		for(HashMap<String,Object> line: result){
 			return_str = (String) line.get("Bezeichnung");
+			
+		}
+		return return_str;
+	}
+	
+
+	
+	public  static boolean deleteTask(int ID){
+		
+		if(checkTask(ID))
+		{
+			DatabaseSQLite.getInstance().delete("Aufgaben", "AufgabenId = " + ID);
+			return true;
+		}
+		return false;
+	}
+
+	public static boolean changePoolName(int ID, String newName)
+	{
+		DatabaseSQLite.getInstance().update("Aufgabenpool", "AufgabenpoolId = " + ID, "Beschreibung", newName );
+	/*	String sql = "UPDATE Aufgabenpool"
+				+ "set name = '" + ID + "' ;"
+				+ "set name = '" + newName + "' ;";*/
+		return true;
+	}
+	public static boolean changeTask(int ID, String newTask)
+	{
+		DatabaseSQLite.getInstance().update("Aufgaben", "AufgabenId = " + ID, "Bezeichnung", newTask);
+		/*String sql = "UPDATE Aufgabenpool"
+				+ "set name = '" + ID + "' ;"
+				+ "set name = '" + newTask + "' ;";*/
+		return true;
+	}
+
+	public static boolean checkTaskPool(String name)
+	{
+
+		ArrayList<HashMap<String,Object>> result = new ArrayList<HashMap<String,Object>> ();
+		result = DatabaseSQLite.getInstance().get("Aufgabenpool","Beschreibung = '" + name + "'");
+		
+		boolean checked =false;
+		if(result.size()>0)
+		{
+			checked = true;
+		}
+		
+		return checked;
+	}
+
+
+	public static boolean checkTaskPool(int ID)
+	{	
+		/*String sql = "SELECT"+ ID 
+		+"FROM Aufgabenpool"  ;*/
+		ArrayList<HashMap<String,Object>> result = new ArrayList<HashMap<String,Object>> ();
+		result = DatabaseSQLite.getInstance().get("Aufgabenpool","AufgabenpoolId = " + ID );
+		
+		boolean checked =false;
+		if(result.size()>0)
+		{
+			checked = true;
+		}
+		return checked;
+	}
+	
+	public static boolean checkTask(String name)
+	{
+
+		ArrayList<HashMap<String,Object>> result = new ArrayList<HashMap<String,Object>> ();
+		result = DatabaseSQLite.getInstance().get("Aufgaben","Bezeichnung = '" + name + "'");
+		
+		boolean checked =false;
+		if(result.size()>0)
+		{
+			checked = true;
+		}
+		
+		return checked;
+	}
+
+
+	public static boolean checkTask(int ID)
+	{	
+		/*String sql = "SELECT"+ ID 
+		+"FROM Aufgabenpool"  ;*/
+		ArrayList<HashMap<String,Object>> result = new ArrayList<HashMap<String,Object>> ();
+		result = DatabaseSQLite.getInstance().get("Aufgaben","AufgabenId = " + ID );
+		
+		boolean checked =false;
+		if(result.size()>0)
+		{
+			checked = true;
+		}
+		return checked;
+	}
+	
+}
