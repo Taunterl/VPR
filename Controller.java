@@ -1,5 +1,5 @@
 
-public class AufgabenPoolManager {
+public class Controller { //AufgabenPoolManager
 
 	public static void main(String[] args) {
 		//TESTER
@@ -72,11 +72,7 @@ public class AufgabenPoolManager {
 		
 		return true;
 	}
-	package org.sqlite.core;
 
-import java.util.Set;
-
-public class Controller {
 	public static boolean changePoolName(int ID, String newName)
 	{
 		String sql = "UPDATE Aufgabenpool"
@@ -110,5 +106,4 @@ public class Controller {
 	}
 }
 	
-	
-}
+
