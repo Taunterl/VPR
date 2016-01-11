@@ -3,68 +3,64 @@ import java.util.ArrayList;
 public class RandomGroups 
 {
 	// Deklaration der Variablen
-	private ArrayList<Group> allGroups;
-	private ArrayList<Group> studentClasses;
-	private ArrayList<Person> allStudents;
-	
-	// Initialisierung der Variablen, mittels Konstruktor
-	public RandomGroups()
-	{
-		this.allGroups = new ArrayList<>();
-		this.studentClasses = new ArrayList<>();
-		
-		/* allStudents to studentClasses
-		 * setAllStudents()
-		 * getStudentByClass()
-		 */
-		
-	}
+	private static ArrayList<Group> allGroups;
+	private static ArrayList<Group> studentClasses;	
 	
 	// Set-Methode für die privaten Methoden
-	public void setAllStudents(ArrayList<Person> allStudents)
+	public static void setAllStudents(String[] classes)
 	{
-		this.allStudents = allStudents;
+		studentClasses.add(new Group());
+		studentClasses.get(0).getMembers.add();
 	}
 	
 	// Zufällige Studenten aus einer Studierenden Klasse
-	public Person getStudentByClass(Group[] studentClass) 
+	public static Person getStudentByClass(Group studentClass) 
 	{
-		/* Studenten aus der allStudents in die studentClasses Speichern
-		 * aus der allStudents löschen
-		 * 
-		 */
-		//foreach student in group
-			//if(this.allStudents.get(i).getStudentClass() -> class exist);
-				// this.StudenClasses.get -> this class -> .add(the student);
-			// else this.StudenClasses.add(new Group()); ->new group.add(student); 
+		Random rnd = new Random();
+		int rndStudent = rnd.nextInt(studentClass.members.size());
 		
-		return null;
+		Person p = studentClass.members.get(rndStudent)
+		
+		return p;
 	}
 	
 	// Erstellen einer zufälligen Gruppe aus allen Klassen
-	public void createRandomGroups(String mode, int modifier)
+	// HAUPTMETHODE FÜR AUFRUF
+		// Benutzung:
+			// mode:		STRING  für Auswahl von Erstellung nach Größe ("size"), oder Anzahl("count") der Gruppen
+			//				ANDERE WERTE WERFEN EXCEPTION!
+			// modifier:	Gibt je nach "mode" die Größe der zu generierenden Gruppen oder deren Anzahl an
+	public static void createRandomGroups(String mode, int modifier , String[] classes) 
 	{
 		/*
 		 * referenz der studentClasses benutzen
+		 * setAllStudents()
+		 * SQL abfragen nach klassen -> personen in klassen schreiben
 		 */
-		if(mode.equals("count"))
+		if(mode.equals("count") && modifier > 0)
 		{
 			for(int i = 0 ; i < modifier ; i++)
 				this.allGroups.add(new Group());
-			//foreach student from classes.get(j(->counter))
-				// add student k to group l
-		}
-		else if(mode.equals("size"))
-		{
 			
+			Group currentGroup = this.allGroups.get(0); // random missing.. reduce nextInt each roll
+			for (int j = 0 ; j < StudenClasses.size ; j++)
+				for (int k = 0 ; k < StudenClasses.get(j).getMembers.size() ; k++)
+					currentGroup.add(StudentClasses.get(j).getMembers.remove(StudentClasses.get(j).getMembers.get(k)));
+					//switchCurrentGroup to next one in line (cycle groups)
+			
+		}
+		else if(mode.equals("size") && modifier > 0)
+		{
+			/*this.allGroups.add(new Group())
+			for*/
 		}
 		  
 		//this.allGroups.add(*);
 		saveGroupsToDatabase();
 	}
 	
-// Insert-Befehl für die Gruppen in die Datenbank
-	public void saveGroupsToDatabase()
+	// Insert-Befehl für die Gruppen in die Datenbank
+	public static void saveGroupsToDatabase()
 	{
 		String output = "";
 		
@@ -83,7 +79,7 @@ public class RandomGroups
 		/*
 		 * gruppen tabelle befüllen
 		 * 
-		 * execude von conny aufrufen
+		 * execute von conny aufrufen
 		 * 
 		 * 
 		 */
