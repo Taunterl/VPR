@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AufgabenController">
+   <children>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <ToolBar prefHeight="84.0" prefWidth="600.0">
+              <items>
+                <Button fx:id="goBackButton" mnemonicParsing="false" onAction="#goBackClicked" text="&lt;" />
+                  <VBox prefHeight="0.0" prefWidth="278.0">
+                     <children>
+                        <Label text="Aufgabenpool auswählen" />
+                        <ChoiceBox fx:id="aufgabenChoice" prefHeight="31.0" prefWidth="208.0" />
+                     </children>
+                  </VBox>
+                  <Button fx:id="starButton" mnemonicParsing="false" onAction="#starClicked" text="*" />
+                  <Button fx:id="plusButton" mnemonicParsing="false" onAction="#plusClicked" text="+" />
+                  <Button fx:id="uebersichtButton" mnemonicParsing="false" onAction="#uebersichtClicked" text="Übersicht" />
+              </items>
+            </ToolBar>
+         </children>
+      </HBox>
+      <TableView fx:id="aufgabenTabelle" prefHeight="316.0" prefWidth="600.0">
+        <columns>
+          <TableColumn prefWidth="75.0" />
+          <TableColumn prefWidth="75.0" text="Nr." />
+            <TableColumn prefWidth="326.0" text="Aufgabentext" />
+            <TableColumn prefWidth="123.0" text="Anhänge" />
+        </columns>
+      </TableView>
+   </children>
+</VBox>
