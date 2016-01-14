@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="34.0" prefWidth="600.0">
+         <children>
+            <Label prefHeight="25.0" prefWidth="70.0" text="Benutzer">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+            <TextField fx:id="user" />
+            <Button fx:id="loginBtn" mnemonicParsing="false" onAction="#login" prefHeight="25.0" prefWidth="75.0" text="Anmelden">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin></Button>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="34.0" prefWidth="600.0">
+         <children>
+            <Label prefHeight="25.0" prefWidth="70.0" text="Passwort">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+            <PasswordField fx:id="pass" />
+            <Button fx:id="closeBtn" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="75.0" text="Beenden">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin></Button>
+         </children>
+      </HBox>
+   </children>
+</VBox>
