@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="253.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HauptmenueController">
+   <children>
+      <Label alignment="CENTER" text="Klasse auswählen" />
+      <HBox prefHeight="27.0" prefWidth="600.0">
+         <children>
+            <ChoiceBox fx:id="klasseAuswaehlenBox" prefWidth="150.0" />
+            <Button mnemonicParsing="false" text="*" />
+            <Button mnemonicParsing="false" text="+" />
+            <Button mnemonicParsing="false" text="-" />
+            <Button mnemonicParsing="false" text="Übersicht" />
+         </children>
+      </HBox>
+      <VBox prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <Label text="RandomGuy" />
+            <HBox alignment="CENTER">
+               <children>
+                  <Button fx:id="chooseStudentButton" mnemonicParsing="false" onAction="#chooseStudentClicked" text="Zufälligen Studierenden auswählen" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="158.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Bilder/Ugly-boy.jpg" />
+                     </image>
+                  </ImageView>
+                  <VBox alignment="CENTER" prefHeight="150.0" prefWidth="63.0">
+                     <children>
+                        <Label text="Name:" />
+                        <Label text="Klasse:" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="81.0">
+                     <children>
+                        <Label text="Label" />
+                        <Label text="Label" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="153.0" prefWidth="100.0">
+                     <children>
+                        <Button fx:id="gotoTableButton" mnemonicParsing="false" onAction="#gotoTableClicked" text="Zur Tabelle" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</VBox>
