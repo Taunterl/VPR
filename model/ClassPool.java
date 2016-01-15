@@ -1,10 +1,18 @@
-import java.beans.Statement;
-import java.sql.SQLException;
-import java.util.ArrayList;
+package model;
 
-class ClassPool {
-	public static DatabaseSQLite myDB;
-	private ArrayList<Class> list;
+import java.util.ArrayList;
+import java.util.HashMap;
+import db.DatabaseSQLite;
+
+public class ClassPool {
+	
+	public static final String TableName = "Klassen";
+	
+	private static final String  ClassID = "Klassenbezeichnung";
+	private static final String ClassProfessor = "Klassendozent";
+	
+		
+	private ArrayList<StudentClass> list;
 	private String location; // Standort BI/PB
 
 	public ClassPool(String location) {
@@ -12,56 +20,44 @@ class ClassPool {
 		this.list = new ArrayList<>();
 		this.location = location;
 	}
-
-	public void addClass(Class newClass)
+	public String getLocation()
 	{
-		try
-		{
-			// Die Klasse wird auf ihre Einzigartigkeit geprüft.
-			if (classIsUniqueCheck(newClass.name))
-			{
-				Statement stmt = c.createStatement();
-				// Die Klasse wird in die Datenbank eingefügt.
-				String sql = "Insert into Klassen (Klassenbezeichnung,AnzahlSchüler,Klassendozent)" + "Values("
-						+ newClass.getClassName() 
-						+ "," + newClass.getAnzahl() 
-						+ "," + newClass.getClassProfessor()
-						+ ");";
-				stmt.execute(sql);
-				stmt.close();
+		return this.location;
+	}
+
+	public void addClass(StudentClass studentClass)
+	{
+			if (classIsUniqueCheck(studentClass.getClassName()))
+			{				
+				list.add(studentClass);
+				studentClass.save();
+				
 			} 
 			else
 			{
 				System.out.print("Die Klasse ist bereits vorhanden.");
-			}
-		} 
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
+			} 
 	}
 
 	public void deleteClass(String className)
 	{
-		
 		boolean check=false;
 		//Es wird durch die gesamte Klassenliste gelaufen
-		for(int = 0; this.list.size(),i++)
+		for(int i = 0;i<this.list.size();i++)
 		{
 			//bei einem Treffer wird die Klasse aus der DB gelöscht
-			if(className.contains(this.list.get(i.getName())))
+			if(className.contains(this.list.get(i).getClassName()))
 			{
-				myDB.delete("Klassen",this.list.get(i.getName()));
+				list.get(i).delete();
 				check=true;
 				break;
 			}
 		}
 		//Wenn die Klasse nicht in der Liste gefunden wird, wird eine Fehlermeldung ausgegeben.
-		if(check = false)
+		if(check == false)
 		{
 			System.out.println("Die Klasse wurde nicht gefunden.");
 		}
-
 	}
 
 	public void importFromExcel() {
@@ -73,26 +69,41 @@ class ClassPool {
 	}
 
 	public boolean classIsUniqueCheck(String className) {
-		//über prüft Klassen auf ihre Einzigartigkeit
 		boolean check=true;
-		for(int i=0; i < this.list.size; i++)
+		for(int i=0; i<list.size();i++)
 		{
-			if(className.contains(this.list.get(i.getName())))
+			if(className.contains(list.get(i).getClassName()))
 			{
 				check = false;
 			}
 		}
 		return check;
 	}
-
-	public ArrayList<String> showAllClasses() {
-		//schreibt die Namen der Klassen in eine Arraylist und gibt sie zurück
-		ArrayList<String> classNames= new ArrayList<>();
-		for(int i = 0; i<this.list.size; i++)
+	private static ArrayList<StudentClass>getByAttribute(String where)
+	{
+		ArrayList<HashMap<String,Object>> entries = DatabaseSQLite.getInstance().get(TableName,where);
+		ArrayList<StudentClass> studentClasses = new ArrayList<>();
+		for(int i=0;i<entries.size();i++)
 		{
-			classNames.add(this.list.get(i.getName()));
+			StudentClass studentClass = new StudentClass(null,null);
+			studentClass.setClassName((String)entries.get(i).get(ClassID));
+			studentClass.setProfessor((Professor)entries.get(i).get(ClassProfessor));
+			studentClasses.add(studentClass);
 		}
-		return classNames;
+		return studentClasses;
 	}
-
+	public static ArrayList<StudentClass> get()
+	{
+		return getByAttribute("");
+	}
+	public static ArrayList<StudentClass> getByClassID(String id)
+	{
+		String where = ClassID + " LIKE '" + id + "'";
+		return getByAttribute(where);
+	}
+	public static ArrayList<StudentClass> getByClassProfessor(String name)
+	{
+		String where = ClassProfessor + " LIKE '" + name + "'";
+		return getByAttribute(where);
+	}
 }
