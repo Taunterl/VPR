@@ -53,7 +53,7 @@ public class StudentClass extends DatabaseEntitySQLite
 		boolean check=true;
 		for(int i=0;i<studentList.size();i++)
 		{
-			if(studentList.get(i.getStudentName()).contains(student.getStudentName))
+			if(studentList.get(i).getStudentName().equals(student.getStudentName()))
 			{
 				check = false;
 			}
@@ -62,7 +62,9 @@ public class StudentClass extends DatabaseEntitySQLite
 		{
 			System.out.println("Der Student ist bereits in der Klasse gespeichert!");
 		}
+		return check;
 	}
+	@Override	
 	protected HashMap<String,Object> getValueMap()
 	{
 	HashMap<String,Object> fields = new HashMap<String,Object>();
@@ -71,10 +73,12 @@ public class StudentClass extends DatabaseEntitySQLite
 	fields.put(ClassProfessor,this.professor);
 	return fields;
 	}
+	@Override
 	protected String getTableName()
 	{
 		return TableName;
 	}
+	@Override
 	protected HashMap<String,Object> getPrimaryKey()
 	{
 		HashMap<String,Object> fields = new HashMap<String,Object>();
