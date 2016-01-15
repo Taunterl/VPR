@@ -14,12 +14,12 @@ public class RandomGroups
 	}
 	
 	// Zufällige Studenten aus einer Studierenden Klasse
-	public static Person getStudentByClass(Group studentClass) 
+	public static Student getRandomObjectByGroup(Group studentClass) 
 	{
 		Random rnd = new Random();
 		int rndStudent = rnd.nextInt(studentClass.members.size());
 		
-		Person p = studentClass.members.get(rndStudent)
+		Student p = studentClass.members.get(rndStudent)
 		
 		return p;
 	}
@@ -28,63 +28,54 @@ public class RandomGroups
 	// HAUPTMETHODE FÜR AUFRUF
 		// Benutzung:
 			// mode:		STRING  für Auswahl von Erstellung nach Größe ("size"), oder Anzahl("count") der Gruppen
-			//				ANDERE WERTE WERFEN EXCEPTION!
 			// modifier:	Gibt je nach "mode" die Größe der zu generierenden Gruppen oder deren Anzahl an
-	public static void createRandomGroups(String mode, int modifier , String[] classes) 
+	public static ArrayList<Group> createRandomGroups(String mode, int modifier, Group[] grp) 
 	{
+		// Zähler für die Gruppenerstellung
+		int i = 0;
 		/*
 		 * referenz der studentClasses benutzen
 		 * setAllStudents()
-		 * SQL abfragen nach klassen -> personen in klassen schreiben
+		 * SQL abfragen nach klassen -> Studenten in klassen schreiben
 		 */
 		if(mode.equals("count") && modifier > 0)
 		{
-			for(int i = 0 ; i < modifier ; i++)
+			
+			for(int j = 0 ; j < modifier ; j++)
 				this.allGroups.add(new Group());
 			
-			Group currentGroup = this.allGroups.get(0); // random missing.. reduce nextInt each roll
-			for (int j = 0 ; j < StudenClasses.size ; j++)
-				for (int k = 0 ; k < StudenClasses.get(j).getMembers.size() ; k++)
-					currentGroup.add(StudentClasses.get(j).getMembers.remove(StudentClasses.get(j).getMembers.get(k)));
-					//switchCurrentGroup to next one in line (cycle groups)
-			
+			for(int  j = 0 ; j < grp.length ; j++)
+				while(grp[j].members.size>0)
+				{
+					this.allGroups.get(i).addObject(grp[j].removeObject(getRandomObjectByGroup(grp[j])));
+					i++;
+					if(i==modifier)
+						i=0;
+	
+				}
 		}
 		else if(mode.equals("size") && modifier > 0)
 		{
-			/*this.allGroups.add(new Group())
-			for*/
+			int objectCount;
+			for(int j = 0 ; j < grp.length ; j++)
+			{
+				objectCount += grp[j].size();
+			}
+			
+			for(int j = 0 ; j < (objectCount/modifier+1) ; j++)
+				this.allGroups.add(new Group());
+			
+			for(int  j = 0 ; j < grp.length ; j++)
+				while(grp[j].members.size>0)
+				{
+					this.allGroups.get(i).addObject(grp[j].removeObject(getRandomObjectByGroup(grp[j])));
+					i++;
+					if(i==modifier)
+						i=0;
+				}
 		}
-		  
-		//this.allGroups.add(*);
-		saveGroupsToDatabase();
+		return allGroups;
 	}
 	
-	// Insert-Befehl für die Gruppen in die Datenbank
-	public static void saveGroupsToDatabase()
-	{
-		String output = "";
-		
-		output += "INSERT INTO StudentenGruppen (GruppenID, StudentenID)";
-		for(int i = 0 ; i < this.allGroups.size() ; i++)
-		{
-			output += "Values(";
-			for(int j = 0 ; j < this.allGroups.get(i).getIdCounter() ; j++)
-			{
-				output += ((Person) allGroups.get(i).getMembers().get(j)).getStudentClass() + ",";
-				output += ((Person) allGroups.get(i).getMembers().get(j)).getStudentID();
-			}
-			output += ")";
-		}
-		
-		/*
-		 * gruppen tabelle befüllen
-		 * 
-		 * execute von conny aufrufen
-		 * 
-		 * 
-		 */
 
-		
-		
-	}
 }
