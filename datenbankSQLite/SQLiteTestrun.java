@@ -9,25 +9,12 @@ import model.Professor;
 public class SQLiteTestrun
 {
 	public static void main( String args[] ) throws InterruptedException
-	{
-		// 0) configure db connection
-		
-		// MySQL
-		/*
-		final String DB_DRIVER = "com.mysql.jdbc.Driver";
-		final String DB_URL = "jdbc:mysql://localhost/DBNAME";
-		*/
-		
-		// ORACLE
-		/*
-		// fields inbetween [] are optional
-		final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
-		final String DB_URL = "jdbc:oracle:driver_type:[username/password]@[//]host_name[:port][:ORCL]"
-		// e.g. final String DB_URL = "jdbc:oracle:thin:root/toor@localhost"
-		*/
-		
+	{		
 		// SQLite
 		final String DB_URL = "jdbc:sqlite:datenbankSQLite/testDB.db";
+		
+		// Oracle
+		//final String DB_URL = "jdbc:oracle:driver_type:[username/password]@[//]host_name[:port][:ORCL]";
 		
 		final String USER = "";
 		final String PWD = "";

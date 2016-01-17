@@ -9,23 +9,23 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Die Klasse DatabaseSQLite implementiert das Interface {@link db.IDatabase IDatabase}.
+ * Die Klasse DatabaseOracle implementiert das Interface {@link db.IDatabase IDatabase}.
  * 
  * Die Klasse implementiert das Singleton-Pattern, sodass es jederzeit nur eine einzige
  * Instanz dieser Klasse geben kann.
  * 
- * DatabaseSQLite stellt die Verbingung zu einer SQLite-Datenbank her unt kann dadurch
+ * DatabaseOracle stellt die Verbingung zu einer Oracle-Datenbank her unt kann dadurch
  * in den aus {@link db.IDatabase IDatabase} implementierten Methoden darauf zugreifen.
  * 
  * @author Cornelia Stussig
  * 
  */
-public class DatabaseSQLite implements IDatabase {
-
+public class DatabaseOracle implements IDatabase {
+	
 	/**
 	 * Legt die Konstante der Datenbank Treibers fest.
 	 */
-	private static final String DB_DRIVER = "org.sqlite.JDBC";
+	private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
 	
 	/**
 	 * Enthält das Connection-Objekt, welches zur Kommunikation mit der Datenbank benutzt wird.
@@ -35,16 +35,16 @@ public class DatabaseSQLite implements IDatabase {
 	/**
 	 * Enthält die einzige Instanz der Klasse
 	 */
-	private static DatabaseSQLite instance;
+	private static DatabaseOracle instance;
 
 	/**
 	 * Die Methode erstellt bei Bedarf die einzige Instanz der Klasse und liefert diese zurück.
 	 * 
 	 * @return die einzige Instanz der Klasse.
 	 */
-	public static DatabaseSQLite getInstance() {
+	public static DatabaseOracle getInstance() {
 		if (instance == null) {
-			instance = new DatabaseSQLite();
+			instance = new DatabaseOracle();
 		}
 		return instance;
 	}
@@ -52,7 +52,7 @@ public class DatabaseSQLite implements IDatabase {
 	/**
 	 * Nicht öffentlicher Konstruktor. Instanzierung übernimmt die Klasse selbst.
 	 */
-	private DatabaseSQLite() {
+	private DatabaseOracle() {
 
 	}
 
@@ -237,7 +237,7 @@ public class DatabaseSQLite implements IDatabase {
 		int result = internalCount(sql);
 		return result;
 	}
-	
+
 	/**
 	 * Führt einen SELECT-Befehl auf der Datenbank aus. Es wird erwartet, dass das Ergebnis des SELECT-Befehls nur
 	 * einen Datensatz mit einer Spalte zurückliefert, in dem die Anzahl der gefundenen Datensätze steht.
@@ -329,7 +329,7 @@ public class DatabaseSQLite implements IDatabase {
 			e.printStackTrace();
 		}
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see db.IDatabase#update(java.lang.String, java.util.HashMap, java.util.HashMap)
 	 */
@@ -397,5 +397,6 @@ public class DatabaseSQLite implements IDatabase {
 			e.printStackTrace();
 		}
 	}
+
 
 }

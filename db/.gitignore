@@ -1,3 +1,5 @@
 /DatabaseSQLite.class
 /IDatabase.class
 /DatabaseEntitySQLite.class
+/DatabaseOracle.class
+/DatabaseEntity.class
