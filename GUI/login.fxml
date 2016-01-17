@@ -42,5 +42,22 @@
                </HBox.margin></Button>
          </children>
       </HBox>
+      <HBox alignment="CENTER">
+         <children>
+            <RadioButton fx:id="PBRadio" mnemonicParsing="false" onAction="#setLocationToPB" text="Paderborn">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+               <toggleGroup>
+                  <ToggleGroup fx:id="locationGroup" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="BIRadio" mnemonicParsing="false" onAction="#setLocationToBI" text="Bielefeld" toggleGroup="$locationGroup">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </RadioButton>
+         </children>
+      </HBox>
    </children>
 </VBox>
