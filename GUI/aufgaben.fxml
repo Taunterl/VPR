@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
@@ -8,29 +9,38 @@
    <children>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <ToolBar prefHeight="84.0" prefWidth="600.0">
+            <ToolBar prefHeight="84.0" prefWidth="600.0" styleClass="vbox" stylesheets="@style.css">
               <items>
-                <Button fx:id="goBackButton" mnemonicParsing="false" onAction="#goBackClicked" text="&lt;" />
-                  <VBox prefHeight="0.0" prefWidth="278.0">
+                <Button fx:id="goBackButton" mnemonicParsing="false" onAction="#goBackClicked" prefHeight="30.0" prefWidth="30.0" text="&lt;" />
+                  <VBox prefHeight="0.0">
                      <children>
-                        <Label text="Aufgabenpool auswählen" />
-                        <ChoiceBox fx:id="aufgabenChoice" prefHeight="31.0" prefWidth="208.0" />
+                        <Label prefHeight="0.0" text="Aufgabenpool auswählen" />
+                        <ChoiceBox fx:id="aufgabenChoice" prefHeight="30.0" prefWidth="208.0">
+                           <VBox.margin>
+                              <Insets top="1.0" />
+                           </VBox.margin></ChoiceBox>
                      </children>
                   </VBox>
-                  <Button fx:id="starButton" mnemonicParsing="false" onAction="#starClicked" text="*" />
-                  <Button fx:id="plusButton" mnemonicParsing="false" onAction="#plusClicked" text="+" />
-                  <Button fx:id="uebersichtButton" mnemonicParsing="false" onAction="#uebersichtClicked" text="Übersicht" />
+                  <Button fx:id="starButton" mnemonicParsing="false" onAction="#starClicked" prefHeight="30.0" prefWidth="30.0" text="*" />
+                  <Button fx:id="plusButton" mnemonicParsing="false" onAction="#plusClicked" prefHeight="30.0" prefWidth="30.0" text="+" />
+                  <Button fx:id="uebersichtButton" mnemonicParsing="false" onAction="#uebersichtClicked" prefHeight="30.0" text="Übersicht" />
               </items>
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
             </ToolBar>
          </children>
       </HBox>
-      <TableView fx:id="aufgabenTabelle" prefHeight="316.0" prefWidth="600.0">
+      <TableView fx:id="aufgabenTabelle" prefHeight="316.0" prefWidth="600.0" styleClass="vbox" stylesheets="@style.css">
         <columns>
           <TableColumn prefWidth="75.0" />
           <TableColumn prefWidth="75.0" text="Nr." />
             <TableColumn prefWidth="326.0" text="Aufgabentext" />
             <TableColumn prefWidth="123.0" text="Anhänge" />
         </columns>
+         <VBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </VBox.margin>
       </TableView>
    </children>
 </VBox>
