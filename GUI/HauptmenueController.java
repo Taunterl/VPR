@@ -1,88 +1,175 @@
-<?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
+import java.io.IOException;
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HauptmenueController">
-   <children>
-      <Label alignment="CENTER" text="Klasse auswählen" />
-      <HBox prefHeight="27.0" prefWidth="600.0">
-         <children>
-            <ChoiceBox fx:id="klasseAuswaehlenBox" prefWidth="150.0" />
-            <Button fx:id="starButton" mnemonicParsing="false" onAction="#starClicked" text="*" />
-            <Button fx:id="plusButton" mnemonicParsing="false" onAction="#plusClicked" text="+" />
-            <Button fx:id="minusButton" mnemonicParsing="false" onAction="#minusClicked" text="-" />
-            <Button fx:id="uebersichtButton" mnemonicParsing="false" onAction="#uebersichtClicked" text="Übersicht" />
-         </children>
-      </HBox>
-      <VBox prefHeight="200.0" prefWidth="100.0">
-         <children>
-            <Label text="RandomGuy" />
-            <HBox alignment="CENTER">
-               <children>
-                  <Button fx:id="chooseStudentButton" mnemonicParsing="false" onAction="#chooseStudentClicked" text="Zufälligen Studierenden auswählen" />
-               </children>
-            </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <ImageView fx:id="studentImage" fitHeight="150.0" fitWidth="158.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Bilder/Ugly-boy.jpg" />
-                     </image>
-                  </ImageView>
-                  <VBox alignment="CENTER" prefHeight="150.0" prefWidth="63.0">
-                     <children>
-                        <Label text="Name:" />
-                        <Label text="Klasse:" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER_LEFT" prefHeight="150.0" prefWidth="81.0">
-                     <children>
-                        <Label fx:id="studentName" text="Max Mustermann">
-                           <font>
-                              <Font size="10.0" />
-                           </font></Label>
-                        <Label fx:id="classID" prefHeight="21.0" prefWidth="94.0" text="ibw2h14a">
-                           <font>
-                              <Font size="12.0" />
-                           </font></Label>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="153.0" prefWidth="100.0">
-                     <children>
-                        <Button fx:id="gotoTableButton" mnemonicParsing="false" onAction="#gotoTableClicked" prefHeight="31.0" prefWidth="120.0" text="Zur Tabelle" />
-                     </children>
-                  </VBox>
-               </children>
-            </HBox>
-         </children>
-      </VBox>
-      <VBox prefHeight="163.0" prefWidth="600.0">
-         <children>
-            <Label text="Gruppe erstellen" />
-            <ToolBar prefHeight="49.0" prefWidth="600.0">
-              <items>
-                  <RadioButton fx:id="gruppenGroesseRadion" mnemonicParsing="false" onAction="#gruppenGroesseClicked" text="Gruppengröße" />
-                  <TextField fx:id="gruppenGroesseText" onAction="#addGruppenGroesse" prefHeight="25.0" prefWidth="131.0" />
-                <Button fx:id="gruppenWuerfelnButton" mnemonicParsing="false" onAction="#gruppenWuerfelnClicked" text="Gruppen würfeln" />
-              </items>
-            </ToolBar>
-            <ToolBar prefHeight="40.0" prefWidth="200.0">
-              <items>
-                  <RadioButton fx:id="gruppenAnzahlRadio" mnemonicParsing="false" onAction="#gruppenAnzahlClicked" text="Gruppenanzahl" />
-                  <TextField />
-                <Button fx:id="aufgabenZuteilenButton" mnemonicParsing="false" onAction="#aufgabenZuteilenClicked" text="Aufgaben zuteilen" />
-              </items>
-            </ToolBar>
-            <ToolBar prefHeight="65.0" prefWidth="600.0">
-              <items>
-                <Button fx:id="beendenButton" mnemonicParsing="false" onAction="#beendenButtonClicked" text="Beenden" />
-              </items>
-            </ToolBar>
-         </children>
-      </VBox>
-   </children>
-</VBox>
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+
+public class HauptmenueController 
+{
+	@FXML
+	private ChoiceBox<String> klasseAuswaehlenBox;
+	@FXML
+	private Button beendenButton;
+	
+	@FXML
+	private Button chooseStudentButton;
+	
+	@FXML
+	private ImageView studentImage;
+	
+	@FXML
+	private Button gruppenWuerfelnButton;
+	
+	@FXML
+	private Button aufgabenZuteilenButton;
+	
+	@FXML
+	private Button gotoTableButton;
+	
+	@FXML
+	private RadioButton gruppenGroesseRadio;
+	
+	@FXML
+	private Label studentName;
+	
+	@FXML
+	private Label classID;
+	
+	@FXML
+	private RadioButton gruppenAnzahlRadio;
+	
+	@FXML
+	private TextField gruppenGroesseText;
+	
+	@FXML
+	private Button starButton;
+	
+	@FXML
+	private Button plusButton;
+	
+	@FXML
+	private Button minusButton;
+	
+	@FXML
+	private Button uebersichtButton;
+	
+	private Stage stage;
+	
+	@FXML
+	void gotoTableClicked(ActionEvent e) throws IOException
+	{
+			FXMLLoader testLoader = new FXMLLoader(getClass().getResource("tabelle.fxml"));
+			Parent root2 = testLoader.load();
+			Scene testScene = new Scene(root2,600,500);
+			stage.setTitle("KlassenTabelle");
+			stage.setScene(testScene);
+			TabelleController controller2 = 
+					testLoader.<TabelleController>getController();
+			controller2.setStage(stage);
+			
+	}
+	public void setStage(Stage s) 
+	{
+		stage=s;
+		
+	}
+
+	@FXML
+	void uebersichtClicked(ActionEvent e)throws IOException
+	{
+		FXMLLoader testLoader = new FXMLLoader(getClass().getResource("uebersicht.fxml"));
+		Parent root3 = testLoader.load();
+		Scene testScene = new Scene(root3,600,400);
+		stage.setTitle("Uebersicht");
+		stage.setScene(testScene);
+		UebersichtController controller3 = 
+				testLoader.<UebersichtController>getController();
+		controller3.setStage(stage);
+	}
+	
+	
+	@FXML
+	void minusClicked()
+	{
+		
+	}
+	
+	
+	@FXML 
+	void plusClicked()
+	{
+		
+	}
+	
+	@FXML
+	void starClicked()
+	{
+		
+	}
+	
+	@FXML
+	void addGruppenGroesse()
+	{
+		
+	}
+	
+	@FXML
+	void gruppenAnzahlClicked()
+	{
+		
+	}
+	
+	@FXML
+	void gruppenGroesseClicked()
+	{
+		
+	}
+	
+	@FXML
+	void beendenButtonClicked()
+	{
+		System.exit(0);
+	}
+	
+	@FXML
+	void chooseStudentClicked()
+	{
+		
+	}
+	
+	@FXML
+	void gruppenWuerfelnClicked(ActionEvent e) throws IOException
+	{
+		FXMLLoader testLoader = new FXMLLoader(getClass().getResource("gruppen.fxml"));
+		Parent root5 = testLoader.load();
+		Scene testScene = new Scene(root5,600,400);
+		stage.setTitle("Gruppenbildung");
+		stage.setScene(testScene);
+		GruppenController controller5 = 
+				testLoader.<GruppenController>getController();
+		controller5.setStage(stage);
+	}
+	
+	@FXML
+	void aufgabenZuteilenClicked(ActionEvent e) throws IOException
+	{
+		FXMLLoader testLoader = new FXMLLoader(getClass().getResource("aufgaben.fxml"));
+		Parent root4 = testLoader.load();
+		Scene testScene = new Scene(root4,600,400);
+		stage.setTitle("Aufgaben");
+		stage.setScene(testScene);
+		AufgabenController controller4 = 
+				testLoader.<AufgabenController>getController();
+		controller4.setStage(stage);
+	}
+}

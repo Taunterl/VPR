@@ -10,8 +10,8 @@ drop table Dozenten;
 
 create table Dozenten (
     DozentenID varchar(3) Primary Key,
-    Name varchar(20),
-    Vorname varchar(20),
+    Name varchar(20) not null,
+    Vorname varchar(20) not null,
     Passwort varchar(20) not null
 );
 
@@ -27,8 +27,9 @@ create table Studenten(
     Name varchar(20) not null,
     Nachname varchar(20) not null,
     Bild varchar2(30), /* Default "Default Pfad"*/
-    Klasse varchar(8),
-    Foreign Key (Klasse) references Klassen (Klassenbezeichnung)
+    Klasse varchar(8) not null,
+    CONSTRAINT studenten_FK  Foreign Key (Klasse) references Klassen (Klassenbezeichnung)
+	ON DELETE CASCADE;
 );
 
 create table Aufgabenpool(
@@ -41,7 +42,7 @@ create table Aufgabenpool(
 
 create table Aufgaben(
     AufgabenId number(3) Primary Key,
-    Bezeichnung varchar(20),
+    Bezeichnung varchar(20) not null,
     Beschreibung long,
     Kategorie varchar(10),
     Bearbeitungszeit varchar(5),
