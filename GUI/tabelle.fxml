@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TabelleController">
+   <children>
+      <ToolBar prefHeight="40.0" prefWidth="200.0" styleClass="vbox" stylesheets="@style.css">
+        <items>
+          <Button fx:id="goBackButton" mnemonicParsing="false" onAction="#goBackClicked" text="&lt;" />
+            <Label text="Filter:" />
+            <TextField fx:id="nameField" onAction="#addNameField" />
+            <ChoiceBox fx:id="classChoice" prefWidth="150.0" />
+            <Button fx:id="plusButton" mnemonicParsing="false" onAction="#plusClicked" text="+" />
+        </items>
+         <VBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </VBox.margin>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </ToolBar>
+      <HBox fx:id="hBox" prefHeight="364.0" prefWidth="600.0" styleClass="vbox" stylesheets="@style.css">
+         <children>
+            <VBox fx:id="vBox1" prefHeight="355.0" prefWidth="331.0">
+               <children>
+                  <TableView fx:id="classTable" prefHeight="355.0" prefWidth="405.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" />
+                      <TableColumn prefWidth="111.0" text="Nachname" />
+                        <TableColumn prefWidth="102.0" text="Vorname" />
+                    </columns>
+                  </TableView>
+               </children>
+            </VBox>
+            <VBox fx:id="vBox2" prefHeight="355.0" prefWidth="159.0">
+               <children>
+                  <ImageView fx:id="studentImage" fitHeight="266.0" fitWidth="163.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Bilder/Ugly-boy.jpg" />
+                     </image>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <Button fx:id="imagePlusButton" mnemonicParsing="false" onAction="#imagePlusClicked" text="+">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin></Button>
+                  <Button fx:id="uebersichtButton" mnemonicParsing="false" onAction="#uebersichtClicked" prefHeight="25.0" prefWidth="244.0" text="Übersicht">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin></Button>
+               </children>
+            </VBox>
+         </children>
+         <VBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </VBox.margin>
+      </HBox>
+   </children>
+</VBox>
