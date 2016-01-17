@@ -1,6 +1,8 @@
-
 import java.io.IOException;
 
+import model.Inputs;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +13,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
@@ -49,7 +52,13 @@ public class HauptmenueController
 	private RadioButton gruppenAnzahlRadio;
 	
 	@FXML
+	private ToggleGroup groupRadio;
+	
+	@FXML
 	private TextField gruppenGroesseText;
+	
+	@FXML
+	private TextField groupCountField;
 	
 	@FXML
 	private Button starButton;
@@ -66,37 +75,94 @@ public class HauptmenueController
 	private Stage stage;
 	
 	@FXML
+    public void initialize() 
+	{   
+		gruppenGroesseText.setText(Inputs.getGroupSize()+"");
+		groupCountField.setText(Inputs.getGroupCount()+"");
+		if(!Inputs.isUseGroupSize())
+		{
+			gruppenAnzahlRadio.setSelected(true);
+		}
+		
+		//**für Testzwecke
+		ObservableList<String> classList = FXCollections.observableArrayList("ibw2h14a","ibd2h14b");
+		klasseAuswaehlenBox.setItems(classList);
+		
+        System.out.println("init");
+        //**
+	}
+	
+	@FXML
 	void gotoTableClicked(ActionEvent e) throws IOException
 	{
-			FXMLLoader testLoader = new FXMLLoader(getClass().getResource("tabelle.fxml"));
-			Parent root2 = testLoader.load();
-			Scene testScene = new Scene(root2,600,500);
+			FXMLLoader Loader = new FXMLLoader(getClass().getResource("tabelle.fxml"));
+			Parent rootTable = Loader.load();
+			Scene sceneTable = new Scene(rootTable,600,500);
 			stage.setTitle("KlassenTabelle");
-			stage.setScene(testScene);
-			TabelleController controller2 = 
-					testLoader.<TabelleController>getController();
-			controller2.setStage(stage);
+			stage.setScene(sceneTable);
+			TabelleController controllerTable = 
+					Loader.<TabelleController>getController();
+			controllerTable.setStage(stage);
 			
 	}
+	
+	@FXML
+	void uebersichtClicked(ActionEvent e)throws IOException
+	{
+		FXMLLoader Loader = new FXMLLoader(getClass().getResource("uebersicht.fxml"));
+		Parent rootOverview = Loader.load();
+		Scene sceneOverview = new Scene(rootOverview,600,500);
+		stage.setTitle("Uebersicht");
+		stage.setScene(sceneOverview);
+		UebersichtController controllerOverview = 
+				Loader.<UebersichtController>getController();
+		controllerOverview.setStage(stage);
+	}
+	
+	@FXML
+	void gruppenWuerfelnClicked(ActionEvent e) throws IOException
+	{
+		addGruppenGroesse();
+		setGroupCount();
+		if(Inputs.isUseGroupSize())
+		{
+			//**für Testzwecke
+			System.out.println("useSize, "+Inputs.getGroupSize());
+		}
+		else
+		{
+			//**für Testzwecke
+			System.out.println("useCount, "+Inputs.getGroupCount());
+		}
+		
+		FXMLLoader Loader = new FXMLLoader(getClass().getResource("gruppen.fxml"));
+		Parent rootGroup = Loader.load();
+		Scene sceneGroup = new Scene(rootGroup,600,450);
+		stage.setTitle("Gruppenbildung");
+		stage.setScene(sceneGroup);
+		GruppenController controllerGroup = 
+				Loader.<GruppenController>getController();
+		controllerGroup.setStage(stage);
+	}
+	
+	@FXML
+	void aufgabenZuteilenClicked(ActionEvent e) throws IOException
+	{
+		FXMLLoader Loader = new FXMLLoader(getClass().getResource("aufgaben.fxml"));
+		Parent rootTasks = Loader.load();
+		Scene sceneTasks = new Scene(rootTasks,600,400);
+		stage.setTitle("Aufgaben");
+		stage.setScene(sceneTasks);
+		AufgabenController controllerTasks = 
+				Loader.<AufgabenController>getController();
+		controllerTasks.setStage(stage);
+	}
+	
 	public void setStage(Stage s) 
 	{
 		stage=s;
 		
-	}
-
-	@FXML
-	void uebersichtClicked(ActionEvent e)throws IOException
-	{
-		FXMLLoader testLoader = new FXMLLoader(getClass().getResource("uebersicht.fxml"));
-		Parent root3 = testLoader.load();
-		Scene testScene = new Scene(root3,600,400);
-		stage.setTitle("Uebersicht");
-		stage.setScene(testScene);
-		UebersichtController controller3 = 
-				testLoader.<UebersichtController>getController();
-		controller3.setStage(stage);
-	}
-	
+	}	
 	
 	@FXML
 	void minusClicked()
@@ -108,7 +174,7 @@ public class HauptmenueController
 	@FXML 
 	void plusClicked()
 	{
-		
+		klasseAuswaehlenBox.getSelectionModel();
 	}
 	
 	@FXML
@@ -120,19 +186,34 @@ public class HauptmenueController
 	@FXML
 	void addGruppenGroesse()
 	{
+		String pipeline = gruppenGroesseText.getText();
+		if(isInteger(pipeline))
+		{
+			Inputs.setGroupSize(Integer.parseInt(pipeline));
+		}
 		
+	}
+	
+	@FXML
+	void setGroupCount()
+	{
+		String pipeline = groupCountField.getText();
+		if(isInteger(pipeline))
+		{
+			Inputs.setGroupCount(Integer.parseInt(pipeline));
+		}
 	}
 	
 	@FXML
 	void gruppenAnzahlClicked()
 	{
-		
+		Inputs.setUseGroupSize(false);
 	}
 	
 	@FXML
 	void gruppenGroesseClicked()
 	{
-		
+		Inputs.setUseGroupSize(true);
 	}
 	
 	@FXML
@@ -146,30 +227,16 @@ public class HauptmenueController
 	{
 		
 	}
-	
-	@FXML
-	void gruppenWuerfelnClicked(ActionEvent e) throws IOException
-	{
-		FXMLLoader testLoader = new FXMLLoader(getClass().getResource("gruppen.fxml"));
-		Parent root5 = testLoader.load();
-		Scene testScene = new Scene(root5,600,400);
-		stage.setTitle("Gruppenbildung");
-		stage.setScene(testScene);
-		GruppenController controller5 = 
-				testLoader.<GruppenController>getController();
-		controller5.setStage(stage);
+	private static boolean isInteger(String s) {
+	    try { 
+	        Integer.parseInt(s); 
+	    } catch(NumberFormatException e) { 
+	        return false; 
+	    } catch(NullPointerException e) {
+	        return false;
+	    }
+	    return true;
 	}
 	
-	@FXML
-	void aufgabenZuteilenClicked(ActionEvent e) throws IOException
-	{
-		FXMLLoader testLoader = new FXMLLoader(getClass().getResource("aufgaben.fxml"));
-		Parent root4 = testLoader.load();
-		Scene testScene = new Scene(root4,600,400);
-		stage.setTitle("Aufgaben");
-		stage.setScene(testScene);
-		AufgabenController controller4 = 
-				testLoader.<AufgabenController>getController();
-		controller4.setStage(stage);
-	}
+	
 }
