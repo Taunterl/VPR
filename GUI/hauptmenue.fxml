@@ -1,26 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HauptmenueController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HauptmenueController">
    <children>
-      <Label alignment="CENTER" text="Klasse auswählen" />
-      <HBox prefHeight="27.0" prefWidth="600.0">
+      <StackPane alignment="TOP_LEFT" prefHeight="71.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
          <children>
-            <ChoiceBox fx:id="klasseAuswaehlenBox" prefWidth="150.0" />
-            <Button fx:id="starButton" mnemonicParsing="false" onAction="#starClicked" text="*" />
-            <Button fx:id="plusButton" mnemonicParsing="false" onAction="#plusClicked" text="+" />
-            <Button fx:id="minusButton" mnemonicParsing="false" onAction="#minusClicked" text="-" />
-            <Button fx:id="uebersichtButton" mnemonicParsing="false" onAction="#uebersichtClicked" text="Übersicht" />
+            <HBox style="-fx-border-color: grey; -fx-border-radius: 5;">
+               <children>
+                  <ChoiceBox fx:id="klasseAuswaehlenBox" nodeOrientation="LEFT_TO_RIGHT" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets left="10.0" top="10.0" />
+                     </HBox.margin>
+                  </ChoiceBox>
+                  <Button fx:id="starButton" mnemonicParsing="false" onAction="#starClicked" text="*">
+                     <HBox.margin>
+                        <Insets left="10.0" top="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="plusButton" mnemonicParsing="false" onAction="#plusClicked" text="+">
+                     <HBox.margin>
+                        <Insets left="10.0" top="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="minusButton" mnemonicParsing="false" onAction="#minusClicked" text="-">
+                     <HBox.margin>
+                        <Insets left="10.0" top="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="uebersichtButton" mnemonicParsing="false" onAction="#uebersichtClicked" text="Übersicht">
+                     <HBox.margin>
+                        <Insets left="10.0" top="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <StackPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </StackPane.margin>
+            </HBox>
+            <Label alignment="CENTER" style="-fx-background-color: fff;" text="Klasse auswählen">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <StackPane.margin>
+                  <Insets left="20.0" top="-5.0" />
+               </StackPane.margin>
+            </Label>
          </children>
-      </HBox>
-      <VBox prefHeight="200.0" prefWidth="100.0">
+         <VBox.margin>
+            <Insets top="5.0" />
+         </VBox.margin>
+      </StackPane>
+      <VBox prefHeight="200.0" prefWidth="100.0" styleClass="vbox">
          <children>
-            <Label text="RandomGuy" />
+            <Label style="-fx-background-color: fff;" text="RandomGuy">
+               <VBox.margin>
+                  <Insets left="20.0" top="-10.0" />
+               </VBox.margin></Label>
             <HBox alignment="CENTER">
                <children>
                   <Button fx:id="chooseStudentButton" mnemonicParsing="false" onAction="#chooseStudentClicked" text="Zufälligen Studierenden auswählen" />
@@ -35,7 +76,10 @@
                   </ImageView>
                   <VBox alignment="CENTER" prefHeight="150.0" prefWidth="63.0">
                      <children>
-                        <Label text="Name:" />
+                        <Label text="Name:">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin></Label>
                         <Label text="Klasse:" />
                      </children>
                   </VBox>
@@ -44,7 +88,10 @@
                         <Label fx:id="studentName" text="Max Mustermann">
                            <font>
                               <Font size="10.0" />
-                           </font></Label>
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin></Label>
                         <Label fx:id="classID" prefHeight="21.0" prefWidth="94.0" text="ibw2h14a">
                            <font>
                               <Font size="12.0" />
@@ -53,36 +100,79 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="153.0" prefWidth="100.0">
                      <children>
-                        <Button fx:id="gotoTableButton" mnemonicParsing="false" onAction="#gotoTableClicked" prefHeight="31.0" prefWidth="120.0" text="Zur Tabelle" />
+                        <Button fx:id="gotoTableButton" mnemonicParsing="false" onAction="#gotoTableClicked" prefHeight="31.0" prefWidth="120.0" text="Zur Tabelle">
+                           <VBox.margin>
+                              <Insets top="15.0" />
+                           </VBox.margin></Button>
                      </children>
                   </VBox>
                </children>
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin>
             </HBox>
          </children>
+         <VBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </VBox.margin>
       </VBox>
-      <VBox prefHeight="163.0" prefWidth="600.0">
+      <VBox prefHeight="103.0" prefWidth="590.0" styleClass="vbox" stylesheets="@style.css">
          <children>
-            <Label text="Gruppe erstellen" />
-            <ToolBar prefHeight="49.0" prefWidth="600.0">
-              <items>
-                  <RadioButton fx:id="gruppenGroesseRadion" mnemonicParsing="false" onAction="#gruppenGroesseClicked" text="Gruppengröße" />
-                  <TextField fx:id="gruppenGroesseText" onAction="#addGruppenGroesse" prefHeight="25.0" prefWidth="131.0" />
-                <Button fx:id="gruppenWuerfelnButton" mnemonicParsing="false" onAction="#gruppenWuerfelnClicked" text="Gruppen würfeln" />
-              </items>
-            </ToolBar>
-            <ToolBar prefHeight="40.0" prefWidth="200.0">
-              <items>
-                  <RadioButton fx:id="gruppenAnzahlRadio" mnemonicParsing="false" onAction="#gruppenAnzahlClicked" text="Gruppenanzahl" />
-                  <TextField />
-                <Button fx:id="aufgabenZuteilenButton" mnemonicParsing="false" onAction="#aufgabenZuteilenClicked" text="Aufgaben zuteilen" />
-              </items>
-            </ToolBar>
-            <ToolBar prefHeight="65.0" prefWidth="600.0">
-              <items>
-                <Button fx:id="beendenButton" mnemonicParsing="false" onAction="#beendenButtonClicked" text="Beenden" />
-              </items>
-            </ToolBar>
+            <Label style="-fx-background-color: fff;" text="Gruppen erstellen">
+               <VBox.margin>
+                  <Insets left="20.0" top="-10.0" />
+               </VBox.margin>
+            </Label>
+            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <RadioButton fx:id="gruppenGroesseRadion" mnemonicParsing="false" onAction="#gruppenGroesseClicked" prefHeight="17.0" prefWidth="110.0" selected="true" text="Gruppengröße">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="groupRadio" />
+                     </toggleGroup></RadioButton>
+                  <TextField fx:id="gruppenGroesseText" onAction="#addGruppenGroesse" prefHeight="25.0" prefWidth="100.0">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin></TextField>
+                <Button fx:id="gruppenWuerfelnButton" mnemonicParsing="false" onAction="#gruppenWuerfelnClicked" prefHeight="25.0" prefWidth="120.0" text="Gruppen würfeln">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin></Button>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <RadioButton fx:id="gruppenAnzahlRadio" mnemonicParsing="false" onAction="#gruppenAnzahlClicked" prefHeight="17.0" prefWidth="110.0" text="Gruppenanzahl" toggleGroup="$groupRadio">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin></RadioButton>
+                  <TextField fx:id="groupCountField" onAction="#setGroupCount" prefHeight="25.0" prefWidth="100.0">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin></TextField>
+                <Button fx:id="aufgabenZuteilenButton" mnemonicParsing="false" onAction="#aufgabenZuteilenClicked" prefHeight="25.0" prefWidth="120.0" text="Aufgaben zuteilen">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin></Button>
+               </children>
+            </HBox>
          </children>
+         <VBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </VBox.margin>
       </VBox>
+      <ToolBar prefHeight="65.0" prefWidth="600.0">
+        <items>
+          <Button fx:id="beendenButton" mnemonicParsing="false" onAction="#beendenButtonClicked" text="Beenden" />
+        </items>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </ToolBar>
    </children>
 </VBox>
