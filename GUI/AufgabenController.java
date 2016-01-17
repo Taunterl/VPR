@@ -20,7 +20,6 @@ public class AufgabenController
 	@FXML
 	private TableView<String> aufgabenTabelle;
 	
-	
 	@FXML
 	private ChoiceBox<String> aufgabenChoice;
 	
@@ -36,14 +35,33 @@ public class AufgabenController
 	@FXML
 	void uebersichtClicked(ActionEvent e) throws IOException
 	{
-		FXMLLoader testLoader = new FXMLLoader(getClass().getResource("uebersicht.fxml"));
-		Parent root3 = testLoader.load();
-		Scene testScene = new Scene(root3,600,400);
+		FXMLLoader Loader = new FXMLLoader(getClass().getResource("uebersicht.fxml"));
+		Parent rootOverview = Loader.load();
+		Scene sceneOverview = new Scene(rootOverview,600,500);
 		stage.setTitle("Uebersicht");
-		stage.setScene(testScene);
-		UebersichtController controller3 = 
-				testLoader.<UebersichtController>getController();
-		controller3.setStage(stage);
+		stage.setScene(sceneOverview);
+		UebersichtController controllerOverview = 
+				Loader.<UebersichtController>getController();
+		controllerOverview.setStage(stage);
+	}
+	
+	@FXML
+	void goBackClicked(ActionEvent e) throws IOException
+	{
+		FXMLLoader Loader = new FXMLLoader(getClass().getResource("hauptmenue.fxml"));
+		Parent rootMain = Loader.load();
+		Scene sceneMain = new Scene( rootMain,600,400);
+		stage.setTitle("Hauptmenü");
+		stage.setScene(sceneMain);
+		HauptmenueController controllerMain = 
+				Loader.<HauptmenueController>getController();
+		controllerMain.setStage(stage);
+	}
+
+	public void setStage(Stage s) 
+	{
+		stage = s;
+		
 	}
 	
 	@FXML
@@ -59,23 +77,6 @@ public class AufgabenController
 	}
 	
 	
-	@FXML
-	void goBackClicked(ActionEvent e) throws IOException
-	{
-		FXMLLoader testLoader = new FXMLLoader(getClass().getResource("hauptmenue.fxml"));
-		Parent root1 = testLoader.load();
-		Scene testScene = new Scene( root1,600,400);
-		stage.setTitle("Hauptmenü");
-		stage.setScene(testScene);
-		HauptmenueController controller1 = 
-				testLoader.<HauptmenueController>getController();
-		controller1.setStage(stage);
-	}
-
-	public void setStage(Stage s) 
-	{
-		stage = s;
-		
-	}
+	
 	
 }
