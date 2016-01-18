@@ -4,14 +4,14 @@ import java.util.HashMap;
 
 /**
  * Abstrakte Klasse von der alle Objekte die in der Datenbak gespeichert werden erben sollten.
- * Sie übernimmet das Einfügen, Löschen und Bearbeiten von Datensätzen.
+ * Sie Ã¼bernimmet das EinfÃ¼gen, LÃ¶schen und Bearbeiten von DatensÃ¤tzen.
  * 
  * @author Cornelia Stussig
  */
 public abstract class DatabaseEntity {
 	
 	/**
-	 * Enthält das Datenbank-Objekt über welches die Datenbank-Befehle ausgeführt werden.
+	 * EnthÃ¤lt das Datenbank-Objekt Ã¼ber welches die Datenbank-Befehle ausgefÃ¼hrt werden.
 	 */
 	private IDatabase database;
 
@@ -20,14 +20,14 @@ public abstract class DatabaseEntity {
 	}
 	
 	/**
-	 * Enthält die Information, ob das Objekt bereits in der Datenbank enthalten ist.
+	 * EnthÃ¤lt die Information, ob das Objekt bereits in der Datenbank enthalten ist.
 	 */
 	protected boolean isInDB = false;
 	
 	/**
-	 * Alle Objekte die von DatabaseEntity erben, können diese Methode zum Speichern nutzen.
-	 * Sie prüft anhand des Attributs <code>isInDB</code>, ob das Objekt in der Datenbank bereits vorhanden ist.
-	 * Sie verhindert damit, dass ein Objekt mehrfach gespeichert wird und führt stattdessen einen UPDATE-Befehl aus.
+	 * Alle Objekte die von DatabaseEntity erben, kÃ¶nnen diese Methode zum Speichern nutzen.
+	 * Sie prÃ¼ft anhand des Attributs <code>isInDB</code>, ob das Objekt in der Datenbank bereits vorhanden ist.
+	 * Sie verhindert damit, dass ein Objekt mehrfach gespeichert wird und fÃ¼hrt stattdessen einen UPDATE-Befehl aus.
 	 */
 	public void save() {
 		if(isInDB) {
@@ -38,7 +38,7 @@ public abstract class DatabaseEntity {
 	}
 
 	/**
-	 * Diese Methode wird ausschließlich in der Methode <code>save</code> aufgerufen.
+	 * Diese Methode wird ausschlieÃŸlich in der Methode <code>save</code> aufgerufen.
 	 * Sie setzt die <code>isInDB</code> Variable auf true um eine Mehrfachspeicherung zu verhindern.
 	 */
 	private void insert() {
@@ -48,9 +48,9 @@ public abstract class DatabaseEntity {
 	}
 
 	/**
-	 * Diese Methode wird ausschließlich in der Methode <code>save</code> aufgerufen.
-	 * Sie braucht die PrimaryKeys (mehrere wenn Schlüssel zusamgesetzt ist),
-	 * damit der richtige Datensatz geändert wird.
+	 * Diese Methode wird ausschlieÃŸlich in der Methode <code>save</code> aufgerufen.
+	 * Sie braucht die PrimaryKeys (mehrere wenn SchlÃ¼ssel zusamgesetzt ist),
+	 * damit der richtige Datensatz geÃ¤ndert wird.
 	 */	
 	private void update(){
 		HashMap<String, Object> primaryKeyFields = getPrimaryKey();
@@ -59,7 +59,7 @@ public abstract class DatabaseEntity {
 	}
 
 	/**
-	 * Alle Objekte die von DatabaseEntity erben, benutzen diese Methode zum Löschen des Datensatzes.
+	 * Alle Objekte die von DatabaseEntity erben, benutzen diese Methode zum LÃ¶schen des Datensatzes.
 	 * Sie setzt die <code>isInDB</code> Variable wieder auf false um zu zeigen, dass das Objekt nicht mehr Teil der Datenbank ist.
 	 */
 	public void delete(){
@@ -69,21 +69,21 @@ public abstract class DatabaseEntity {
 	}
 	
 	/**
-	 * Abstrakte Methode muss von ihren Unterklassen übernommen und gefüllt werden.
+	 * Abstrakte Methode muss von ihren Unterklassen Ã¼bernommen und gefÃ¼llt werden.
 	 * 
 	 * @return HashMap alle Attribute, die von dieser Klasse als Spalten der Datenbanktabelle betrachtet werden sollen.
 	 */
 	protected abstract HashMap<String, Object> getValueMap();
 	
 	/**
-	 * Abstrakte Methode muss von ihren Unterklassen übernommen und gefüllt werden.
+	 * Abstrakte Methode muss von ihren Unterklassen Ã¼bernommen und gefÃ¼llt werden.
 	 * 
-	 * @return HashMap alle Attribute, die von dieser Klasse als Primärschlüssel der Datenbanktabelle betrachtet werden sollen.
+	 * @return HashMap alle Attribute, die von dieser Klasse als PrimÃ¤rschlÃ¼ssel der Datenbanktabelle betrachtet werden sollen.
 	 */
 	protected abstract HashMap<String, Object> getPrimaryKey();
 	
 	/**
-	 * Abstrakte Methode muss von ihren Unterklassen übernommen und gefüllt werden.
+	 * Abstrakte Methode muss von ihren Unterklassen Ã¼bernommen und gefÃ¼llt werden.
 	 * 
 	 * @return den Namen der Tabelle, auf der operiert wird.
 	 */
