@@ -7,11 +7,11 @@ import db.DatabaseEntitySQLite;
 
 public class StudentClass extends DatabaseEntity
 {	
-	public static final String TableName = "Klassen";
+	public static final String TABLE_NAME = "Klassen";
 	
-	private static final String  ClassID = "Klassenbezeichnung";
-	private static final String NumberOfStudents = "AnzahlSchüler";
-	private static final String ClassProfessor = "Klassendozent";
+	private static final String  CLASS_ID = "Klassenbezeichnung";
+	private static final String NUMBER_OF_STUDENTS = "AnzahlSchüler";
+	private static final String CLASS_PROFESSOR = "Klassendozent";
 	
 	private ArrayList<Student> studentList;
 	private String className;
@@ -100,7 +100,7 @@ public class StudentClass extends DatabaseEntity
 	@Override
 	protected String getTableName()
 	{
-		return TableName;
+		return TABLE_NAME;
 	}
 	
 	// gibt den Primärschlüssel der Tabelle zurück
@@ -108,7 +108,7 @@ public class StudentClass extends DatabaseEntity
 	protected HashMap<String,Object> getPrimaryKey()
 	{
 		HashMap<String,Object> fields = new HashMap<String,Object>();
-		fields.put(ClassID, this.className);
+		fields.put(CLASS_ID, this.className);
 		return fields;
 	}
 }
