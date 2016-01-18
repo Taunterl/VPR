@@ -50,6 +50,7 @@ public class Controller { //AufgabenPoolManager
 		//System.out.println(getPools());
 	}
 	
+	//Methode stellt Verbindung mit DB her
 	public static void dbconnect()
 	{
 		final String DB_URL = "jdbc:sqlite:testDB.db";
@@ -60,6 +61,7 @@ public class Controller { //AufgabenPoolManager
 		DatabaseSQLite.getInstance().connect(DB_URL, USER, PWD);
 	}
 	
+	// Methode erstellt neuen AufgabenPool
 	public static int CreateTaskPool(String name,int dozId, String Fach, String Beschreibung)
 	{
 		//SQL MANAGER
@@ -76,6 +78,7 @@ public class Controller { //AufgabenPoolManager
 		return getPoolID(name);
 	}
 	
+	// Methode gibt alle Aufgaben eines Pools wieder
 	public static  int[] getPoolTasks(int ID)
 	{
 		//SQL MANAGER
@@ -96,6 +99,7 @@ public class Controller { //AufgabenPoolManager
 		return return_array;
 	}
 	
+	// Methode gibt alle Pools in einem Observable zurück
 	public static ObservableList<String> getPools()
 	{
 		//SQL MANAGER
@@ -115,6 +119,7 @@ public class Controller { //AufgabenPoolManager
 		return PoolList;
 	}
 	
+	// Methode gibt PoolID anhand des Namens zurück
 	public static int getPoolID(String name)
 	
 	{
@@ -230,7 +235,8 @@ public class Controller { //AufgabenPoolManager
 				+ "set name = '" + newTask + "' ;";*/
 		return true;
 	}
-
+	
+	//Methode prüft existenz eines AufgabenPools
 	public static boolean checkTaskPool(String name)
 	{
 
@@ -246,7 +252,7 @@ public class Controller { //AufgabenPoolManager
 		return checked;
 	}
 
-
+	//Methode prüft existenz eines AufgabenPools
 	public static boolean checkTaskPool(int ID)
 	{	
 		/*String sql = "SELECT"+ ID 
@@ -262,6 +268,7 @@ public class Controller { //AufgabenPoolManager
 		return checked;
 	}
 	
+	//Methode prüft existenz einer Aufgabe
 	public static boolean checkTask(String name)
 	{
 
@@ -277,7 +284,7 @@ public class Controller { //AufgabenPoolManager
 		return checked;
 	}
 
-
+	//Methode prüft existenz einer Aufgabe
 	public static boolean checkTask(int ID)
 	{	
 		/*String sql = "SELECT"+ ID 
