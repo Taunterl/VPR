@@ -42,58 +42,56 @@ public class LoginController
 	}
 	@FXML
 	void login(ActionEvent e)throws IOException
-	{
-		//wird mit Absicht ohne Abfrage über ToggleGroup gelöst
-		if(Inputs.getLocation().isEmpty())
+	{		
+		String username = user.getText();
+		String password = pass.getText();
+		if(!username.equals("")
+				&& username!=null
+				&& !password.equals("")
+				&& password!=null)
 		{
-			locationMissing();
-		}
-		else
-		{
-		
-			String username = user.getText();
-			String password = pass.getText();
-			if(!username.equals("")
-					&& username!=null
-					&& !password.equals("")
-					&& password!=null)
+			boolean login = false;
+			
+			try 
 			{
-				boolean login = false;
-				try 
-				{
-					login = LoginDatabase.loginValidation(username, password);
-				} 
-				catch (Exception e1) 
-				{
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				if(login)
-				{
-					
-					Inputs.setLoggedInAs(username.toUpperCase());
-					
-					FXMLLoader Loader = new FXMLLoader(getClass().getResource("hauptmenue.fxml"));
-					Parent rootMain = Loader.load();
-					Scene sceneMain = new Scene( rootMain,600,400);
-					stage.setTitle("Hauptmenü");
-					stage.setScene(sceneMain);
-					HauptmenueController controllerMain = 
-							Loader.<HauptmenueController>getController();
-					controllerMain.setStage(stage);
-					
-				}
-				else
-				{
-					loginFailed();
-				}
+				login = LoginDatabase.loginValidation(username, password);
+			} 
+			catch (Exception e1) 
+			{
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			else 
+			if(login && !Inputs.getLocation().isEmpty())
+			{
+				
+				Inputs.setLoggedInAs(username.toUpperCase());
+				
+				FXMLLoader Loader = new FXMLLoader(getClass().getResource("hauptmenue.fxml"));
+				Parent rootMain = Loader.load();
+				Scene sceneMain = new Scene( rootMain,600,400);
+				stage.setTitle("Hauptmenü");
+				stage.setScene(sceneMain);
+				HauptmenueController controllerMain = 
+						Loader.<HauptmenueController>getController();
+				controllerMain.setStage(stage);
+				
+			}
+			//wird mit Absicht ohne Abfrage über ToggleGroup gelöst
+			else if(Inputs.getLocation().isEmpty())
+			{
+				locationMissing();
+			}
+			else
 			{
 				loginFailed();
 			}
 		}
+		else 
+		{
+			loginFailed();
+		}
 	}
+	
 	
 	@FXML
 	void focusPField()
