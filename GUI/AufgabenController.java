@@ -46,6 +46,22 @@ public class AufgabenController
 	@FXML
 	private Button uebersichtButton;
 	
+	public void initialize() 
+	{   
+		Controller.dbconnect();
+		ObservableList<String> PoolList = Controller.getPools();
+		aufgabenChoice.setItems(PoolList);
+		
+	        System.out.println("init-AufgabenController");
+	        aufgabenTabelle.setEditable(true);
+	        
+	        
+	        aufgabenChoice.setOnAction(new EventHandler<ActionEvent>() {
+	            @Override public void handle(ActionEvent e) {
+	                System.out.println("CHANGE-TASKS");
+            }
+        });
+	
 	@FXML
 	void uebersichtClicked(ActionEvent e) throws IOException
 	{
