@@ -1,62 +1,277 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
-<?import java.lang.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GruppenController">
    <children>
-      <Label fx:id="errormsg" alignment="CENTER" text="Geben Sie ihre Daten ein." VBox.vgrow="ALWAYS">
-         <font>
-            <Font size="16.0" />
-         </font>
-         <VBox.margin>
-            <Insets bottom="10.0" left="-16.0" top="-35.0" />
-         </VBox.margin>
-      </Label>
-      <HBox alignment="CENTER" prefHeight="34.0" prefWidth="600.0">
+      <HBox prefHeight="4.0" prefWidth="600.0">
          <children>
-            <Label prefHeight="25.0" prefWidth="85.0" text="Benutzer">
-               <font>
-                  <Font size="16.0" />
-               </font></Label>
-            <TextField fx:id="user" onAction="#focusPField" prefHeight="25.0" prefWidth="150.0" />
-            <Button fx:id="loginBtn" mnemonicParsing="false" onAction="#login" prefHeight="31.0" prefWidth="120.0" text="Anmelden">
+            <Button fx:id="goBackButton" mnemonicParsing="false" onAction="#goBackClicked" text="&lt;" />
+            <Label text="8 Schüler in 2 Gruppen">
                <HBox.margin>
-                  <Insets left="10.0" />
-               </HBox.margin></Button>
+                  <Insets left="100.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="34.0" prefWidth="600.0">
+      <HBox prefHeight="8.0" prefWidth="600.0">
          <children>
-            <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="85.0" text="Passwort">
-               <font>
-                  <Font size="16.0" />
-               </font></Label>
-            <PasswordField fx:id="pass" onAction="#login" prefHeight="25.0" prefWidth="150.0" />
-            <Button fx:id="closeBtn" mnemonicParsing="false" onAction="#close" prefHeight="31.0" prefWidth="120.0" text="Beenden">
-               <HBox.margin>
-                  <Insets left="10.0" />
-               </HBox.margin></Button>
+            <Label text="Gruppe 1" />
          </children>
       </HBox>
-      <HBox alignment="CENTER">
+      <HBox prefHeight="61.0" prefWidth="600.0">
          <children>
-            <RadioButton fx:id="PBRadio" mnemonicParsing="false" onAction="#setLocationToPB" text="Paderborn">
-               <HBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </HBox.margin>
-               <toggleGroup>
-                  <ToggleGroup fx:id="locationGroup" />
-               </toggleGroup>
-            </RadioButton>
-            <RadioButton fx:id="BIRadio" mnemonicParsing="false" onAction="#setLocationToBI" text="Bielefeld" toggleGroup="$locationGroup">
-               <HBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </HBox.margin>
-            </RadioButton>
+            <VBox prefHeight="76.0" prefWidth="65.0">
+               <children>
+                  <ImageView fitHeight="56.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Gruppengenerator/Bilder/Ugly-boy.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Max Mustermann">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Label>
+                  <Label text="ibw2h14a">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Label>
+                  <CheckBox mnemonicParsing="false" />
+               </children>
+            </VBox>
+            <VBox layoutX="10.0" layoutY="10.0" prefHeight="107.0" prefWidth="65.0">
+               <children>
+                  <ImageView fitHeight="56.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Gruppengenerator/Bilder/Ugly-boy.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox layoutX="84.0" layoutY="10.0" prefHeight="48.0" prefWidth="97.0">
+               <children>
+                  <Label text="Max Mustermann">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Label>
+                  <Label text="ibw2h14a">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Label>
+                  <CheckBox mnemonicParsing="false" />
+               </children>
+            </VBox>
+            <VBox layoutX="10.0" layoutY="10.0" prefHeight="93.0" prefWidth="260.0">
+               <children>
+                  <Label text="Aufgaben-Pool" />
+                  <ChoiceBox prefWidth="150.0" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox layoutX="10.0" layoutY="87.0" prefHeight="58.0" prefWidth="600.0">
+         <children>
+            <VBox prefHeight="107.0" prefWidth="65.0">
+               <children>
+                  <ImageView fitHeight="50.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Gruppengenerator/Bilder/Ugly-boy.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Max Mustermann">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Label>
+                  <Label text="ibw2h14a">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Label>
+                  <CheckBox mnemonicParsing="false" />
+               </children>
+            </VBox>
+            <VBox layoutX="10.0" layoutY="10.0" prefHeight="107.0" prefWidth="65.0">
+               <children>
+                  <ImageView fitHeight="53.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Gruppengenerator/Bilder/Ugly-boy.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox layoutX="84.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Max Mustermann">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Label>
+                  <Label text="ibw2h14a">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Label>
+                  <CheckBox mnemonicParsing="false" />
+               </children>
+            </VBox>
+            <VBox layoutX="10.0" layoutY="10.0" prefHeight="93.0" prefWidth="260.0">
+               <children>
+                  <Label text="Aufgabe" />
+                  <ChoiceBox prefWidth="150.0" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox layoutX="10.0" layoutY="41.0" prefHeight="22.0" prefWidth="600.0">
+         <children>
+            <Label text="Gruppe 2" />
+         </children>
+      </HBox>
+      <HBox layoutX="10.0" layoutY="63.0" prefHeight="81.0" prefWidth="600.0">
+         <children>
+            <VBox prefHeight="107.0" prefWidth="65.0">
+               <children>
+                  <ImageView fitHeight="57.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Gruppengenerator/Bilder/Ugly-boy.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Max Mustermann">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Label>
+                  <Label text="ibw2h14a">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Label>
+                  <CheckBox mnemonicParsing="false" />
+               </children>
+            </VBox>
+            <VBox layoutX="10.0" layoutY="10.0" prefHeight="107.0" prefWidth="65.0">
+               <children>
+                  <ImageView fitHeight="56.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Gruppengenerator/Bilder/Ugly-boy.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox layoutX="84.0" layoutY="10.0" prefHeight="48.0" prefWidth="97.0">
+               <children>
+                  <Label text="Max Mustermann">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Label>
+                  <Label text="ibw2h14a">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Label>
+                  <CheckBox mnemonicParsing="false" />
+               </children>
+            </VBox>
+            <VBox layoutX="10.0" layoutY="10.0" prefHeight="93.0" prefWidth="260.0">
+               <children>
+                  <Label text="Aufgaben-Pool" />
+                  <ChoiceBox prefWidth="150.0" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox layoutX="10.0" layoutY="63.0" prefHeight="68.0" prefWidth="600.0">
+         <children>
+            <VBox prefHeight="107.0" prefWidth="65.0">
+               <children>
+                  <ImageView fitHeight="59.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Gruppengenerator/Bilder/Ugly-boy.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Max Mustermann">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Label>
+                  <Label text="ibw2h14a">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Label>
+                  <CheckBox mnemonicParsing="false" />
+               </children>
+            </VBox>
+            <VBox layoutX="10.0" layoutY="10.0" prefHeight="107.0" prefWidth="65.0">
+               <children>
+                  <ImageView fitHeight="58.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Gruppengenerator/Bilder/Ugly-boy.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox layoutX="84.0" layoutY="10.0" prefHeight="48.0" prefWidth="97.0">
+               <children>
+                  <Label text="Max Mustermann">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Label>
+                  <Label text="ibw2h14a">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Label>
+                  <CheckBox mnemonicParsing="false" />
+               </children>
+            </VBox>
+            <VBox layoutX="10.0" layoutY="10.0" prefHeight="93.0" prefWidth="260.0">
+               <children>
+                  <Label text="Aufgabe" />
+                  <ChoiceBox prefWidth="150.0" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox prefHeight="60.0" prefWidth="600.0">
+         <children>
+            <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveClicked" prefHeight="31.0" prefWidth="129.0" text="Speichern">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+            <Button fx:id="newButton" mnemonicParsing="false" onAction="#newClicked" prefHeight="31.0" prefWidth="174.0" text="Neu" />
          </children>
       </HBox>
    </children>
