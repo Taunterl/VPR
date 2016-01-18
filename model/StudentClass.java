@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 import db.DatabaseEntitySQLite;
 
-public class StudentClass extends DatabaseEntitySQLite
+public class StudentClass extends DatabaseEntity
 {	
 	public static final String TableName = "Klassen";
 	
@@ -20,9 +20,10 @@ public class StudentClass extends DatabaseEntitySQLite
 	
 	public StudentClass(String className,Professor professor)
 	{
-	this.studentList=new ArrayList<>();
-	this.className= className;
-	this.professor=professor;
+		super(DatabaseSQLite.getInstance());
+		this.studentList=new ArrayList<>();
+		this.className= className;
+		this.professor=professor;
 	}
 	
 	// gibt die Studenten liste zurück
