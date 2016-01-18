@@ -138,7 +138,8 @@ public class Controller { //AufgabenPoolManager
 		return return_int;
 		
 	}
-	
+
+	//Methode holt sich die größe des AufgabenPools ab 
 	public static  int getPoolSize(int IdPool)
 	{
 		ArrayList<HashMap<String,Object>> result = new ArrayList<HashMap<String,Object>> ();
@@ -156,6 +157,7 @@ public class Controller { //AufgabenPoolManager
 
 	}
 	
+	//Löscht einen Aufgabenpool und löscht vorher alle dortdrin sich befindenden Aufgaben
 	public static boolean deletePool(int ID)
 	{
 		if(checkTaskPool(ID))
@@ -173,6 +175,7 @@ public class Controller { //AufgabenPoolManager
 		return false;
 	}
 	
+	//Erstellt eine neue Aufgabe in einen Ausgewählten  Aufgabenpool
 	public static int createTask(int PoolID , String name ,String Beschreibung, String kat , String zeit ){
 		
 		HashMap<String,Object> fields = new HashMap<> ();
@@ -192,6 +195,7 @@ public class Controller { //AufgabenPoolManager
 		
 	}
 	
+	//Holt sich eine Aufgabe aus der Datenbank ab und nimmt die ID als suchparameter
 	public static String getTask(int ID){
 		
 		//String sqlBefehl = "select * from Aufgaben where id = " + ID;
@@ -208,7 +212,7 @@ public class Controller { //AufgabenPoolManager
 	}
 	
 
-	
+	//Löscht eine einzelne Aufgabe anhand der ID
 	public  static boolean deleteTask(int ID){
 		
 		if(checkTask(ID))
@@ -219,6 +223,7 @@ public class Controller { //AufgabenPoolManager
 		return false;
 	}
 
+	//Umbennen von eine, Aufgabenpool
 	public static boolean changePoolName(int ID, String newName)
 	{
 		DatabaseSQLite.getInstance().update("Aufgabenpool", "AufgabenpoolId = " + ID, "Beschreibung", newName );
@@ -227,6 +232,8 @@ public class Controller { //AufgabenPoolManager
 				+ "set name = '" + newName + "' ;";*/
 		return true;
 	}
+	
+	//Umbenennen von einer Aufgabe
 	public static boolean changeTask(int ID, String newTask)
 	{
 		DatabaseSQLite.getInstance().update("Aufgaben", "AufgabenId = " + ID, "Bezeichnung", newTask);
