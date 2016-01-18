@@ -1,18 +1,18 @@
-package db;
+package database;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
  * Das Interface <code>IDatabase</code> kann von Datenbanken wie SQLite oder Oracle benutzt werden.
- * Es schreibt einige Methoden zur Ausführung von Basis-Operationen auf der entsprechenden Datenbank vor.
+ * Es schreibt einige Methoden zur AusfÃ¼hrung von Basis-Operationen auf der entsprechenden Datenbank vor.
  * 
  * @author Cornelia Stussig
  */
 public interface IDatabase {
 	
 	/**
-	 * Fügt einen vollständigen Datensatz auf Basis der übergebenen
+	 * FÃ¼gt einen vollstÃ¤ndigen Datensatz auf Basis der Ã¼bergebenen
 	 * Parameter in die Datenbank ein.
 	 * 
 	 * @param tableName		Name der Datenbanktabelle
@@ -21,96 +21,96 @@ public interface IDatabase {
 	public void insert(String tableName, HashMap<String, Object> fields);
 	
 	/**
-	 * Liefert alle Datensätze der angegeben Tabelle.
+	 * Liefert alle DatensÃ¤tze der angegeben Tabelle.
 	 * 
 	 * @param tableName		Name der Datenbanktabelle
-	 * @return Arrylist in der jeder Datensatz durch eine HashMap repräsentiert wird sind.
+	 * @return Arrylist in der jeder Datensatz durch eine HashMap reprÃ¤sentiert wird sind.
 	 */
 	public ArrayList<HashMap<String, Object>> get(String tableName);
 	
 	/**
-	 * Liefert Datensätze der angegeben Tabelle, die für das angegebene WHERE-Statement gültig sind.
+	 * Liefert DatensÃ¤tze der angegeben Tabelle, die fÃ¼r das angegebene WHERE-Statement gÃ¼ltig sind.
 	 * 
 	 * @param tableName		Name der Datenbanktabelle
-	 * @param where			WHERE-Statement, um die Datensätze einzuschränken.
-	 * @return Arrylist in der jeder Datensatz durch eine HashMap repräsentiert wird sind.
+	 * @param where			WHERE-Statement, um die DatensÃ¤tze einzuschrÃ¤nken.
+	 * @return Arrylist in der jeder Datensatz durch eine HashMap reprÃ¤sentiert wird sind.
 	 */
 	public ArrayList<HashMap<String, Object>> get(String tableName, String where);
 	
 	/**
-	 * Liefert Datensätze der angegeben Tabelle. Zusätzlich wird ein
+	 * Liefert DatensÃ¤tze der angegeben Tabelle. ZusÃ¤tzlich wird ein
 	 * WHERE-Statement aus den Paramtern key, operator und value ({@link java.lang.String}) generiert.
 	 * 
 	 * @param tableName		Name der Datenbanktabelle
 	 * @param key			Name der Spalte
 	 * @param operator		Vergleichoperator
 	 * @param value			Wert
-	 * @return Arrylist in der jeder Datensatz durch eine HashMap repräsentiert wird sind.
+	 * @return Arrylist in der jeder Datensatz durch eine HashMap reprÃ¤sentiert wird sind.
 	 */
 	public ArrayList<HashMap<String, Object>> get(String tableName, String key, String operator, String value);
 	
 	/**
-	 * Liefert Datensätze der angegeben Tabelle. Zusätzlich wird ein
+	 * Liefert DatensÃ¤tze der angegeben Tabelle. ZusÃ¤tzlich wird ein
 	 * WHERE-Statement aus den Paramtern key, operator und value ({@link int}) generiert.
 	 * 
 	 * @param tableName		Name der Datenbanktabelle
 	 * @param key			Name der Spalte
 	 * @param operator		Vergleichoperator
 	 * @param value			Wert
-	 * @return Arrylist in der jeder Datensatz durch eine HashMap repräsentiert wird sind.
+	 * @return Arrylist in der jeder Datensatz durch eine HashMap reprÃ¤sentiert wird sind.
 	 */
 	public ArrayList<HashMap<String, Object>> get(String tableName, String key, String operator, int value);
 	
 	/**
-	 * Liefert Datensätze der angegeben Tabelle. Zusätzlich wird ein
-	 * WHERE-Statement aus der übergebenen HashMap generiert.
+	 * Liefert DatensÃ¤tze der angegeben Tabelle. ZusÃ¤tzlich wird ein
+	 * WHERE-Statement aus der Ã¼bergebenen HashMap generiert.
 	 * 
 	 * @param tableName		Name der Datenbanktabelle
 	 * @param fields 		Vergleichswerte (Atribut1 = Atribut2) 
-	 * @return Arrylist in der jeder Datensatz durch eine HashMap repräsentiert wird sind.
+	 * @return Arrylist in der jeder Datensatz durch eine HashMap reprÃ¤sentiert wird sind.
 	 */
 	public ArrayList<HashMap<String, Object>> get(String tableName, HashMap<String, Object> fields);
 	
 	/**
-	 * Führt einen Datenbank befehl aus, der die Anzahl der Datensätze der Tabelle ermittelt.
+	 * FÃ¼hrt einen Datenbank befehl aus, der die Anzahl der DatensÃ¤tze der Tabelle ermittelt.
 	 * 
 	 * @param tableName Name der Datenbanktabelle
-	 * @return Anzahl der gesamten Datensätze die in der Tabelle vorhanden sind
+	 * @return Anzahl der gesamten DatensÃ¤tze die in der Tabelle vorhanden sind
 	 */
 	public int count(String tableName);
 	
 	/**
-	 * Führt einen Datenbank befehl aus, der die Anzahl der Datensätze der Tabelle ermittelt.
-	 * Das WHERE-Statement wird als zusätzliche Einschränkung angehangen.
+	 * FÃ¼hrt einen Datenbank befehl aus, der die Anzahl der DatensÃ¤tze der Tabelle ermittelt.
+	 * Das WHERE-Statement wird als zusÃ¤tzliche EinschrÃ¤nkung angehangen.
 	 * 
 	 * @param tableName		Name der Datenbanktabelle
-	 * @param where			WHERE-Statement, um die Datensätze einzuschränken.
-	 * @return Anzahl der Datensätze
+	 * @param where			WHERE-Statement, um die DatensÃ¤tze einzuschrÃ¤nken.
+	 * @return Anzahl der DatensÃ¤tze
 	 */
 	public int count(String tableName, String where);
 	
 	/**
-	 * Führt einen Datenbank befehl aus, der die Anzahl der Datensätze der Tabelle ermittelt.
-	 * Zusätzlich wird ein WHERE-Statement generiert, welches an den Datenbank-Befehl angehangen wird.
+	 * FÃ¼hrt einen Datenbank befehl aus, der die Anzahl der DatensÃ¤tze der Tabelle ermittelt.
+	 * ZusÃ¤tzlich wird ein WHERE-Statement generiert, welches an den Datenbank-Befehl angehangen wird.
 	 * 
 	 * @param tableName		Name der Datenbanktabelle
 	 * @param key			Name der Spalte
 	 * @param operator		Vergleichoperator
 	 * @param value			Wert
-	 * @return Anzahl der Datensätze die eine Bestimmte Bedingung erfüllen.
+	 * @return Anzahl der DatensÃ¤tze die eine Bestimmte Bedingung erfÃ¼llen.
 	 */
 	public int count(String tableName, String key, String operator, String value);
 	
 	/**
-	 * Löscht alle Datensätze, welche die Bedingung erfüllen.
+	 * LÃ¶scht alle DatensÃ¤tze, welche die Bedingung erfÃ¼llen.
 	 * 
 	 * @param tableName		Name der Datenbanktabelle
-	 * @param where			WHERE-Statement, um die Datensätze einzuschränken.
+	 * @param where			WHERE-Statement, um die DatensÃ¤tze einzuschrÃ¤nken.
 	 */
 	public void delete(String tableName, String where);
 	
 	/**
-	 * Löscht alle Datensätze, welche die Bedingung erfüllen.
+	 * LÃ¶scht alle DatensÃ¤tze, welche die Bedingung erfÃ¼llen.
 	 * 
 	 * @param tableName		Name der Datenbanktabelle
 	 * @param key			Name der Spalte
@@ -120,8 +120,8 @@ public interface IDatabase {
 	public void delete(String tableName, String key, String operator, String value);
 	
 	/**
-	 * Löscht alle Datensätze, welche die Bedingung erfüllen.
-	 * Mehrere Bedingungen möglich, die mit = Verglichen werden.
+	 * LÃ¶scht alle DatensÃ¤tze, welche die Bedingung erfÃ¼llen.
+	 * Mehrere Bedingungen mÃ¶glich, die mit = Verglichen werden.
 	 * 
 	 * @param tableName		Name der Datenbanktabelle
 	 * @param field			Vergleichswerte (Attribut1 = Attribut2)
@@ -129,7 +129,7 @@ public interface IDatabase {
 	public void delete(String tableName, HashMap<String, Object> field);
 	
 	/**
-	 * Setzt den Wert der durch das WHERE-Statement erfüllten Datensätze.
+	 * Setzt den Wert der durch das WHERE-Statement erfÃ¼llten DatensÃ¤tze.
 	 * 
 	 * @param tableName		Name der Datenbanktabelle
 	 * @param where			WHERE-Statement
@@ -139,13 +139,13 @@ public interface IDatabase {
 	public void update(String tableName, Object where, String key, String value);
 	
 	/**
-	 * Setzt die Werte der HashMap fields in den Datensätzen. Es
-	 * wird ein zusätzliches WHERE-Statement generiert, welches aus den Werten der
+	 * Setzt die Werte der HashMap fields in den DatensÃ¤tzen. Es
+	 * wird ein zusÃ¤tzliches WHERE-Statement generiert, welches aus den Werten der
 	 * HashMap whereFields generiert wird.
 	 * 
 	 * @param tableName		Name der Datenbanktabelle
 	 * @param whereFields 	Felder, aus denen das WHERE-Statement generiert wird
-	 * @param fields		Felder, die für die Datensätze gesetzt werden sollen.
+	 * @param fields		Felder, die fÃ¼r die DatensÃ¤tze gesetzt werden sollen.
 	 */
 	public void update(String tableName, HashMap<String, Object> whereFields, HashMap<String, Object> fields);
 
