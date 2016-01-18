@@ -8,12 +8,7 @@ public class Controller { //AufgabenPoolManager
 
 	public static void main(String[] args) {
 		//TESTER
-		final String DB_URL = "jdbc:sqlite:db/testDB.db";
-		
-		final String USER = "";
-		final String PWD = "";
-		
-		DatabaseSQLite.getInstance().connect(DB_URL, USER, PWD);
+		dbconnect();
 		
 		// DOZENTE
 	/*	HashMap<String,Object> fields_doz = new HashMap<> ();
@@ -52,6 +47,17 @@ public class Controller { //AufgabenPoolManager
 		//System.out.println(checkTaskPool(6));
 		//System.out.println(checkTask("Tafel wischen"));
 		//System.out.println(checkTask(6));
+		//System.out.println(getPools());
+	}
+	
+	public static void dbconnect()
+	{
+		final String DB_URL = "jdbc:sqlite:testDB.db";
+		
+		final String USER = "";
+		final String PWD = "";
+		
+		DatabaseSQLite.getInstance().connect(DB_URL, USER, PWD);
 	}
 	
 	public static int CreateTaskPool(String name,int dozId, String Fach, String Beschreibung)
@@ -75,19 +81,38 @@ public class Controller { //AufgabenPoolManager
 		//SQL MANAGER
 		ArrayList<HashMap<String,Object>> result = new ArrayList<HashMap<String,Object>> ();
 	
-		//String sql = "SELECT Beschreibung FROM Aufgabenpool where AufgabenpoolID = "+ ID + ";";
+		result = DatabaseSQLite.getInstance().get("Aufgaben", "Pool = "+ ID);
 		
-		ArrayList<HashMap<String,Object>> result = new ArrayList<HashMap<String,Object>> ();
-		
-		result = DatabaseSQLite.getInstance().get("Aufgabenpool", "AufgabenpoolID = " + PoolID);
-		
-		String return_str = "";
+		int[] return_array = new int[result.size()];
+		int counter = 0;
 		for(HashMap<String,Object> line: result){
-			return_str = (String) line.get("Beschreibung");
+			return_array[counter] = (int) line.get("AufgabenId");
+			counter++;
+			//System.out.println(line.get("AufgabenId") + " - " + line.get("Bezeichnung"));
 			
 		}
+		
+
+		return return_array;
+	}
 	
-		return return_str;
+	public static ObservableList<String> getPools()
+	{
+		//SQL MANAGER
+		ArrayList<HashMap<String,Object>> result = new ArrayList<HashMap<String,Object>> ();
+		result = DatabaseSQLite.getInstance().get("Aufgabenpool");
+		String[] return_array = new String[result.size()];
+		ObservableList<String> PoolList = FXCollections.observableArrayList();
+		
+		int counter = 0;
+		for(HashMap<String,Object> line: result){
+			//return_array[counter] = (String) line.get("Beschreibung");
+			PoolList.add((int) line.get("AufgabenpoolID"),(String) line.get("Beschreibung"));
+			counter++;
+			//System.out.println(line.get("AufgabenId") + " - " + line.get("Bezeichnung"));
+		}
+		
+		return PoolList;
 	}
 	
 	public static int getPoolID(String name)
