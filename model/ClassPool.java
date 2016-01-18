@@ -8,7 +8,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import db.DatabaseSQLite;
 
-public class ClassPool {
+public class ClassPool
+{
 	
 	public static final String TABLE_NAME = "Klassen";
 	
@@ -105,7 +106,7 @@ public class ClassPool {
 	 * werden alle Klassen aus der Datenbank geladen.
 	 * Daten werden in einer ArrayList zurück gegeben.
 	 */
-	private static ArrayList<StudentClass>getByAttribute(String where)
+	private static ArrayList<StudentClass> getByAttribute(String where)
 	{
 		ArrayList<HashMap<String,Object>> entries = DatabaseSQLite.getInstance().get(TableName,where);
 		ArrayList<StudentClass> studentClasses = new ArrayList<>();
