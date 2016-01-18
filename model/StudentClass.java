@@ -17,30 +17,45 @@ public class StudentClass extends DatabaseEntitySQLite
 	private String className;
 	private Professor professor;
 	
+	
 	public StudentClass(String className,Professor professor)
 	{
 	this.studentList=new ArrayList<>();
 	this.className= className;
 	this.professor=professor;
 	}
+	
+	// gibt die Studenten liste zurück
 	public ArrayList<Student> getStudentList() {
 		return studentList;
 	}
+	
+	// setzt die Studentenlist
 	public void setStudentList(ArrayList<Student> studentList) {
 		this.studentList = studentList;
 	}
+	
+	// gibt die Klassenbezeichnung zurück
 	public String getClassName() {
 		return className;
 	}
+	
+	// ändert den Klassennamen
 	public void setClassName(String className) {
 		this.className = className;
 	}
+	
+	// gibt den Klassendozenten zurück
 	public Professor getProfessor() {
 		return professor;
 	}
+	
+	// ändert den Klassendozenten
 	public void setProfessor(Professor professor) {
 		this.professor = professor;
 	}
+	
+	// fügt einen Studenten in die Klassenliste hinzu
 	public void addStudent(Student student)
 	{
 		if(StudentIsUniqueCheck(student))
@@ -48,6 +63,8 @@ public class StudentClass extends DatabaseEntitySQLite
 			this.studentList.add(student);
 		}
 	}
+	
+	// prüft den Studenten auf seine Einzigartigkeit
 	public boolean StudentIsUniqueCheck(Student student)
 	{
 		boolean check=true;
@@ -64,6 +81,8 @@ public class StudentClass extends DatabaseEntitySQLite
 		}
 		return check;
 	}
+	
+	// gibt die Daten der Klasse als Hashmap zurück
 	@Override	
 	protected HashMap<String,Object> getValueMap()
 	{
@@ -73,11 +92,17 @@ public class StudentClass extends DatabaseEntitySQLite
 	fields.put(ClassProfessor,this.professor);
 	return fields;
 	}
+	
+	/* gibt den Tabellennamen in den gespeichert werden soll,
+	*  zurück
+	*/
 	@Override
 	protected String getTableName()
 	{
 		return TableName;
 	}
+	
+	// gibt den Primärschlüssel der Tabelle zurück
 	@Override
 	protected HashMap<String,Object> getPrimaryKey()
 	{
