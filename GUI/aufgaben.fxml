@@ -33,10 +33,10 @@
       </HBox>
       <TableView fx:id="aufgabenTabelle" prefHeight="316.0" prefWidth="600.0" styleClass="vbox" stylesheets="@style.css">
         <columns>
-          <TableColumn prefWidth="75.0" />
-          <TableColumn prefWidth="75.0" text="Nr." />
-            <TableColumn prefWidth="326.0" text="Aufgabentext" />
-            <TableColumn prefWidth="123.0" text="Anhänge" />
+          <TableColumn fx:id="columnNr" prefWidth="75.0" text="Nr." />
+          <TableColumn fx:id="columnName" prefWidth="111.0" text="Bezeichnung" />
+            <TableColumn fx:id="columnDescribe" prefWidth="209.0" text="Beschreibung" />
+            <TableColumn fx:id="columnTime" prefWidth="204.0" text="Bearbeitungszeit" />
         </columns>
          <VBox.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
