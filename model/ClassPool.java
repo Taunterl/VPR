@@ -1,6 +1,6 @@
 /**
  * @author ibd2h14bel
- * /
+ */
 
 package model;
 
