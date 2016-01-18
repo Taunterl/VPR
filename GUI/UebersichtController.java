@@ -18,14 +18,14 @@ public class UebersichtController
 	@FXML
 	void goBackClicked(ActionEvent e) throws IOException
 	{
-		FXMLLoader Loader = new FXMLLoader(getClass().getResource("hauptmenue.fxml"));
-		Parent rootMain = Loader.load();
-		Scene sceneMain = new Scene( rootMain,600,400);
+		FXMLLoader testLoader = new FXMLLoader(getClass().getResource("hauptmenue.fxml"));
+		Parent root1 = testLoader.load();
+		Scene testScene = new Scene( root1,600,400);
 		stage.setTitle("Hauptmenü");
-		stage.setScene(sceneMain);
-		HauptmenueController controllerMain = 
-				Loader.<HauptmenueController>getController();
-		controllerMain.setStage(stage);
+		stage.setScene(testScene);
+		HauptmenueController controller1 = 
+				testLoader.<HauptmenueController>getController();
+		controller1.setStage(stage);
 	}
 
 	public void setStage(Stage s) 
