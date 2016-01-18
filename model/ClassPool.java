@@ -6,10 +6,10 @@ import db.DatabaseSQLite;
 
 public class ClassPool {
 	
-	public static final String TableName = "Klassen";
+	public static final String TABLE_NAME = "Klassen";
 	
-	private static final String  ClassID = "Klassenbezeichnung";
-	private static final String ClassProfessor = "Klassendozent";
+	private static final String  CLASS_ID = "Klassenbezeichnung";
+	private static final String CLASS_PROFESSOR = "Klassendozent";
 	
 		
 	private ArrayList<StudentClass> list;
@@ -108,8 +108,8 @@ public class ClassPool {
 		for(int i=0;i<entries.size();i++)
 		{
 			StudentClass studentClass = new StudentClass(null,null); 
-			studentClass.setClassName((String)entries.get(i).get(ClassID));
-			studentClass.setProfessor((Professor)entries.get(i).get(ClassProfessor));
+			studentClass.setClassName((String)entries.get(i).get(CLASS_ID));
+			studentClass.setProfessor((Professor)entries.get(i).get(CLASS_PROFESSOR));
 			studentClasses.add(studentClass);
 		}
 		return studentClasses;
