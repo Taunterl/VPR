@@ -1,4 +1,4 @@
-package db;
+package database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -28,17 +28,17 @@ public class DatabaseOracle implements IDatabase {
 	private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
 	
 	/**
-	 * Enthält das Connection-Objekt, welches zur Kommunikation mit der Datenbank benutzt wird.
+	 * EnthÃ¤lt das Connection-Objekt, welches zur Kommunikation mit der Datenbank benutzt wird.
 	 */
 	private Connection connection = null;
 
 	/**
-	 * Enthält die einzige Instanz der Klasse
+	 * EnthÃ¤lt die einzige Instanz der Klasse
 	 */
 	private static DatabaseOracle instance;
 
 	/**
-	 * Die Methode erstellt bei Bedarf die einzige Instanz der Klasse und liefert diese zurück.
+	 * Die Methode erstellt bei Bedarf die einzige Instanz der Klasse und liefert diese zurÃ¼ck.
 	 * 
 	 * @return die einzige Instanz der Klasse.
 	 */
@@ -50,7 +50,7 @@ public class DatabaseOracle implements IDatabase {
 	}
 
 	/**
-	 * Nicht öffentlicher Konstruktor. Instanzierung übernimmt die Klasse selbst.
+	 * Nicht Ã¶ffentlicher Konstruktor. Instanzierung Ã¼bernimmt die Klasse selbst.
 	 */
 	private DatabaseOracle() {
 
@@ -177,11 +177,11 @@ public class DatabaseOracle implements IDatabase {
 	}
 
 	/**
-	 * Führt ein SELECT-Statement auf der Datenbank aus.
+	 * FÃ¼hrt ein SELECT-Statement auf der Datenbank aus.
 	 * 
 	 * @param sql SQL-Befehl
 	 * @return	Ergebniss aus der Datenbank wird als ArrayLists aus
-	 * HashMaps übergeben. 
+	 * HashMaps Ã¼bergeben. 
 	 */
 	private ArrayList<HashMap<String, Object>> internalGet(String sql) {
 		ArrayList<HashMap<String, Object>> result = new ArrayList<HashMap<String, Object>>();
@@ -239,12 +239,12 @@ public class DatabaseOracle implements IDatabase {
 	}
 
 	/**
-	 * Führt einen SELECT-Befehl auf der Datenbank aus. Es wird erwartet, dass das Ergebnis des SELECT-Befehls nur
-	 * einen Datensatz mit einer Spalte zurückliefert, in dem die Anzahl der gefundenen Datensätze steht.
+	 * FÃ¼hrt einen SELECT-Befehl auf der Datenbank aus. Es wird erwartet, dass das Ergebnis des SELECT-Befehls nur
+	 * einen Datensatz mit einer Spalte zurÃ¼ckliefert, in dem die Anzahl der gefundenen DatensÃ¤tze steht.
 	 * Bsp.: SELECT COUNT(*) FROM some_table;
 	 * 
-	 * @param sql SQL Befehl wird der Datenbank übergeben.
-	 * @return Ergebniss (Int) aus der Datenbank wird übergeben
+	 * @param sql SQL Befehl wird der Datenbank Ã¼bergeben.
+	 * @return Ergebniss (Int) aus der Datenbank wird Ã¼bergeben
 	 */
 	private int internalCount(String sql) {
 		int result = 0;
@@ -370,7 +370,7 @@ public class DatabaseOracle implements IDatabase {
 	}
 
 	/**
-	 * Führt ein INSERT-, UPDATE- oder DELETE-Statement auf der Datenbank aus.
+	 * FÃ¼hrt ein INSERT-, UPDATE- oder DELETE-Statement auf der Datenbank aus.
 	 * 
 	 * @param sql	Das SQL-Statment
 	 * @throws SQLException
