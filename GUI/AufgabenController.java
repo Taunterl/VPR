@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
@@ -16,6 +17,19 @@ public class AufgabenController
 	
 	@FXML
 	private Button goBackButton;
+	
+	@FXML
+	private TableColumn<String,String> columnName;
+	
+	@FXML
+	private TableColumn<String,String> columnNr;
+	
+	@FXML
+	private TableColumn<String,String> columnDescribe;
+	
+	@FXML
+	private TableColumn<String,String> columnTime;
+	
 	
 	@FXML
 	private TableView<String> aufgabenTabelle;
@@ -75,8 +89,4 @@ public class AufgabenController
 	{
 		
 	}
-	
-	
-	
-	
 }
