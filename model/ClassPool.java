@@ -1,3 +1,7 @@
+/**
+ * @author ibd2h14bel
+ * /
+
 package model;
 
 import java.util.ArrayList;
