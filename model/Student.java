@@ -1,317 +1,218 @@
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+package model;
+
 import java.util.ArrayList;
 import java.util.HashMap;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
 
-public class student extends DatabaseEntity {
-	
+import db.DatabaseEntity;
+import db.DatabaseSQLite;
+/**
+ * Die Klasse Student bildet einen Studenten des b.i.b International College ab.
+ * 
+ * Sie besitzt Attribute wie <code>name</code> oder <code>firstName</code>. 
+ * 
+ * @author Cornelia Stussig
+ *
+ */
+public class Student extends DatabaseEntity {
 
+	/**
+	 * Name der Datenbanktabelle
+	 */
 	public static final String TABLE_NAME = "Studenten";
 
+	/**
+	 * Spaltenname der Spalte StudentenID
+	 */
 	private static final String STUDENTEN_ID = "StudentenID";
 
+	/**
+	 * Spaltenname der Spalte Name
+	 */
 	private static final String NAME = "Name";
 
-	private static final String FIRSTNAME = "Vorname";
+	/**
+	 * Spaltenname der Spalte Nachname
+	 */
+	private static final String SECONDTNAME = "Nachname";
 
-	private static final String PASSWORD = "Passwort";
+	/**
+	 * Spaltenname der Spalte Bild Pfad
+	 */
+	private static final String PICTURE = "Bild";
+
+	/**
+	 * Spaltenname der Spalte Klasse
+	 */
+	private static final String STUDENTCLASS = "Klasse";
 		
-	private String StudentenId;
+	/**
+	 * Attribut für die Studenten-ID
+	 */
+	private String studentID;
 	
+	/**
+	 * Attribut für den Namen
+	 */
 	private String name;
 	
-	private String firstName;
+	/**
+	 * Attribut für den Nachnamen
+	 */
+	private String secondName;
 	
-	private String password;
-	
-	
-	private Connection C;
-	private DatabaseSQLite database;
-	private String StudentenID;
-	private String Vorname;
-	private String Name;
-	private String Bild;
-	private String Klasse;
-	private String TableName = "Studenten";
-	
+	/**
+	 * Attribut für das Bild
+	 */
+	private String picture;
 
-	student(String studentenid, String firstName, String sName, String picturePath, String Klasse, String password) {
-
+	/**
+	 * Attribut für die Klasse
+	 */
+	private String studentClass;
+	
+	/**
+	 * Konstruktor, der die Parameter zur intialen Belegung entgegen nimmt
+	 * 
+	 * @param studentID
+	 * @param name
+	 * @param secondName
+	 * @param picture
+	 * @param studentClass
+	 */
+	public Student(String studentID, String name, String secondName, String picture, String studentClass){
 		super(DatabaseSQLite.getInstance());
-		this.StudentenID= studentenid;
-		this.Vorname = firstName;
-		this.Name = sName;
-		this.Bild = picturePath;
-		this.Klasse =  Klasse;
-		this.password = password;
+		this.setStudentID(studentID);
+		this.setName(name);
+		this.setSecondName(secondName);
+		this.setPicture(picture);
+		this.setStudentClass(studentClass);
 	}
 
-	student(){
-		
+	/**
+	 * Leerer Konstruktor
+	 * 
+	 * Dient hauptsächlich zur Instanzierung durch die Datenbank-Klassen.
+	 * 
+	 */
+	public Student() {
+		this(null, null, null, null, null);
+	}
+
+	public String getStudentID() {
+		return studentID;
+	}
+
+	public void setStudentID(String studentID) {
+		this.studentID = studentID;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getSecondName() {
+		return secondName;
+	}
+
+	public void setSecondName(String secondName) {
+		this.secondName = secondName;
+	}
+
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+
+	public String getStudentClass() {
+		return studentClass;
+	}
+
+	public void setStudentClass(String studentClass) {
+		this.studentClass = studentClass;
 	}
 	
-	
-	
-	public void getFullName(Connection c,String secondName) {
-
-		Connection c1 = c;
-		selectBadUser(c1, secondName);
+	/**
+	 * Liefert Alle Studenten, die Anhand einer Like-Suche auf den Nachnamen in der Datenbank gesucht werden.
+	 * 
+	 * @param name Name oder Teilname des Studenten
+	 * @return ArrayList aus Studenten-Objekten
+	 */
+	public static ArrayList<Student> getByName(String secondName){
+		String where = SECONDTNAME + " LIKE '" + secondName + "'";
+		return getByAttribute(where);
 	}
-
-	public void addStudents(Connection c, String StudentenId, String Vorname, String Nachname, String Bild, String Klasse){
-		
-		insertStudent(c,StudentenId,Vorname,Nachname,Bild,Klasse);
-	}
-	
-	
-	public void addStudent(String StudentenId, String firstname, String secondname, String picturePath, String klasse){
-		HashMap<String, Object> fields = new HashMap<String, Object>();
-		
-		int counter = 0;
-		
-		if(StudentenId.matches(".+[a-zA-Z]+.+")){
-		System.out.println("Format Falsch, bitte neu eingeben");
-		}
-		else{
-		fields.put("StudentenId", StudentenId);
-		counter++;
-		}
-		if(firstname.matches(".+[0-9]+.+")){
-			System.out.println("Format Falsch, bitte neu eingeben");
-		}
-		else{
-		fields.put("Vorname", firstname);
-		counter++;
-		}
-		if(secondname.matches(".+[0-9]+.+")){
-			System.out.println("Format Falsch, bitte neu eingeben");
-		}
-		else{
-		fields.put("Name", secondname );
-		counter++;
-		}
-		if(picturePath.matches(".+[0-9]+.+")){
-			System.out.println("Format Falsch, bitte neu eingeben");
-		}
-		else{
-		fields.put("Bild", picturePath);
-		counter++;
-		}
-		if(klasse.matches(".+[0-9]+.+")){	
-			System.out.println("Format Falsch, bitte neu eingeben");
-		}
-		else{
-		fields.put("Klasse", klasse);	
-		counter++;
-		}
-		if(counter==5){
-		database.insert("Vorname", fields);			
-		}
-		
-		
-		}
-	public Image addPicture (String picturePath){
-		
-		try {
-            InputStream inputStream = new FileInputStream (picturePath);
-            Image image = new Image(inputStream);
-            return image;
-        
-		} catch (FileNotFoundException ex) {
-            System.out.println(ex);
-	}}
-
-	private void selectBadUser(Connection c, String secondName){
-		try{
-			// 0)
-			// Autocommit-default: true
-			// c.setAutoCommit(false);
-			// c.commit();
-			this.C = c;
-			// 1) Statement
-			Statement stmt = c.createStatement();
-			
-			// 2) SQL command
-			String sql = "SELECT * FROM Studenten WHERE NAME='"+secondName+"'"; 
-					   
-			// 3) Execution
-			// Get results from db / issue a query:
-			ResultSet r = stmt.executeQuery(sql);
-			
-			// 4) Process queryresults
-			while( r.next() ){
-				// retrieve results according to type
-				String  id = r.getString("StudentenId");
-				String  Name 	= r.getString("Vorname");
-				String  Nachname 	= r.getString("Name");
-				String  bild = r.getString("Bild");
-				String  Klasse 	= r.getString("Klasse");
-				this.StudentenId = id;
-				this.Vorname = Name;
-				this.Name = Nachname;
-				this.Bild = Bild;
-				this.Klasse= Klasse;
-				
-			}
-			System.out.println("Entry selection successfully...");
-			
-			// 5) Cleanup
-			r.close();
-			stmt.close();
-		}
-		catch(SQLException e){
-			e.printStackTrace();
-		}		
-	}
-	private void insertStudent(Connection c, String StudentenId, String Vorname, String Nachname, String Bild, String Klasse){
-		try{
-			// 1) Statement
-			Statement stmt = c.createStatement();
-			
-			// 2) SQL command
-			String sql1 = "INSERT INTO Studenten (StudentenId ,Name, Nachname, Bild, Klasse) " +
-						  "VALUES ('"+StudentenId+"', '"+Vorname+"','"+Nachname+"', '"+Bild+"', '"+Klasse+"');"; 				   
-				   
-			// 3) Batchexecution
-			// build a batch of commands and execute statement only once --> performance
-			stmt.addBatch(sql1);
-			stmt.executeBatch();
-			System.out.println("Entry insertion successfully...");
-			
-			// 4) Cleanup
-			stmt.close();
-		}
-		catch(SQLException e){
-			e.printStackTrace();
-		}		
-	}	
-
-
-
-	public String getStuentId(){
-		
-		return this.StudentenID;
-		
-	}
-	
-	public void setStudentId(String StudentID){
-		
-		this.StudentenID = StudentID;
-	}
-
-	public String getFirstname(){
-		
-		return this.Vorname;
-		
-	}
-	
-	public void setFirstname(String Firstname){
-		
-		this.Vorname= Firstname;
-	}
-	public String getName(){
-		
-		return this.Name;
-		
-	}
-	public void setName(String Name){
-		
-		this.Name=Name;
-	}
-	
-	public String getPicture(){
-		
-		return this.Bild;
-		
-	}
-	
-	public void setPicture(String Bild){
-		
-		this.Bild= Bild;
-	}
-
-	public String getStudentClass(){
-		
-		return this.Klasse;
-		
-	}
-
-	public void setStudentClass(String Klasse){
-		
-		this.Klasse = Klasse;
-	}
-	
-
-	public static ArrayList<student> getByFirstame(String firstName){
-		String where = NAME + " LIKE '" + firstName + "'";
+	/**
+	 * Liefert Alle Studenten, die Anhand einer Like-Suche auf den Vornamen in der Datenbank gesucht werden.
+	 * 
+	 * @param firstName Name oder Teilname des Studenten
+	 * @return ArrayList aus Studenten-Objekten
+	 */
+	public static ArrayList<Student> getByFirstame(String name){
+		String where = NAME + " LIKE '" + name + "'";
 		return getByAttribute(where);
 	}
 
 	/**
-	 * Liefert Alle Dozenten, die Anhand einer Like-Suche auf die Dozenten-ID in der Datenbank gesucht werden.
+	 * Liefert Alle Studenten, die Anhand einer Like-Suche auf die Studenten-ID in der Datenbank gesucht werden.
 	 * 
-	 * @param dozentenID Dozenten-ID des Professors
-	 * @return ArrayList aus Professor-Objekten
+	 * @param studentenID studenten-ID des Studenten
+	 * @return ArrayList aus Studenten-Objekten
 	 */
-	public static ArrayList<student> getByDozentenID(String dozentenID){
-		String where = STUDENTEN_ID + " LIKE '" + dozentenID + "'";
+	public static ArrayList<Student> getByStudentID(String studentID){
+		String where = STUDENTEN_ID + " LIKE '" + studentID + "'";
 		return getByAttribute(where);
 	}
 
 	/**
-	 * Liefert Alle Dozenten.
+	 * Liefert Alle Studenten.
 	 * 
-	 * @return ArrayList aus Professor-Objekten
+	 * @return ArrayList aus Studenten-Objekten
 	 */
-	public static ArrayList<student> get(){
+	public static ArrayList<Student> get(){
 		return getByAttribute("");
 	}
 
 	
 	/**
-	 * Führt auf der Datenbank-Objekt-Instanz die get-Methode aus und generiert aus dem zurückgegebenen Werten die Professor-Objekte.
+	 * Führt auf der Datenbank-Objekt-Instanz die get-Methode aus und generiert aus dem zurückgegebenen Werten die Studenten-Objekte.
 	 * 
 	 * @param where
 	 * @return
 	 */
-	private static ArrayList<student> getByAttribute(String where) {
+	private static ArrayList<Student> getByAttribute(String where) {
 		ArrayList<HashMap<String, Object>> entries = DatabaseSQLite.getInstance().get(TABLE_NAME, where);
-		ArrayList<student> studenten = new ArrayList<student>();
+		ArrayList<Student> students = new ArrayList<Student>();
 		for (int i = 0; i < entries.size(); i++) {
-			student p = new student();
-			p.StudentenID = (String) entries.get(i).get(STUDENTEN_ID);
-			p.name = (String) entries.get(i).get(NAME);
-			p.firstName = (String) entries.get(i).get(FIRSTNAME);
-			p.password = (String) entries.get(i).get(PASSWORD);
-			p.isInDB = true;
-			studenten.add(p);
+			Student s = new Student();
+			s.studentID = (String) entries.get(i).get(STUDENTEN_ID);
+			s.name = (String) entries.get(i).get(NAME);
+			s.secondName = (String) entries.get(i).get(SECONDTNAME);
+			s.picture = (String) entries.get(i).get(PICTURE);
+			s.studentClass = (String) entries.get(i).get(STUDENTCLASS);
+			s.isInDB = true;
+			students.add(s);
 		}
-		return studenten;
+		return students;
 	}
 
 	/* (non-Javadoc)
 	 * @see db.DatabaseEntity#getValueMap()
-	 */
+	 */ 
 	@Override
 	protected HashMap<String, Object> getValueMap() {
 		HashMap<String, Object> fields = new HashMap<String, Object>();
-		fields.put(STUDENTEN_ID, this.StudentenID);
+		fields.put(STUDENTEN_ID, this.studentID);
 		fields.put(NAME, this.name);
-		fields.put(FIRSTNAME, this.firstName);
-		fields.put(PASSWORD, this.password);
+		fields.put(SECONDTNAME, this.secondName);
+		fields.put(PICTURE, this.picture);
+		fields.put(STUDENTCLASS, this.studentClass);
 		return fields;
 	}
 
@@ -329,12 +230,7 @@ public class student extends DatabaseEntity {
 	@Override
 	protected HashMap<String, Object> getPrimaryKey() {
 		HashMap<String, Object> fields = new HashMap<String, Object>();
-		fields.put(STUDENTEN_ID, this.StudentenID);
+		fields.put(STUDENTEN_ID, this.studentID);
 		return fields;
 	}
-
-
-
-
-
 }
