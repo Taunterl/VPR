@@ -1,12 +1,12 @@
-/*
-drop table Klassen;
-drop table Studenten;
+cl scr;
 drop table StudentenInGruppen;
 drop table Gruppen;
 drop table Aufgaben;
 drop table Aufgabenpools;
+drop table Studenten;
+drop table Klassen;
 drop table Dozenten;
-*/
+
 
 create table Dozenten (
     DozentenID varchar(3) Primary Key,
@@ -25,11 +25,11 @@ create table Klassen(
 create table Studenten(
     StudentenID varchar(10) Primary Key,
     Name varchar(20) not null,
-    Nachname varchar(20) not null,
+    Vorname varchar(20) not null,
     Bild varchar2(30), /* Default "Default Pfad"*/
     Klasse varchar(8) not null,
     CONSTRAINT studenten_FK  Foreign Key (Klasse) references Klassen (Klassenbezeichnung)
-	ON DELETE CASCADE;
+    ON DELETE CASCADE
 );
 
 create table Aufgabenpool(
