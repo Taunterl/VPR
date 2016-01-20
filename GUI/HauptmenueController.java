@@ -1,5 +1,4 @@
 import java.io.IOException;
-
 import model.Inputs;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -72,7 +71,7 @@ public class HauptmenueController
 	@FXML
 	private Button uebersichtButton;
 	
-	private Stage stage;
+	private static Stage stage;
 	
 	@FXML
     public void initialize() 
@@ -109,7 +108,8 @@ public class HauptmenueController
 	@FXML
 	void uebersichtClicked(ActionEvent e)throws IOException
 	{
-		FXMLLoader Loader = new FXMLLoader(getClass().getResource("uebersicht.fxml"));
+		
+		FXMLLoader Loader = new FXMLLoader(getClass().getResource("uebersichtPaged.fxml"));
 		Parent rootOverview = Loader.load();
 		Scene sceneOverview = new Scene(rootOverview,600,500);
 		stage.setTitle("Uebersicht");
@@ -126,13 +126,11 @@ public class HauptmenueController
 		setGroupCount();
 		if(Inputs.isUseGroupSize())
 		{
-			//**für Testzwecke
-			System.out.println("useSize, "+Inputs.getGroupSize());
+			Inputs.setAllGroups(RandomGroups.createRandomGroups("size", gruppenGroesseText, Inputs.getSelectedStudentClasses()));
 		}
 		else
 		{
-			//**für Testzwecke
-			System.out.println("useCount, "+Inputs.getGroupCount());
+			Inputs.setAllGroups(RandomGroups.createRandomGroups("count", groupCountField, Inputs.getSelectedStudentClasses()));
 		}
 		
 		FXMLLoader Loader = new FXMLLoader(getClass().getResource("gruppen.fxml"));
