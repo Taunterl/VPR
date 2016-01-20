@@ -35,6 +35,24 @@ public class AufgabenController
 	private TableView<String> aufgabenTabelle;
 	
 	@FXML
+	private TableColumn columnNr;
+	
+	@FXML
+	private TableColumn columnName;
+
+	@FXML
+	private TableColumn columnDescribe;
+
+	@FXML
+	private TableColumn columnTime;
+	
+	@FXML
+	private TableColumn columnCategory;
+	
+	@FXML
+	private TableColumn columnPool;
+
+	@FXML
 	private ChoiceBox<String> aufgabenChoice;
 	
 	@FXML
@@ -51,19 +69,22 @@ public class AufgabenController
 	
 	public void initialize() 
 	{   
-		Controller.dbconnect();
-		ObservableList<String> PoolList = Controller.getPools();
-		aufgabenChoice.setItems(PoolList);
-		
-	        System.out.println("init-AufgabenController");
-	        aufgabenTabelle.setEditable(true);
-	        
-	        
-	        aufgabenChoice.setOnAction(new EventHandler<ActionEvent>() {
-	            @Override public void handle(ActionEvent e) {
-	                System.out.println("CHANGE-TASKS");
-            }
-        });
+	 		Controller.dbconnect();
+	 		ObservableList<String> PoolList = Controller.getPools();
+	 		aufgabenChoice.setItems(PoolList);
+	 		
+ 	        System.out.println("init-AufgabenController");
+ 	        aufgabenTabelle.setEditable(true);
+ 	        
+ 	        columnNr.setCellValueFactory(new PropertyValueFactory<>("id"));
+ 	        columnName.setCellValueFactory(new PropertyValueFactory<>("name"));
+ 	        columnDescribe.setCellValueFactory(new PropertyValueFactory<>("describtion"));
+ 	        columnTime.setCellValueFactory(new PropertyValueFactory<>("time"));
+ 	        columnCategory.setCellValueFactory(new PropertyValueFactory<>("category"));
+ 	        columnPool.setCellValueFactory(new PropertyValueFactory<>("pool"));
+
+ 	        aufgabenChoice.setOnAction(e -> changeTable());
+	}
 	
 	@FXML
 	void uebersichtClicked(ActionEvent e) throws IOException
@@ -120,4 +141,19 @@ public class AufgabenController
     	 	AddTaskController controllerAddTask = loader.<AddTaskController>getController();
     	 	controllerAddTask.setStage(stage);
         }
+        
+     private void changeTable() {
+    	 // TODO Auto-generated method stub
+
+    	 aufgabenTabelle.setItems(getProduct());
+     }
+     
+     public ObservableList<Aufgaben> getProduct(){
+    	 
+         ObservableList<Aufgaben> tasks = FXCollections.observableArrayList();
+         tasks.add(new Aufgaben(1,"Laptop","Hallo", 40 , "Proggn","OPR"));
+         tasks.add(new Aufgaben(2,"WARUM","Hallo", 50 , "Jesus","OPR"));
+
+         return tasks;
+     }
 }
