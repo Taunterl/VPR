@@ -41,6 +41,9 @@ public class AufgabenController
 	private Button starButton;
 	
 	@FXML
+	private Button addTask;
+	
+	@FXML
 	private Button plusButton;
 	
 	@FXML
@@ -105,4 +108,16 @@ public class AufgabenController
 	{
 		
 	}
+	 @FXML
+     	void goToAddTask(ActionEvent e) throws IOException
+	{
+    	 
+    		 FXMLLoader loader = new FXMLLoader(getClass().getResource("aufgabe.fxml"));
+    		 Parent rootAddTask = loader.load();
+    	 	Scene sceneAddTask = new Scene(rootAddTask, 450, 300 );
+    	 	stage.setTitle("Aufgabe hinzufgen");
+    	 	stage.setScene(sceneAddTask);
+    	 	AddTaskController controllerAddTask = loader.<AddTaskController>getController();
+    	 	controllerAddTask.setStage(stage);
+        }
 }
