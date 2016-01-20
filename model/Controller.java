@@ -111,7 +111,8 @@ public class Controller { //AufgabenPoolManager
 		int counter = 0;
 		for(HashMap<String,Object> line: result){
 			//return_array[counter] = (String) line.get("Beschreibung");
-			PoolList.add((int) line.get("AufgabenpoolID"),(String) line.get("Beschreibung"));
+			//PoolList.add((int) line.get("AufgabenpoolID"),(String) line.get("Beschreibung"));
+			PoolList.add((String) line.get("Beschreibung"));
 			counter++;
 			//System.out.println(line.get("AufgabenId") + " - " + line.get("Bezeichnung"));
 		}
