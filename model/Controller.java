@@ -196,6 +196,22 @@ public class Controller { //AufgabenPoolManager
 		
 	}
 	
+	public static Aufgaben getTaskObj(int ID)
+	{
+		ArrayList<HashMap<String,Object>> result = new ArrayList<HashMap<String,Object>> ();
+		
+		result = DatabaseSQLite.getInstance().get("Aufgaben", "AufgabenId = " + ID);
+		
+		String return_str = null;
+		Aufgaben task = null;
+		for(HashMap<String,Object> line: result){
+			return_str = (String) line.get("Bezeichnung");
+			task = new Aufgaben((String) line.get("Bezeichnung"),(String) line.get("Beschreibung"),(String) line.get("Bearbeitungszeit") ,(String) line.get("Kategorie"),(String) line.get("pool"));
+			task.setID((int) line.get("AufgabenId"));
+		}
+		return task;
+	}
+	
 	//Holt sich eine Aufgabe aus der Datenbank ab und nimmt die ID als suchparameter
 	public static String getTask(int ID){
 		
