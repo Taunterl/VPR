@@ -14,7 +14,7 @@ public class StudentClass extends DatabaseEntity
 	public static final String TABLE_NAME = "Klassen";
 	
 	private static final String  CLASS_ID = "Klassenbezeichnung";
-	private static final String NUMBER_OF_STUDENTS = "AnzahlSchÃ¼ler";
+	private static final String NUMBER_OF_STUDENTS = "AnzahlSchüler";
 	private static final String CLASS_PROFESSOR = "Klassendozent";
 	
 	private ArrayList<Student> studentList;
@@ -75,7 +75,7 @@ public class StudentClass extends DatabaseEntity
 		boolean check=true;
 		for(int i=0;i<studentList.size();i++)
 		{
-			if(studentList.get(i).getStudentName().equals(student.getStudentName()))
+			if(studentList.get(i).getName()+studentList.get(i).getSecondName().equals(student.getName()+student.getSecondName()) != null)
 			{
 				check = false;
 			}
@@ -92,9 +92,9 @@ public class StudentClass extends DatabaseEntity
 	protected HashMap<String,Object> getValueMap()
 	{
 	HashMap<String,Object> fields = new HashMap<String,Object>();
-	fields.put(ClassID,this.className);
-	fields.put(NumberOfStudents, this.studentList.size());
-	fields.put(ClassProfessor,this.professor);
+	fields.put(CLASS_ID,this.className);
+	fields.put(NUMBER_OF_STUDENTS, this.studentList.size());
+	fields.put(CLASS_PROFESSOR,this.professor);
 	return fields;
 	}
 	

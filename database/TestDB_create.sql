@@ -1,4 +1,4 @@
-cl scr;
+﻿cl scr;
 drop table StudentenInGruppen;
 drop table Gruppen;
 drop table Aufgaben;

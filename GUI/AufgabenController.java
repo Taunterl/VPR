@@ -2,15 +2,23 @@ package GUI;
 
 import java.io.IOException;
 
+import model.Aufgaben;
+import model.Controller;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBase;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 //neuer test
 public class AufgabenController 
@@ -36,17 +44,7 @@ public class AufgabenController
 	@FXML
 	private TableView<String> aufgabenTabelle;
 	
-	@FXML
-	private TableColumn columnNr;
 	
-	@FXML
-	private TableColumn columnName;
-
-	@FXML
-	private TableColumn columnDescribe;
-
-	@FXML
-	private TableColumn columnTime;
 	
 	@FXML
 	private TableColumn columnCategory;
@@ -85,7 +83,12 @@ public class AufgabenController
  	        columnCategory.setCellValueFactory(new PropertyValueFactory<>("category"));
  	        columnPool.setCellValueFactory(new PropertyValueFactory<>("pool"));
 
- 	        aufgabenChoice.setOnAction(e -> changeTable());
+ 	        aufgabenChoice.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+			      @Override
+			      public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
+			        System.out.println(aufgabenChoice.getItems().get((Integer) number2));
+			      }
+			    });
 	}
 	
 	@FXML
@@ -146,15 +149,19 @@ public class AufgabenController
         
      private void changeTable() {
     	 // TODO Auto-generated method stub
-
-    	 aufgabenTabelle.setItems(getProduct());
+    	 for(Aufgaben a: getProduct()){
+    		 ObservableList<String> tasks = FXCollections.observableArrayList();
+    		 tasks.add(a.getName());
+    		 aufgabenTabelle.setItems(tasks);
+    	 }
+    	 
      }
      
      public ObservableList<Aufgaben> getProduct(){
     	 
          ObservableList<Aufgaben> tasks = FXCollections.observableArrayList();
-         tasks.add(new Aufgaben(1,"Laptop","Hallo", 40 , "Proggn","OPR"));
-         tasks.add(new Aufgaben(2,"WARUM","Hallo", 50 , "Jesus","OPR"));
+         tasks.add(new Aufgaben(1,"Laptop","Hallo", "40" , "Proggn","OPR"));
+         tasks.add(new Aufgaben(2,"WARUM","Hallo", "50" , "Jesus","OPR"));
 
          return tasks;
      }

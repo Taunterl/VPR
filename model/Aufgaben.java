@@ -12,7 +12,15 @@ public class Aufgaben {
 
 	
 	
-	Aufgaben(String name, String description, String time, String category, String pool){
+	public Aufgaben(int id, String name, String description, String time, String category, String pool){
+		
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.time = time;
+		this.category = category;
+		this.pool = pool;
+	}public Aufgaben(String name, String description, String time, String category, String pool){
 		
 		this.name = name;
 		this.description = description;

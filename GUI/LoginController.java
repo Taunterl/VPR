@@ -71,8 +71,8 @@ public class LoginController
 					if(!Inputs.getLocation().isEmpty())
 					{
 						Inputs.setLoggedInAs(loginAs);
-						//Inputs.setActiveClassPool();
-						**/
+						Inputs.setActiveClassPool();**/
+						
 						FXMLLoader Loader = new FXMLLoader(getClass().getResource("hauptmenue.fxml"));
 						Parent rootMain = Loader.load();
 						Scene sceneMain = new Scene( rootMain,600,400);

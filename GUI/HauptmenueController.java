@@ -80,8 +80,8 @@ public class HauptmenueController
 	@FXML
     public void initialize() 
 	{   
-		gruppenGroesseText.setText(Inputs.getGroupSize()+"");
-		groupCountField.setText(Inputs.getGroupCount()+"");
+		gruppenGroesseText.setText(String.valueOf(Inputs.getGroupSize()));
+		groupCountField.setText(String.valueOf(Inputs.getGroupCount()));
 		if(!Inputs.isUseGroupSize())
 		{
 			gruppenAnzahlRadio.setSelected(true);
@@ -130,11 +130,11 @@ public class HauptmenueController
 		setGroupCount();
 		if(Inputs.isUseGroupSize())
 		{
-			Inputs.setAllGroups(RandomGroups.createRandomGroups("size", gruppenGroesseText, Inputs.getSelectedStudentClasses()));
+			//Inputs.setAllGroups(RandomGroups.createRandomGroups("size", Integer.parseInt(gruppenGroesseText.getText()), Inputs.getSelectedStudentClasses()));
 		}
 		else
 		{
-			Inputs.setAllGroups(RandomGroups.createRandomGroups("count", groupCountField, Inputs.getSelectedStudentClasses()));
+			//Inputs.setAllGroups(RandomGroups.createRandomGroups("count", Integer.parseInt(groupCountField.getText()), Inputs.getSelectedStudentClasses()));
 		}
 		
 		FXMLLoader Loader = new FXMLLoader(getClass().getResource("gruppen.fxml"));

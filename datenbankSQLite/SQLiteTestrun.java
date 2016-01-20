@@ -3,7 +3,7 @@ package datenbankSQLite;
 import java.sql.*;
 import java.util.ArrayList;
 
-import db.DatabaseSQLite;
+import database.DatabaseSQLite;
 import model.Professor;
 
 public class SQLiteTestrun

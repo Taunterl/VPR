@@ -1,6 +1,7 @@
 package GUI;
 
 import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -113,9 +114,9 @@ public class UebersichtController
 		HBox container = new HBox(2);
 		ImageView img = new ImageView();
 		
-		if(student.getPicturePath()!=null)
+		if(student.getPicture()!=null)
 		{
-			img.setImage(new Image(student.getPicturePath()));
+			img.setImage(new Image(student.getPicture()));
 			
 	        img.setFitWidth(100);
 	        img.setPreserveRatio(true);
@@ -123,8 +124,8 @@ public class UebersichtController
 	        img.setCache(true);
 		}
 		VBox lines = new VBox(3);
-		Label name = new Label(student.getName()+", "+student.getFirstName());	//
-		Label studentID = new Label(student.getStudentId());	//
+		Label name = new Label(student.getName()+", "+student.getSecondName());	//
+		Label studentID = new Label(student.getStudentID());	//
 		lines.getChildren().addAll(name, studentID);
 		container.getChildren().addAll(img, lines);
 		

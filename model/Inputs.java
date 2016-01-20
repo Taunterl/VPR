@@ -99,34 +99,33 @@ public class Inputs {
 	public static void setActiveStudents()
 	{
 		Inputs.activeStudents.clear();
-		Inputs.activeStudents.add(new Student("ibw2h14akl", "Fabio", "Klement", "dummy-user.jpg", "ibw2h14a", null));
-		Inputs.activeStudents.add(new Student("ibw2h14aho", "Thomas", "Hooge", "dummy-user.jpg", "ibw2h14a", null));
-		Inputs.activeStudents.add(new Student("ibw2h14akl", "Fabio", "Klement", "dummy-user.jpg", "ibw2h14a", null));
-		Inputs.activeStudents.add(new Student("ibw2h14aho", "Thomas", "Hooge", "dummy-user.jpg", "ibw2h14a", null));
-		Inputs.activeStudents.add(new Student("ibw2h14akl", "Fabio", "Klement", "dummy-user.jpg", "ibw2h14a", null));
-		Inputs.activeStudents.add(new Student("ibw2h14aho", "Thomas", "Hooge", "dummy-user.jpg", "ibw2h14a", null));
-		Inputs.activeStudents.add(new Student("ibw2h14akl", "Fabio", "Klement", "dummy-user.jpg", "ibw2h14a", null));
-		Inputs.activeStudents.add(new Student("ibw2h14aho", "Thomas", "Hooge", "dummy-user.jpg", "ibw2h14a", null));
-		Inputs.activeStudents.add(new Student("ibw2h14akl", "Fabio", "Klement", "dummy-user.jpg", "ibw2h14a", null));
-		Inputs.activeStudents.add(new Student("ibw2h14aho", "Thomas", "Hooge", "dummy-user.jpg", "ibw2h14a", null));
-		Inputs.activeStudents.add(new Student("ibw2h14akl", "Fabio", "Klement", "dummy-user.jpg", "ibw2h14a", null));
-		Inputs.activeStudents.add(new Student("ibw2h14aho", "Thomas", "Hooge", "dummy-user.jpg", "ibw2h14a", null));
-		Inputs.activeStudents.add(new Student("ibw2h14akl", "Fabio", "Klement", "dummy-user.jpg", "ibw2h14a", null));
-		Inputs.activeStudents.add(new Student("ibw2h14aho", "Thomas", "Hooge", "dummy-user.jpg", "ibw2h14a", null));
-		Inputs.activeStudents.add(new Student("ibw2h14akl", "Fabio", "Klement", "dummy-user.jpg", "ibw2h14a", null));
-		Inputs.activeStudents.add(new Student("ibw2h14aho", "Thomas", "Hooge", "dummy-user.jpg", "ibw2h14a", null));
-		Inputs.activeStudents.add(new Student("ibw2h14akl", "Fabio", "Klement", "dummy-user.jpg", "ibw2h14a", null));
-		Inputs.activeStudents.add(new Student("ibw2h14aho", "Thomas", "Hooge", "dummy-user.jpg", "ibw2h14a", null));
-		Inputs.activeStudents.add(new Student("ibw2h14akl", "Fabio", "Klement", "dummy-user.jpg", "ibw2h14a", null));
-		Inputs.activeStudents.add(new Student("ibw2h14aho", "Thomas", "Hooge", "dummy-user.jpg", "ibw2h14a", null));
-		Inputs.activeStudents.add(new Student("ibw2h14akl", "Fabio", "Klement", "dummy-user.jpg", "ibw2h14a", null));
-		Inputs.activeStudents.add(new Student("ibw2h14aho", "Thomas", "Hooge", "dummy-user.jpg", "ibw2h14a", null));
-		Inputs.activeStudents.add(new Student("ibw2h14akl", "Fabio", "Klement", "dummy-user.jpg", "ibw2h14a", null));
-		Inputs.activeStudents.add(new Student("ibw2h14aho", "Thomas", "Hooge", "dummy-user.jpg", "ibw2h14a", null));
+		Inputs.activeStudents.add(new Student("ibw2h14akl", "Fabio", "Klement", "dummy-user.jpg", "ibw2h14a"));
+		Inputs.activeStudents.add(new Student("ibw2h14aho", "Thomas", "Hooge", "dummy-user.jpg", "ibw2h14a"));
+		Inputs.activeStudents.add(new Student("ibw2h14akl", "Fabio", "Klement", "dummy-user.jpg", "ibw2h14a"));
+		Inputs.activeStudents.add(new Student("ibw2h14aho", "Thomas", "Hooge", "dummy-user.jpg", "ibw2h14a"));
+		Inputs.activeStudents.add(new Student("ibw2h14akl", "Fabio", "Klement", "dummy-user.jpg", "ibw2h14a"));
+		Inputs.activeStudents.add(new Student("ibw2h14aho", "Thomas", "Hooge", "dummy-user.jpg", "ibw2h14a"));
+		Inputs.activeStudents.add(new Student("ibw2h14akl", "Fabio", "Klement", "dummy-user.jpg", "ibw2h14a"));
+		Inputs.activeStudents.add(new Student("ibw2h14aho", "Thomas", "Hooge", "dummy-user.jpg", "ibw2h14a"));
+		Inputs.activeStudents.add(new Student("ibw2h14akl", "Fabio", "Klement", "dummy-user.jpg", "ibw2h14a"));
+		Inputs.activeStudents.add(new Student("ibw2h14aho", "Thomas", "Hooge", "dummy-user.jpg", "ibw2h14a"));
+		Inputs.activeStudents.add(new Student("ibw2h14akl", "Fabio", "Klement", "dummy-user.jpg", "ibw2h14a"));
+		Inputs.activeStudents.add(new Student("ibw2h14aho", "Thomas", "Hooge", "dummy-user.jpg", "ibw2h14a"));
+		Inputs.activeStudents.add(new Student("ibw2h14akl", "Fabio", "Klement", "dummy-user.jpg", "ibw2h14a"));
+		Inputs.activeStudents.add(new Student("ibw2h14aho", "Thomas", "Hooge", "dummy-user.jpg", "ibw2h14a"));
+		Inputs.activeStudents.add(new Student("ibw2h14akl", "Fabio", "Klement", "dummy-user.jpg", "ibw2h14a"));
+		Inputs.activeStudents.add(new Student("ibw2h14aho", "Thomas", "Hooge", "dummy-user.jpg", "ibw2h14a"));
+		Inputs.activeStudents.add(new Student("ibw2h14akl", "Fabio", "Klement", "dummy-user.jpg", "ibw2h14a"));
+		Inputs.activeStudents.add(new Student("ibw2h14aho", "Thomas", "Hooge", "dummy-user.jpg", "ibw2h14a"));
+		Inputs.activeStudents.add(new Student("ibw2h14akl", "Fabio", "Klement", "dummy-user.jpg", "ibw2h14a"));
+		Inputs.activeStudents.add(new Student("ibw2h14aho", "Thomas", "Hooge", "dummy-user.jpg", "ibw2h14a"));
+		Inputs.activeStudents.add(new Student("ibw2h14akl", "Fabio", "Klement", "dummy-user.jpg", "ibw2h14a"));
+		Inputs.activeStudents.add(new Student("ibw2h14aho", "Thomas", "Hooge", "dummy-user.jpg", "ibw2h14a"));
+		Inputs.activeStudents.add(new Student("ibw2h14akl", "Fabio", "Klement", "dummy-user.jpg", "ibw2h14a"));
+		Inputs.activeStudents.add(new Student("ibw2h14aho", "Thomas", "Hooge", "dummy-user.jpg", "ibw2h14a"));
 		/*for(StudentClass c: Inputs.selectedStudentClasses)
 		{
 			c.getStudentList().addAll(Inputs.activeStudents);
-		}*/
-		
+		}*/	
 	}
 }

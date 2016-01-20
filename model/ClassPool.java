@@ -108,7 +108,7 @@ public class ClassPool
 	 */
 	private static ArrayList<StudentClass> getByAttribute(String where)
 	{
-		ArrayList<HashMap<String,Object>> entries = DatabaseSQLite.getInstance().get(TableName,where);
+		ArrayList<HashMap<String,Object>> entries = DatabaseSQLite.getInstance().get(TABLE_NAME,where);
 		ArrayList<StudentClass> studentClasses = new ArrayList<>();
 		for(int i=0;i<entries.size();i++)
 		{
@@ -129,14 +129,14 @@ public class ClassPool
 	// holt alle Klassen aus der Datenbank mit der gegebenen id
 	public static ArrayList<StudentClass> getByClassID(String id)
 	{
-		String where = ClassID + " LIKE '" + id + "'";
+		String where = CLASS_ID + " LIKE '" + id + "'";
 		return getByAttribute(where);
 	}
 	
 	// holt alle Klassen anhand des Klassendozenten aus der Datenbank
 	public static ArrayList<StudentClass> getByClassProfessor(String name)
 	{
-		String where = ClassProfessor + " LIKE '" + name + "'";
+		String where = CLASS_PROFESSOR + " LIKE '" + name + "'";
 		return getByAttribute(where);
 	}
 }
