@@ -1,9 +1,10 @@
 package GUI;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import model.Inputs;
-import database.LoginDatabase;
+import model.Professor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +21,7 @@ import javafx.stage.Stage;
 public class LoginController  
 {
 
+	public enum ERR_MSG{BAD_USER, NO_MATCH, LOCATION, DB_CON};
 	@FXML
 	private Button loginBtn;
 	@FXML
@@ -45,53 +47,85 @@ public class LoginController
 	@FXML
 	void login(ActionEvent e)throws IOException
 	{		
-		String username = user.getText();
+		/**String username = user.getText().toUpperCase();
 		String password = pass.getText();
+		
+		//prüfen ob Eingaben gemacht wurden
 		if(!username.equals("")
 				&& username!=null
 				&& !password.equals("")
 				&& password!=null)
 		{
-			boolean login = false;
+			//User aus der Datenbank abrufen
 			
-			try 
+			Professor loginAs = loginProf(username);
+			
+			//Prüfen ob User gefunden wurde
+			
+			if(loginAs != null)
 			{
-				login = LoginDatabase.loginValidation(username, password);
-			} 
-			catch (Exception e1) 
-			{
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				//Passwort überprüfen
+				if(loginAs.getPassword().equals(password))
+				{
+					//Standort gesetzt überprüfen
+					if(!Inputs.getLocation().isEmpty())
+					{
+						Inputs.setLoggedInAs(loginAs);
+						//Inputs.setActiveClassPool();
+						**/
+						FXMLLoader Loader = new FXMLLoader(getClass().getResource("hauptmenue.fxml"));
+						Parent rootMain = Loader.load();
+						Scene sceneMain = new Scene( rootMain,600,400);
+						stage.setTitle("Hauptmenü");
+						stage.setScene(sceneMain);
+						HauptmenueController controllerMain = 
+								Loader.<HauptmenueController>getController();
+						controllerMain.setStage(stage);/**
+					}
+					//Fehlernachricht wenn Standort nicht gesetzt
+					else
+					{
+						errorMSG(ERR_MSG.LOCATION);
+					}
+				}//Fehlernachricht wenn Passwort und User nicht überinestimmen
+				else
+				{
+					errorMSG(ERR_MSG.NO_MATCH);
+				}
 			}
-			if(login && !Inputs.getLocation().isEmpty())
-			{
-				
-				Inputs.setLoggedInAs(username.toUpperCase());
-				
-				FXMLLoader Loader = new FXMLLoader(getClass().getResource("hauptmenue.fxml"));
-				Parent rootMain = Loader.load();
-				Scene sceneMain = new Scene( rootMain,600,400);
-				stage.setTitle("HauptmenÃ¼");
-				stage.setScene(sceneMain);
-				HauptmenueController controllerMain = 
-						Loader.<HauptmenueController>getController();
-				controllerMain.setStage(stage);
-				
-			}
-			//wird mit Absicht ohne Abfrage Ã¼ber ToggleGroup gelÃ¶st
-			else if(Inputs.getLocation().isEmpty())
-			{
-				locationMissing();
-			}
+			//Fehlernachricht wenn User nicht existiert
 			else
 			{
-				loginFailed();
+				errorMSG(ERR_MSG.BAD_USER);
 			}
 		}
-		else 
+		
+		**/
+	}
+	private Professor loginProf(String loginName)
+	{
+		/**
+		ArrayList<Professor> list = Professor.getByDozentenID(loginName);**/
+		
+		ArrayList<Professor> list = new ArrayList<Professor>();
+		list.add(new Professor("dyc", "Dyck", "Eugen", "test"));
+		list.add(new Professor("men", "Menne", "Steffan", "test"));
+		list.add(new Professor("vom", "Voss", "Matthias", "test"));
+		
+		
+	/**																	 **/
+		Professor professor = null;
+		for(Professor p: list)
 		{
-			loginFailed();
+			if(p.getDozentenID().equalsIgnoreCase(loginName))
+			{
+				professor = p;
+				break;
+			}
+			
 		}
+		
+		return professor;		
 	}
 	
 	
@@ -104,14 +138,29 @@ public class LoginController
 	{
 		stage=s;	
 	}
-	private void loginFailed()
+	private void errorMSG(ERR_MSG msg)
 	{
-		user.requestFocus();
-		errormsg.setText("Login fehlgeschlagen. ÃœberprÃ¼fen Sie ihre Daten!");
-	}
-	private void locationMissing()
-	{
-		errormsg.setText("Standort angeben!");
+		
+		switch(msg)
+		{
+		case BAD_USER: 
+			user.requestFocus();
+			errormsg.setText("Login fehlgeschlagen. Benutzer nicht vorhanden!");
+			break;
+		case NO_MATCH:
+			pass.requestFocus();
+			errormsg.setText("Login fehlgeschlagen. Überprüfen Sie ihre Daten!");
+			break;
+		case LOCATION:
+			errormsg.setText("Standort angeben!");
+			break;
+		case DB_CON:
+			errormsg.setText("Datenbankverbindung nicht möglich!");
+			break;
+		default:
+			break;
+		}
+		
 	}
 	@FXML
 	void setLocationToPB()

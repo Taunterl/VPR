@@ -6,7 +6,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import db.DatabaseSQLite;
+import database.DatabaseSQLite;
 
 public class ClassPool
 {

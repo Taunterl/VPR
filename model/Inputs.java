@@ -19,7 +19,7 @@ public class Inputs {
 		return allGroups;
 	}
 	
-	public static String setAllGroups(ArrayList<Group> allGroups) {
+	public static void setAllGroups(ArrayList<Group> allGroups) {
 		Inputs.allGroups = allGroups;
 	}
 	

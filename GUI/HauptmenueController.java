@@ -1,7 +1,9 @@
 package GUI;
 
 import java.io.IOException;
+
 import model.Inputs;
+import model.RandomGroups;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

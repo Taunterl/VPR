@@ -3,8 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import db.DatabaseEntity;
-import db.DatabaseSQLite;
+import database.DatabaseEntity;
+import database.DatabaseSQLite;
 /**
  * Die Klasse Student bildet einen Studenten des b.i.b International College ab.
  * 

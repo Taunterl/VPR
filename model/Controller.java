@@ -1,8 +1,14 @@
-import db.DatabaseSQLite;
+package model;
+
+import database.DatabaseSQLite;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Controller { //AufgabenPoolManager
 

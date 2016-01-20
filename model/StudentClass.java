@@ -6,7 +6,8 @@ package model;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import db.DatabaseEntitySQLite;
+import database.DatabaseEntity;
+import database.DatabaseSQLite;
 
 public class StudentClass extends DatabaseEntity
 {	
