@@ -24,6 +24,7 @@ public class Group
 		idCounter++;
 	}
 	
+
 	
 	// Get-Methoden der Privaten Variablen
 	public ArrayList getMembers()
@@ -40,7 +41,7 @@ public class Group
 	// Löschen eines Objecten aus der Gruppe mit Überprüfung
 	public Object removeObject(Object p)
 	{
-		this.members.remove(p)
+		this.members.remove(p);
 			return p;
 
 	}
