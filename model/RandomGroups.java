@@ -1,34 +1,28 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class RandomGroups 
 {
 	// Deklaration der Variablen
 	private static ArrayList<Group> allGroups;
-	private static ArrayList<Group> studentClasses;	
-	
-	// Set-Methode für die privaten Methoden
-	public static void setAllStudents(String[] classes)
-	{
-		studentClasses.add(new Group());
-		studentClasses.get(0).getMembers.add();
-	}
-	
+
 	// Zufällige Studenten aus einer Studierenden Klasse
-	public static Student getRandomObjectByGroup(Group studentClass) 
+	public static Object getRandomObjectByGroup(Group studentClass) 
 	{
 		Random rnd = new Random();
-		int rndStudent = rnd.nextInt(studentClass.members.size());
+		int rndStudent = rnd.nextInt(studentClass.getMembers().size());
 		
-		Student p = studentClass.members.get(rndStudent)
+		Object p = studentClass.getMembers().get(rndStudent);
 		
 		return p;
 	}
 	
-	// Erstellen einer zufälligen Gruppe aus allen Klassen
-	// HAUPTMETHODE FÜR AUFRUF
-		// Benutzung:
-			// mode:		STRING  für Auswahl von Erstellung nach Größe ("size"), oder Anzahl("count") der Gruppen
-			// modifier:	Gibt je nach "mode" die Größe der zu generierenden Gruppen oder deren Anzahl an
+	/* Erstellen einer zufälligen Gruppe aus allen Klassen
+	 * HAUPTMETHODE FÜR AUFRUF
+	 *	 Benutzung:
+	 *		 mode:		STRING  für Auswahl von Erstellung nach Größe ("size"), oder Anzahl("count") der Gruppen
+	 *		 modifier:	Gibt je nach "mode" die Größe der zu generierenden Gruppen oder deren Anzahl an
+	 */
 	public static ArrayList<Group> createRandomGroups(String mode, int modifier, Group[] grp) 
 	{
 		// Zähler für die Gruppenerstellung
@@ -42,12 +36,12 @@ public class RandomGroups
 		{
 			
 			for(int j = 0 ; j < modifier ; j++)
-				this.allGroups.add(new Group());
+				allGroups.add(new Group());
 			
 			for(int  j = 0 ; j < grp.length ; j++)
-				while(grp[j].members.size>0)
+				while(grp[j].getMembers().size()>0)
 				{
-					this.allGroups.get(i).addObject(grp[j].removeObject(getRandomObjectByGroup(grp[j])));
+					allGroups.get(i).addObject(grp[j].removeObject(getRandomObjectByGroup(grp[j])));
 					i++;
 					if(i==modifier)
 						i=0;
@@ -56,19 +50,19 @@ public class RandomGroups
 		}
 		else if(mode.equals("size") && modifier > 0)
 		{
-			int objectCount;
+			int objectCount = 0;
 			for(int j = 0 ; j < grp.length ; j++)
 			{
-				objectCount += grp[j].size();
+				objectCount += grp[j].getMembers().size();
 			}
 			
 			for(int j = 0 ; j < (objectCount/modifier+1) ; j++)
-				this.allGroups.add(new Group());
+				allGroups.add(new Group());
 			
 			for(int  j = 0 ; j < grp.length ; j++)
-				while(grp[j].members.size>0)
+				while(grp[j].getMembers().size()>0)
 				{
-					this.allGroups.get(i).addObject(grp[j].removeObject(getRandomObjectByGroup(grp[j])));
+					allGroups.get(i).addObject(grp[j].removeObject(getRandomObjectByGroup(grp[j])));
 					i++;
 					if(i==modifier)
 						i=0;
