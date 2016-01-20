@@ -4,15 +4,17 @@ public class Aufgaben {
 	private int id;
 	private String name;
 	private String description;
+	private String time;
 	private String category;
 	private String pool;
 
 	
 	
-	Aufgaben(String name, String description, String category, String pool){
+	Aufgaben(String name, String description, String time, String category, String pool){
 		
 		this.name = name;
 		this.description = description;
+		this.time = time;
 		this.category = category;
 		this.pool = pool;
 	}
@@ -33,6 +35,9 @@ public class Aufgaben {
 		return this.pool;
 	}
 	
+	public void setID(int id){
+		this.id = id;
+	}
 	
 	
 	
