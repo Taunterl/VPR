@@ -6,7 +6,7 @@ public class RandomGroups
 	// Deklaration der Variablen
 	private static ArrayList<Group> allGroups;
 
-	// Zufällige Studenten aus einer Studierenden Klasse
+	// Zufaellige Studenten aus einer Studierenden Klasse
 	public static Object getRandomObjectByGroup(Group studentClass) 
 	{
 		Random rnd = new Random();
@@ -17,15 +17,15 @@ public class RandomGroups
 		return p;
 	}
 	
-	/* Erstellen einer zufälligen Gruppe aus allen Klassen
-	 * HAUPTMETHODE FÜR AUFRUF
+	/* Erstellen einer zufaelligen Gruppe aus allen Klassen
+	 * HAUPTMETHODE FUER AUFRUF
 	 *	 Benutzung:
-	 *		 mode:		STRING  für Auswahl von Erstellung nach Größe ("size"), oder Anzahl("count") der Gruppen
-	 *		 modifier:	Gibt je nach "mode" die Größe der zu generierenden Gruppen oder deren Anzahl an
+	 *		 mode:		STRING  für Auswahl von Erstellung nach Groeße ("size"), oder Anzahl("count") der Gruppen
+	 *		 modifier:	Gibt je nach "mode" die Groeße der zu generierenden Gruppen oder deren Anzahl an
 	 */
 	public static ArrayList<Group> createRandomGroups(String mode, int modifier, ArrayList<Object> classes) 
 	{
-		// Zähler für die Gruppenerstellung
+		// Zaehler für die Gruppenerstellung
 		int i = 0;
 		
 		// Initialisierung der Gruppenvariabe
@@ -79,7 +79,10 @@ public class RandomGroups
 		}
 		return allGroups;
 	}
-	
+	/*
+	 *  Waehlt einen Zufaelligen Studenten aus einer gegebenen Klasse aus
+	 *  dafuer benutzen wir die selbe Methode, wie fuer die Gruppen erstellung
+	 */
 	public static Object getRandomStudent(ArrayList<StudentClass> classes)
 	{
 		Group grp = new Group();
