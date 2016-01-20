@@ -23,10 +23,19 @@ public class RandomGroups
 	 *		 mode:		STRING  für Auswahl von Erstellung nach Größe ("size"), oder Anzahl("count") der Gruppen
 	 *		 modifier:	Gibt je nach "mode" die Größe der zu generierenden Gruppen oder deren Anzahl an
 	 */
-	public static ArrayList<Group> createRandomGroups(String mode, int modifier, Group[] grp) 
+	public static ArrayList<Group> createRandomGroups(String mode, int modifier, ArrayList<StudentClass> classes) 
 	{
 		// Zähler für die Gruppenerstellung
 		int i = 0;
+		
+		// Initialisierung der Gruppenvariabe
+		Group[] grp = new Group[classes.size()];
+		
+		// Klassen in die Gruppenvariable speichern
+		for(int x = 0 ; x < classes.size() ; x++)
+		{
+			grp[x] = classes.get(x);
+		}
 		/*
 		 * referenz der studentClasses benutzen
 		 * setAllStudents()
