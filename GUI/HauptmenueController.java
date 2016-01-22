@@ -130,12 +130,20 @@ public class HauptmenueController
 		setGroupCount();
 		if(Inputs.isUseGroupSize())
 		{
-			//Inputs.setAllGroups(RandomGroups.createRandomGroups("size", Integer.parseInt(gruppenGroesseText.getText()), Inputs.getSelectedStudentClasses()));
+			Inputs.setAllGroups(RandomGroups.createRandomGroups("size", Integer.parseInt(gruppenGroesseText.getText()), Inputs.selectedStudentClasses()));
 		}
 		else
 		{
-			//Inputs.setAllGroups(RandomGroups.createRandomGroups("count", Integer.parseInt(groupCountField.getText()), Inputs.getSelectedStudentClasses()));
+			Inputs.setAllGroups(RandomGroups.createRandomGroups("count", Integer.parseInt(groupCountField.getText()), Inputs.selectedStudentClasses()));
 		}
+		
+		for(int i = 0 ; i < Inputs.allGroups.size() ; i++)
+		{
+			Inputs.saveGroups.put("GruppenID", Inputs.saveGroups.getGroupID());
+			Inputs.saveGroups.put("StudentenID", Inputs.saveGroups.getMembers().getStudentID());
+		}
+		
+		Inputs.database.insert("StudentenGruppen", Inputs.saveGroups);
 		
 		FXMLLoader Loader = new FXMLLoader(getClass().getResource("gruppen.fxml"));
 		Parent rootGroup = Loader.load();
