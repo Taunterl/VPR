@@ -34,6 +34,11 @@ public class Group
 		return this.members;
 	}
 	
+	public int getGroupID()
+	{
+		return this.groupID;
+	}
+	
 	// Hinzufügen eines Objecten in die Gruppe
 	public void addObject(Object p)
 	{
