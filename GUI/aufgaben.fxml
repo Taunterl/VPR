@@ -22,7 +22,7 @@
                      </children>
                   </VBox>
                   <Button fx:id="starButton" mnemonicParsing="false" onAction="#starClicked" prefHeight="30.0" prefWidth="30.0" text="*" />
-                  <Button fx:id="plusButton" mnemonicParsing="false" onAction="#plusClicked" prefHeight="30.0" prefWidth="30.0" text="+" />
+                  <Button fx:id="addTaskPoolButton" mnemonicParsing="false" onAction="#goToAddTask" prefWidth="30.0" text="+" />
                   <Button fx:id="uebersichtButton" mnemonicParsing="false" onAction="#uebersichtClicked" prefHeight="30.0" text="Übersicht" />
                   <Button fx:id="addTask" mnemonicParsing="false" onAction="#goToAddTask" text="Aufgabe hinzufÃ¼gen" />
 
