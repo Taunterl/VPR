@@ -24,6 +24,8 @@
                   <Button fx:id="starButton" mnemonicParsing="false" onAction="#starClicked" prefHeight="30.0" prefWidth="30.0" text="*" />
                   <Button fx:id="plusButton" mnemonicParsing="false" onAction="#plusClicked" prefHeight="30.0" prefWidth="30.0" text="+" />
                   <Button fx:id="uebersichtButton" mnemonicParsing="false" onAction="#uebersichtClicked" prefHeight="30.0" text="Übersicht" />
+                  <Button fx:id="addTask" mnemonicParsing="false" onAction="#goToAddTask" text="Aufgabe hinzufÃ¼gen" />
+
               </items>
                <HBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
