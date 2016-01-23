@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="300.0" maxWidth="450.0" minHeight="300.0" minWidth="450.0" prefHeight="300.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AddTaskController">
+   <center>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="383.0" prefWidth="134.0">
+               <children>
+                  <Label text="Bezeichnung :">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label text="Beschreibung :">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="53.0" left="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="Bearbeitungszeit :">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="Kategorie :">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="Pool :">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets left="25.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox prefHeight="383.0" prefWidth="161.0">
+               <children>
+                  <TextField>
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField prefHeight="72.0" prefWidth="195.0">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField>
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField>
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField prefHeight="25.0" prefWidth="119.0" />
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </VBox>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </HBox>
+   </center>
+   <top>
+      <Label alignment="CENTER" text="Aufgabe hinzufÃ¼gen" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+   </top>
+   <bottom>
+      <Button mnemonicParsing="false" text="hinzufÃ¼gen" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="10.0" />
+         </BorderPane.margin>
+      </Button>
+   </bottom>
+</BorderPane>
