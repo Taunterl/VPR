@@ -67,6 +67,9 @@ public class AufgabenController
 	@FXML
 	private Button uebersichtButton;
 	
+	@FXML
+	private Button addTaskPoolButton;
+	
 	public void initialize() 
 	{   
 	 		Controller.dbconnect();
@@ -94,7 +97,7 @@ public class AufgabenController
 	@FXML
 	void uebersichtClicked(ActionEvent e) throws IOException
 	{
-		FXMLLoader Loader = new FXMLLoader(getClass().getResource("uebersicht.fxml"));
+		FXMLLoader Loader = new FXMLLoader(getClass().getResource("uebersichtpaged.fxml"));
 		Parent rootOverview = Loader.load();
 		Scene sceneOverview = new Scene(rootOverview,600,500);
 		stage.setTitle("Uebersicht");
@@ -115,6 +118,18 @@ public class AufgabenController
 		HauptmenueController controllerMain = 
 				Loader.<HauptmenueController>getController();
 		controllerMain.setStage(stage);
+	}
+	
+	@FXML
+	void goToAddTaskPool(ActionEvent e) throws IOException {
+
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("aufgabenpool.fxml"));
+		Parent rootAddTask = loader.load();
+		Scene sceneAddTask = new Scene(rootAddTask, 450, 300);
+		stage.setTitle("Aufgabe hinzufgen");
+		stage.setScene(sceneAddTask);
+		AddTaskController controllerAddTask = loader.<AddTaskController> getController();
+		controllerAddTask.setStage(stage);
 	}
 
 	public void setStage(Stage s) 
