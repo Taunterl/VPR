@@ -1,0 +1,44 @@
+import java.io.IOException;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
+
+public class AufgabenPoolController 
+{
+	@FXML
+	private Button createNewTaskPool;
+	
+	private Stage stage;
+	
+	@FXML
+	private Button goBackButton;
+	
+	@FXML
+	public void createNewTaskPoolClicked(ActionEvent e)
+	{
+		
+	}
+	
+	@FXML
+	public void goBackButtonClicked() throws IOException
+	{
+		FXMLLoader Loader = new FXMLLoader(getClass().getResource("aufgaben.fxml"));
+		Parent rootTasks = Loader.load();
+		Scene sceneTasks = new Scene(rootTasks,600,400);
+		stage.setTitle("Aufgaben");
+		stage.setScene(sceneTasks);
+		AufgabenController controllerTasks = 
+				Loader.<AufgabenController>getController();
+		controllerTasks.setStage(stage);
+	}
+	
+	public void setStage(Stage s) {
+		this.stage = s;
+
+	}
+}
