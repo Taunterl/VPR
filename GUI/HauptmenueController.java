@@ -130,11 +130,11 @@ public class HauptmenueController
 		setGroupCount();
 		if(Inputs.isUseGroupSize())
 		{
-			Inputs.setAllGroups(RandomGroups.createRandomGroups("size", Integer.parseInt(gruppenGroesseText.getText()), Inputs.selectedStudentClasses()));
+			Inputs.setAllGroups(RandomGroups.createRandomGroups("size", Integer.parseInt(gruppenGroesseText.getText()), Inputs.getSelectedStudentClasses()));
 		}
 		else
 		{
-			Inputs.setAllGroups(RandomGroups.createRandomGroups("count", Integer.parseInt(groupCountField.getText()), Inputs.selectedStudentClasses()));
+			Inputs.setAllGroups(RandomGroups.createRandomGroups("count", Integer.parseInt(groupCountField.getText()), Inputs.getSelectedStudentClasses()));
 		}
 		
 		for(int i = 0 ; i < Inputs.allGroups.size() ; i++)
