@@ -59,27 +59,27 @@
             </VBox>
             <VBox prefHeight="383.0" prefWidth="161.0">
                <children>
-                  <TextField>
+                  <TextField fx:id="fieldName">
                      <VBox.margin>
                         <Insets bottom="5.0" top="10.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField prefHeight="72.0" prefWidth="195.0">
+                  <TextField fx:id="fieldDescription" prefHeight="72.0" prefWidth="195.0">
                      <VBox.margin>
                         <Insets bottom="5.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField>
+                  <TextField fx:id="fieldTime">
                      <VBox.margin>
                         <Insets bottom="5.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField>
+                  <TextField fx:id="fieldCategory">
                      <VBox.margin>
                         <Insets bottom="5.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField prefHeight="25.0" prefWidth="119.0" />
+                  <TextField fx:id="fieldPool" disable="true" prefHeight="25.0" prefWidth="119.0" />
                </children>
                <HBox.margin>
                   <Insets />

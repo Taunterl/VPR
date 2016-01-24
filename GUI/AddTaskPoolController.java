@@ -2,77 +2,61 @@ package GUI;
 
 import java.io.IOException;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class AddTaskController 
+public class AddTaskPoolController 
 {
-	
-	private int PoolID = 0;
-	
 	private Stage stage;
+	
+	@FXML
+	private ChoiceBox<String> choiceDozID;
+	
+	@FXML
+	private TextField fieldFach;
+	
+	@FXML
+	private TextField fieldBeschreibung;
 
 	@FXML
-	private TextField fieldName;
-	
-	@FXML
-	private TextField fieldDescription;
-	
-	@FXML
-	private TextField fieldTime;
-	
-	@FXML
-	private TextField fieldCategory;
-	
-	@FXML
-	private TextField fieldPool;
-	
-	
-	@FXML
-	private Button addTaskButton;
+	private Button createNewTaskPool;
 	
 	@FXML
 	private Button goBackButton;
 	
+	
 	public void initialize() {
 		
+		//**für Testzwecke
+		ObservableList<String> dozList = FXCollections.observableArrayList("DYC","HIL");
+		choiceDozID.setItems(dozList);
 	}
 	
-	public void addTaskButtonClicked(ActionEvent e) throws IOException
+	public void goBackButtonClicked(ActionEvent e) throws IOException
+	{
+		goBack();
+	}
+	
+	public void createNewTaskPoolClicked(ActionEvent e) throws IOException
 	{
 		Save();
 		goBack();
 	}
 	
-	public void setPoolID(int PoolID)
-	{
-		this.PoolID= PoolID;
-	}
-	
-	public int getPoolID()
-	{
-		return this.PoolID;
-	}
-	
-	public void goBackClicked(ActionEvent e) throws IOException
-	{
-		goBack();
-	}
-	
 	private void Save()
 	{
-		if(model.Controller.checkTaskPool(this.PoolID))
-		{
-			model.Controller.createTask(this.PoolID, fieldName.getText(), fieldDescription.getText(), fieldCategory.getText(), fieldTime.getText());
-			System.out.println("Saved");
-		}
-		
+		System.out.println(choiceDozID.getValue());
+		model.Controller.CreateTaskPool(fieldBeschreibung.getText(), 1, fieldFach.getText(), fieldBeschreibung.getText()); //TODO Dozente auswahl
+		System.out.println("Saved");	
 	}
 	
 	private void goBack() throws IOException
@@ -86,13 +70,10 @@ public class AddTaskController
 				Loader.<AufgabenController>getController();
 		controllerTasks.setStage(stage);
 	}
-
-	public void setStage(Stage s,int PoolID) {
+	
+	public void setStage(Stage s) {
 		this.stage = s;
-		setPoolID(PoolID);
-		fieldPool.setText(Integer.toString(getPoolID()));
 		
 	}
-	
 	
 }

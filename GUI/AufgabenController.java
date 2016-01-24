@@ -64,6 +64,8 @@ public class AufgabenController {
 
 	@FXML
 	private Button addTaskPoolButton;
+	
+	private int selectedPoolID=0;
 
 	public void initialize() {
 		Controller.dbconnect();
@@ -80,9 +82,10 @@ public class AufgabenController {
 
 		aufgabenChoice.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
 			@Override
-			public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
-				System.out.println(aufgabenChoice.getItems().get((Integer) number2));
-				changeTable(model.Controller.getPoolID(aufgabenChoice.getItems().get((Integer) number2)));
+			public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {			
+				setSelectedPoolID(model.Controller.getPoolID(aufgabenChoice.getItems().get((Integer) number2)));			
+				System.out.println(getSelectedPoolID());
+				changeTable(getSelectedPoolID());
 			}
 		});
 	}
@@ -113,12 +116,13 @@ public class AufgabenController {
 	void goToAddTaskPool(ActionEvent e) throws IOException {
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("aufgabenpool.fxml"));
-		Parent rootAddTask = loader.load();
-		Scene sceneAddTask = new Scene(rootAddTask, 450, 300);
-		stage.setTitle("Aufgabe hinzufgen");
-		stage.setScene(sceneAddTask);
-		AddTaskController controllerAddTask = loader.<AddTaskController> getController();
-		controllerAddTask.setStage(stage);
+		Parent rootAddTaskPool = loader.load();
+		Scene sceneAddTaskPool = new Scene(rootAddTaskPool, 450, 300);
+		stage.setTitle("AufgabenPool hinzufgen");
+		stage.setScene(sceneAddTaskPool);
+		AddTaskPoolController controllerAddTaskPool = loader.<AddTaskPoolController> getController();
+		controllerAddTaskPool.setStage(stage);
+		
 	}
 
 	public void setStage(Stage s) {
@@ -127,15 +131,20 @@ public class AufgabenController {
 	}
 
 	@FXML
-	void plusClicked() {
-
-	}
-
-	@FXML
 	void starClicked() {
 
 	}
 
+	private void setSelectedPoolID(int Poolid)
+	{
+		this.selectedPoolID=Poolid;
+	}
+	
+	private int getSelectedPoolID()
+	{
+		return this.selectedPoolID;
+	}
+	
 	@FXML
 	void goToAddTask(ActionEvent e) throws IOException {
 
@@ -145,7 +154,8 @@ public class AufgabenController {
 		stage.setTitle("Aufgabe hinzufgen");
 		stage.setScene(sceneAddTask);
 		AddTaskController controllerAddTask = loader.<AddTaskController> getController();
-		controllerAddTask.setStage(stage);
+		controllerAddTask.setStage(stage,getSelectedPoolID());
+	//	controllerAddTask.setPoolID(getSelectedPoolID());
 	}
 
 	private void changeTable(int Poolid) {

@@ -29,7 +29,7 @@ create table Studenten(
 );
 
 create table Aufgabenpool(
-    AufgabenpoolID number(3) Primary Key,
+    AufgabenpoolID INTEGER Primary Key AUTOINCREMENT,
     Dozent varchar(3),
     Fach varchar(3),
     Beschreibung  long,
@@ -37,7 +37,7 @@ create table Aufgabenpool(
 ); 
 
 create table Aufgaben(
-    AufgabenId number(3) Primary Key,
+    AufgabenId INTEGER Primary Key AUTOINCREMENT,
     Bezeichnung varchar(20),
     Beschreibung varchar(1280),
     Kategorie varchar(10),
