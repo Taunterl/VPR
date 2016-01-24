@@ -1,7 +1,6 @@
 package GUI;
 
 import java.io.IOException;
-
 import model.Aufgaben;
 import model.Controller;
 import javafx.beans.value.ChangeListener;
@@ -14,112 +13,102 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBase;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+
 //neuer test
-public class AufgabenController 
-{
+public class AufgabenController {
 	private Stage stage;
-	
+
 	@FXML
 	private Button goBackButton;
-	
+
 	@FXML
-	private TableColumn<String,String> columnName;
-	
+	private TableColumn<String, String> columnName;
+
 	@FXML
-	private TableColumn<String,String> columnNr;
-	
+	private TableColumn<String, String> columnNr;
+
 	@FXML
-	private TableColumn<String,String> columnDescribe;
-	
+	private TableColumn<String, String> columnDescribe;
+
 	@FXML
-	private TableColumn<String,String> columnTime;
-	
-	
+	private TableColumn<String, String> columnTime;
+
 	@FXML
-	private TableView<String> aufgabenTabelle;
-	
-	
-	
+	private TableView<Aufgaben> aufgabenTabelle;
+
 	@FXML
-	private TableColumn columnCategory;
-	
+	private TableColumn<String, String> columnCategory;
+
 	@FXML
-	private TableColumn columnPool;
+	private TableColumn<String, String> columnPool;
 
 	@FXML
 	private ChoiceBox<String> aufgabenChoice;
-	
+
 	@FXML
 	private Button starButton;
-	
+
 	@FXML
 	private Button addTask;
-	
+
 	@FXML
 	private Button plusButton;
-	
+
 	@FXML
 	private Button uebersichtButton;
-	
+
 	@FXML
 	private Button addTaskPoolButton;
-	
-	public void initialize() 
-	{   
-	 		Controller.dbconnect();
-	 		ObservableList<String> PoolList = Controller.getPools();
-	 		aufgabenChoice.setItems(PoolList);
-	 		
- 	        System.out.println("init-AufgabenController");
- 	        aufgabenTabelle.setEditable(true);
- 	        
- 	        columnNr.setCellValueFactory(new PropertyValueFactory<>("id"));
- 	        columnName.setCellValueFactory(new PropertyValueFactory<>("name"));
- 	        columnDescribe.setCellValueFactory(new PropertyValueFactory<>("describtion"));
- 	        columnTime.setCellValueFactory(new PropertyValueFactory<>("time"));
 
+	public void initialize() {
+		Controller.dbconnect();
+		ObservableList<String> PoolList = Controller.getPools();
+		aufgabenChoice.setItems(PoolList);
 
- 	        aufgabenChoice.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
-			      @Override
-			      public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
-			        System.out.println(aufgabenChoice.getItems().get((Integer) number2));
-			        changeTable();
-			      }
-			    });
+		System.out.println("init-AufgabenController");
+		aufgabenTabelle.setEditable(true);
+
+		columnNr.setCellValueFactory(new PropertyValueFactory<>("id"));
+		columnName.setCellValueFactory(new PropertyValueFactory<>("name"));
+		columnDescribe.setCellValueFactory(new PropertyValueFactory<>("description"));
+		columnTime.setCellValueFactory(new PropertyValueFactory<>("time"));
+
+		aufgabenChoice.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+			@Override
+			public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
+				System.out.println(aufgabenChoice.getItems().get((Integer) number2));
+				changeTable(model.Controller.getPoolID(aufgabenChoice.getItems().get((Integer) number2)));
+			}
+		});
 	}
-	
+
 	@FXML
-	void uebersichtClicked(ActionEvent e) throws IOException
-	{
+	void uebersichtClicked(ActionEvent e) throws IOException {
 		FXMLLoader Loader = new FXMLLoader(getClass().getResource("uebersichtpaged.fxml"));
 		Parent rootOverview = Loader.load();
-		Scene sceneOverview = new Scene(rootOverview,600,500);
+		Scene sceneOverview = new Scene(rootOverview, 600, 500);
 		stage.setTitle("Uebersicht");
 		stage.setScene(sceneOverview);
-		UebersichtController controllerOverview = 
-				Loader.<UebersichtController>getController();
+		UebersichtController controllerOverview = Loader.<UebersichtController> getController();
 		controllerOverview.setStage(stage);
 	}
-	
+
 	@FXML
-	void goBackClicked(ActionEvent e) throws IOException
-	{
+	void goBackClicked(ActionEvent e) throws IOException {
 		FXMLLoader Loader = new FXMLLoader(getClass().getResource("hauptmenue.fxml"));
 		Parent rootMain = Loader.load();
-		Scene sceneMain = new Scene( rootMain,600,400);
+		Scene sceneMain = new Scene(rootMain, 600, 400);
 		stage.setTitle("Hauptmenü");
 		stage.setScene(sceneMain);
-		HauptmenueController controllerMain = 
-				Loader.<HauptmenueController>getController();
+		HauptmenueController controllerMain = Loader.<HauptmenueController> getController();
 		controllerMain.setStage(stage);
 	}
-	
+
 	@FXML
 	void goToAddTaskPool(ActionEvent e) throws IOException {
 
@@ -132,50 +121,43 @@ public class AufgabenController
 		controllerAddTask.setStage(stage);
 	}
 
-	public void setStage(Stage s) 
-	{
+	public void setStage(Stage s) {
 		stage = s;
-		
+
 	}
-	
+
 	@FXML
-	void plusClicked()
-	{
-		
+	void plusClicked() {
+
 	}
-	
+
 	@FXML
-	void starClicked()
-	{
-		
+	void starClicked() {
+
 	}
-	 @FXML
-     	void goToAddTask(ActionEvent e) throws IOException
-	{
-    	 
-    		 FXMLLoader loader = new FXMLLoader(getClass().getResource("aufgabe.fxml"));
-    		 Parent rootAddTask = loader.load();
-    	 	Scene sceneAddTask = new Scene(rootAddTask, 450, 300 );
-    	 	stage.setTitle("Aufgabe hinzufgen");
-    	 	stage.setScene(sceneAddTask);
-    	 	AddTaskController controllerAddTask = loader.<AddTaskController>getController();
-    	 	controllerAddTask.setStage(stage);
-        }
-        
-     private void changeTable() {
-    	 for(Aufgaben a: getProduct()){
-    		 ObservableList<String> tasks = FXCollections.observableArrayList();
-    		 tasks.add(a.getName());
-    		 aufgabenTabelle.setItems(tasks);
-    	 }
-    	 
-     }
-     
-     public ObservableList<Aufgaben> getProduct(){
-    	 
-         ObservableList<Aufgaben> tasks = FXCollections.observableArrayList();
-         tasks.add(new Aufgaben(1,"Laptop","Hallo", "40" , "Proggn","OPR"));
-         tasks.add(new Aufgaben(2,"WARUM","Hallo", "50" , "Jesus","OPR"));
-         return tasks;
-     }
+
+	@FXML
+	void goToAddTask(ActionEvent e) throws IOException {
+
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("aufgabe.fxml"));
+		Parent rootAddTask = loader.load();
+		Scene sceneAddTask = new Scene(rootAddTask, 450, 300);
+		stage.setTitle("Aufgabe hinzufgen");
+		stage.setScene(sceneAddTask);
+		AddTaskController controllerAddTask = loader.<AddTaskController> getController();
+		controllerAddTask.setStage(stage);
+	}
+
+	private void changeTable(int Poolid) {
+
+		ObservableList<Aufgaben> tasks = FXCollections.observableArrayList();
+
+		for (int aufgabeID : model.Controller.getPoolTasks(Poolid)) {
+			tasks.add(model.Controller.getTaskObj(aufgabeID));
+		}
+
+		aufgabenTabelle.setItems(tasks);
+
+	}
+
 }

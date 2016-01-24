@@ -112,7 +112,7 @@ public class Controller { //AufgabenPoolManager
 		//SQL MANAGER
 		ArrayList<HashMap<String,Object>> result = new ArrayList<HashMap<String,Object>> ();
 		result = DatabaseSQLite.getInstance().get("Aufgabenpool");
-		String[] return_array = new String[result.size()];
+		//String[] return_array = new String[result.size()];
 		ObservableList<String> PoolList = FXCollections.observableArrayList();
 		
 		int counter = 0;
@@ -157,7 +157,6 @@ public class Controller { //AufgabenPoolManager
 		int counter = 0;
 		for(HashMap<String,Object> line: result){
 			counter++;
-			
 		}
 		return counter;
 		//String sql = "SELECT COUNT(*) FROM AUFGABEN WHERE POOL = " + IdPool + ";";
