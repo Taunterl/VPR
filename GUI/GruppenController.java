@@ -47,18 +47,49 @@ public class GruppenController
 	@FXML
     public void initialize() 
 	{  
-		int numberOfGroups = 8;
-		int groupSize = 3;
+		/** für Test da Datenbank nicht funktioniert **/
+		int students = 23;
+		int numberOfGroups = Inputs.getGroupCount();
+		int groupSize = Inputs.getGroupSize();
+		if(Inputs.isUseGroupSize())
+		{
+			groupSize = Inputs.getGroupSize();
+			numberOfGroups = students / groupSize;
+			if(students % groupSize !=0)
+			{
+				numberOfGroups++;
+			}
+		}
+		else
+		{
+			numberOfGroups = Inputs.getGroupCount();
+			groupSize = students / numberOfGroups;
+			if(students % numberOfGroups !=0)
+			{
+				groupSize++;
+			}
+		}
+		
+		/**											**/
+		
 		if(Inputs.getAllGroups().size()!=0 && Inputs.getAllGroups() != null)
 		{
 			numberOfGroups = Inputs.getAllGroups().size();
 			groupSize = Inputs.getAllGroups().get(0).getMembers().size();
 		}
-		grpSizeLabel.setText(numberOfGroups+" Gruppen mit je "+groupSize+" Schülern");
-		buildGroupView( numberOfGroups, groupSize);
+		if(numberOfGroups==1)
+		{
+			grpSizeLabel.setText(numberOfGroups+" Gruppe mit je "+groupSize+" Studierenden");
+		}
+		else
+		{
+			grpSizeLabel.setText(numberOfGroups+" Gruppen mit je "+groupSize+" Studierenden");
+		}
+		
+		buildGroupView( numberOfGroups, groupSize, students);
 	}
 	
-	private void buildGroupView(int numberOfGroups, int groupSize) 
+	private void buildGroupView(int numberOfGroups, int groupSize, int students) 
 	{
 		VBox groupRack = new VBox();
 		groupRack.setSpacing(5.0);

@@ -47,7 +47,7 @@ public class LoginController
 	@FXML
 	void login(ActionEvent e)throws IOException
 	{		
-		/**String username = user.getText().toUpperCase();
+		String username = user.getText().toUpperCase();
 		String password = pass.getText();
 		
 		//prüfen ob Eingaben gemacht wurden
@@ -71,7 +71,7 @@ public class LoginController
 					if(!Inputs.getLocation().isEmpty())
 					{
 						Inputs.setLoggedInAs(loginAs);
-						Inputs.setActiveClassPool();**/
+						/**Inputs.setActiveClassPool();										**/
 						
 						FXMLLoader Loader = new FXMLLoader(getClass().getResource("hauptmenue.fxml"));
 						Parent rootMain = Loader.load();
@@ -80,7 +80,7 @@ public class LoginController
 						stage.setScene(sceneMain);
 						HauptmenueController controllerMain = 
 								Loader.<HauptmenueController>getController();
-						controllerMain.setStage(stage);/**
+						controllerMain.setStage(stage);
 					}
 					//Fehlernachricht wenn Standort nicht gesetzt
 					else
@@ -100,7 +100,7 @@ public class LoginController
 			}
 		}
 		
-		**/
+		
 	}
 	private Professor loginProf(String loginName)
 	{

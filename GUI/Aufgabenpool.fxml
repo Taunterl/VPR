@@ -6,7 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="310.0" minWidth="450.0" prefHeight="310.0" prefWidth="485.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AufgabenPoolController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="310.0" minWidth="450.0" prefHeight="310.0" prefWidth="485.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AufgabenController">
    <center>
       <VBox minHeight="268.0" minWidth="450.0" prefHeight="287.0" prefWidth="476.0" BorderPane.alignment="CENTER">
          <children>

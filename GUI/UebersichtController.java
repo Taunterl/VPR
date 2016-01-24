@@ -54,7 +54,7 @@ public class UebersichtController
 		FXMLLoader Loader = new FXMLLoader(getClass().getResource("hauptmenue.fxml"));
 		Parent rootMain = Loader.load();
 		Scene sceneMain = new Scene( rootMain,600,400);
-		stage.setTitle("HauptmenÃ¼");
+		stage.setTitle("Hauptmenü");
 		stage.setScene(sceneMain);
 		HauptmenueController controllerMain = 
 				Loader.<HauptmenueController>getController();

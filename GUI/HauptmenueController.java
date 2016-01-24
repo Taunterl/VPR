@@ -104,7 +104,7 @@ public class HauptmenueController
 			stage.setTitle("KlassenTabelle");
 			stage.setScene(sceneTable);
 			TabelleController controllerTable = 
-					Loader.<TabelleController>getController();
+					Loader.<GUI.TabelleController>getController();
 			controllerTable.setStage(stage);
 			
 	}
@@ -119,16 +119,16 @@ public class HauptmenueController
 		stage.setTitle("Uebersicht");
 		stage.setScene(sceneOverview);
 		UebersichtController controllerOverview = 
-				Loader.<UebersichtController>getController();
+				Loader.<GUI.UebersichtController>getController();
 		controllerOverview.setStage(stage);
 	}
 	
 	@FXML
 	void gruppenWuerfelnClicked(ActionEvent e) throws IOException
 	{
-		addGruppenGroesse();
-		setGroupCount();
-		if(Inputs.isUseGroupSize())
+		addGruppenGroesse();				//Gruppengöße setzen
+		setGroupCount();					//Gruppenanzahl setzen
+		/**if(Inputs.isUseGroupSize())
 		{
 			Inputs.setAllGroups(RandomGroups.createRandomGroups("size", Integer.parseInt(gruppenGroesseText.getText()), Inputs.getSelectedStudentClasses()));
 		}
@@ -137,21 +137,21 @@ public class HauptmenueController
 			Inputs.setAllGroups(RandomGroups.createRandomGroups("count", Integer.parseInt(groupCountField.getText()), Inputs.getSelectedStudentClasses()));
 		}
 		
-		for(int i = 0 ; i < Inputs.allGroups.size() ; i++)
+		for(int i = 0 ; i < Inputs.getAllGroups().size() ; i++)
 		{
-			Inputs.saveGroups.put("GruppenID", Inputs.saveGroups.getGroupID());
-			Inputs.saveGroups.put("StudentenID", Inputs.saveGroups.getMembers().getStudentID());
+			Inputs.getSaveGroups().put("GruppenID", Inputs.getSaveGroups().getGroupID());
+			Inputs.getSaveGroups().put("StudentenID", Inputs.getSaveGroups().getMembers().getStudentID());
 		}
 		
-		Inputs.database.insert("StudentenGruppen", Inputs.saveGroups);
-		
+		Inputs.database.insert("StudentenGruppen", Inputs.getSaveGroups());
+		**/
 		FXMLLoader Loader = new FXMLLoader(getClass().getResource("gruppen.fxml"));
 		Parent rootGroup = Loader.load();
 		Scene sceneGroup = new Scene(rootGroup,600,450);
 		stage.setTitle("Gruppenbildung");
 		stage.setScene(sceneGroup);
 		GruppenController controllerGroup = 
-				Loader.<GruppenController>getController();
+				Loader.<GUI.GruppenController>getController();
 		controllerGroup.setStage(stage);
 	}
 	
@@ -164,7 +164,7 @@ public class HauptmenueController
 		stage.setTitle("Aufgaben");
 		stage.setScene(sceneTasks);
 		AufgabenController controllerTasks = 
-				Loader.<AufgabenController>getController();
+				Loader.<GUI.AufgabenController>getController();
 		controllerTasks.setStage(stage);
 	}
 	

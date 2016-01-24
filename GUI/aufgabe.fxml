@@ -6,7 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="300.0" maxWidth="450.0" minHeight="300.0" minWidth="450.0" prefHeight="300.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AddTaskController">
+<BorderPane maxHeight="300.0" maxWidth="450.0" minHeight="300.0" minWidth="450.0" prefHeight="300.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AddTaskController">
    <center>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -92,14 +92,14 @@
       </HBox>
    </center>
    <top>
-      <Label alignment="CENTER" text="Aufgabe hinzufÃ¼gen" BorderPane.alignment="CENTER">
+      <Label alignment="CENTER" text="Aufgabe hinzufügen" BorderPane.alignment="CENTER">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
    </top>
    <bottom>
-      <Button fx:id="addTaskButton" mnemonicParsing="false" onAction="#addTaskButtonClicked" text="hinzufÃ¼gen" BorderPane.alignment="CENTER">
+      <Button fx:id="addTaskButton" mnemonicParsing="false" onAction="#addTaskButtonClicked" text="hinzufügen" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="10.0" />
          </BorderPane.margin>
