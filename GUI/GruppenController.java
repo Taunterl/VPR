@@ -176,7 +176,8 @@ public class GruppenController
 	                        "choice-size.css"
 	                ).toExternalForm()
 	        );
-			ObservableList<String> taskPoolList = FXCollections.observableArrayList("Paul","Stefan");
+			model.Controller.dbconnect();
+			ObservableList<String> taskPoolList = model.Controller.getPools(); //FXCollections.observableArrayList("Paul","Stefan");
 			taskPoolChoice.setItems(taskPoolList);
 			
 			taskPoolChoice.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {

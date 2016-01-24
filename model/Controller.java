@@ -54,12 +54,13 @@ public class Controller { //AufgabenPoolManager
 		//System.out.println(checkTask("Tafel wischen"));
 		//System.out.println(checkTask(6));
 		//System.out.println(getPools());
+		//System.out.println("test");
 	}
 	
 	//Methode stellt Verbindung mit DB her
 	public static void dbconnect()
 	{
-		final String DB_URL = "jdbc:sqlite:testDB.db";
+		final String DB_URL = "jdbc:sqlite:datenbankSQLite/testDB.db";
 		
 		final String USER = "";
 		final String PWD = "";

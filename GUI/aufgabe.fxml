@@ -99,7 +99,7 @@
       </Label>
    </top>
    <bottom>
-      <Button fx:id="addTaskButton" mnemonicParsing="false" onAction="#addTaskButtonClicked" text="hinzufügen" BorderPane.alignment="CENTER">
+      <Button fx:id="addTaskButton" mnemonicParsing="false" onAction="#addTaskButtonClicked" text="Hinzufügen" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="10.0" />
          </BorderPane.margin>

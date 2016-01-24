@@ -33,7 +33,7 @@
                <children>
                   <ImageView fx:id="studentImage" fitHeight="266.0" fitWidth="163.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Bilder/Ugly-boy.jpg" />
+                        <Image url="@../dummy-user.jpg" />
                      </image>
                   </ImageView>
                   <Button fx:id="imagePlusButton" mnemonicParsing="false" onAction="#imagePlusClicked" text="+" />
@@ -44,4 +44,3 @@
       </HBox>
    </children>
 </VBox>
-

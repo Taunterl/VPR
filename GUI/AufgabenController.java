@@ -83,13 +83,13 @@ public class AufgabenController
  	        columnName.setCellValueFactory(new PropertyValueFactory<>("name"));
  	        columnDescribe.setCellValueFactory(new PropertyValueFactory<>("describtion"));
  	        columnTime.setCellValueFactory(new PropertyValueFactory<>("time"));
- 	        columnCategory.setCellValueFactory(new PropertyValueFactory<>("category"));
- 	        columnPool.setCellValueFactory(new PropertyValueFactory<>("pool"));
+
 
  	        aufgabenChoice.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
 			      @Override
 			      public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
 			        System.out.println(aufgabenChoice.getItems().get((Integer) number2));
+			        changeTable();
 			      }
 			    });
 	}
@@ -163,7 +163,6 @@ public class AufgabenController
         }
         
      private void changeTable() {
-    	 // TODO Auto-generated method stub
     	 for(Aufgaben a: getProduct()){
     		 ObservableList<String> tasks = FXCollections.observableArrayList();
     		 tasks.add(a.getName());
@@ -177,7 +176,6 @@ public class AufgabenController
          ObservableList<Aufgaben> tasks = FXCollections.observableArrayList();
          tasks.add(new Aufgaben(1,"Laptop","Hallo", "40" , "Proggn","OPR"));
          tasks.add(new Aufgaben(2,"WARUM","Hallo", "50" , "Jesus","OPR"));
-
          return tasks;
      }
 }
