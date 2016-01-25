@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="415.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UebersichtController">
+   <children>
+      <HBox alignment="CENTER_LEFT" styleClass="vbox" stylesheets="@style.css">
+         <children>
+            <Button fx:id="goBackButton" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#goBackClicked" prefHeight="25.0" prefWidth="30.0" text="&lt;" textAlignment="CENTER">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin></Button>
+            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Klasse(n): ibd2h14b, ibw2h14a" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+         </children>
+         <VBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </VBox.margin>
+      </HBox>
+      <AnchorPane fx:id="classPages" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="vbox" stylesheets="@style.css" VBox.vgrow="ALWAYS">
+         <VBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </VBox.margin>
+      </AnchorPane>
+      <Pagination fx:id="pagination" pageCount="5" prefHeight="200.0" prefWidth="200.0" />
+   </children>
+</VBox>
